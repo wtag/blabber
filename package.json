@@ -1,0 +1,19 @@
+{
+  "name": "blabber",
+  "version": "1.0.1",
+  "description": "PROTO FILE FOR GRPC BACKEND SERVER",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wtag/blabber.git"
+  },
+  "author": "WELLDEV BANGLADESH LIMITED",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wtag/blabber/issues"
+  },
+  "homepage": "https://github.com/wtag/blabber#readme"
+}
