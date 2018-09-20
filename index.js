@@ -1,0 +1,1 @@
+exports.Blabber = require('./nodejs/chat_grpc_pb');
