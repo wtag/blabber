@@ -1,1 +1,1 @@
-exports.Blabber = require('./nodejs/ProtoPaths');
+exports.Blabber = require('./nodejs/chat_grpc_pb');
