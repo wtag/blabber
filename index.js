@@ -4,3 +4,4 @@ exports.MessageList = chatLib.MessageList();
 exports.Room = chatLib.Room();
 exports.SendMessageResponse = chatLib.SendMessageResponse();
 exports.Empty = chatLib.Empty();
+exports.Message = chatLib.Message();
