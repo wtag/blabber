@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-import "./../Models/user.proto";
+import "Model/user.proto";
 
-package Chat;
+package ChatService;
 
 message Message {
   int64 id = 1;
@@ -42,5 +42,5 @@ service Chat {
 }
 
 service Authentication {
-  rpc RetrieveAccessToken(User) returns (AccessToken) {}
+  rpc RetrieveAccessToken(Model.User) returns (AccessToken) {}
 }
