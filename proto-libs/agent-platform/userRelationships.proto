@@ -1,12 +1,8 @@
 syntax = "proto3";
 
-package GrpcAgentPlatform;
+import "./../Models/user.proto";
 
-message User {
-  int64 id = 1;
-  string name = 2;
-  string avatarURL = 3;
-}
+package Agent;
 
 message UserRelationsCustomer {
   repeated User agents = 1;
@@ -19,12 +15,7 @@ message UserRelationsAgent {
   repeated User colleagues = 2;
 }
 
-message AgentUser {
-  int64 id = 1;
-  string tenant = 2;
-}
-
 service UserRelationships {
-  rpc RetrieveCustomerRelations(AgentUser) returns (UserRelationsCustomer) {}
-  rpc RetrieveAgentRelations(AgentUser) returns (UserRelationsAgent) {}
+  rpc RetrieveCustomerRelations(User) returns (UserRelationsCustomer) {}
+  rpc RetrieveAgentRelations(User) returns (UserRelationsAgent) {}
 }
