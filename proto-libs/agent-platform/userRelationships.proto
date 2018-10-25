@@ -2,34 +2,29 @@ syntax = "proto3";
 
 package GrpcAgentPlatform;
 
-message Agent {
+message User {
   int64 id = 1;
   string name = 2;
-}
-
-message Customer {
-  int64 id = 1;
-  string name = 2;
-  string avaterUrl = 3;
+  string avatarURL = 3;
 }
 
 message UserRelationsCustomer {
-  repeated Agent agents = 1;
-  repeated Customer travelArrengers = 2;
-  repeated Customer customers = 3;
+  repeated User agents = 1;
+  repeated User travelArrangers = 2;
+  repeated User colleagues = 3;
 }
 
 message UserRelationsAgent {
-  repeated Customer customers = 1;
-  repeated Agent colleagues = 2;
+  repeated User customers = 1;
+  repeated User colleagues = 2;
 }
 
-message User {
+message AgentUser {
   int64 id = 1;
   string tenant = 2;
 }
 
 service UserRelationships {
-  rpc RetrieveCustomerRelations(User) returns (UserRelationsCustomer) {}
-  rpc RetrieveAgentRelations(User) returns (UserRelationsAgent) {}
+  rpc RetrieveCustomerRelations(AgentUser) returns (UserRelationsCustomer) {}
+  rpc RetrieveAgentRelations(AgentUser) returns (UserRelationsAgent) {}
 }
