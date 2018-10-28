@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "Model/user.proto";
+
+package Agent;
+
+message UserRelationsCustomer {
+  repeated Model.User agents = 1;
+  repeated Model.User travelArrangers = 2;
+  repeated Model.User colleagues = 3;
+}
+
+message UserRelationsAgent {
+  repeated Model.User customers = 1;
+  repeated Model.User colleagues = 2;
+}
+
+service UserRelationships {
+  rpc RetrieveCustomerRelations(Model.User) returns (UserRelationsCustomer) {}
+  rpc RetrieveAgentRelations(Model.User) returns (UserRelationsAgent) {}
+}
