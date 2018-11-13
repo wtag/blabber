@@ -1,3 +1,9 @@
+# coding: utf-8
+ruby = File.expand_path('../ruby', __FILE__)
+$LOAD_PATH.unshift(ruby) unless $LOAD_PATH.include?(ruby)
+# require 'snip/version'
+
+
 Gem::Specification.new do |s|
     s.name        = 'blabber'
     s.version     = '0.0.0'
@@ -13,4 +19,3 @@ Gem::Specification.new do |s|
 
     s.add_dependency 'grpc'
   end
-  
