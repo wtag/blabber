@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
     s.authors     = ["Junan Chakma"]
     s.email       = 'junan.chakma@welldev.io'
     s.files       = `git ls-files -z ruby lib`.split("\x0")
-    s.require_paths = ['lib']
+    s.require_paths = ['lib', 'ruby']
 
     s.license       = 'MIT'
 
