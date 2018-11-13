@@ -1,6 +1,6 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(ruby) unless $LOAD_PATH.include?(liv)
+$LOAD_PATH.unshift(ruby) unless $LOAD_PATH.include?(lib)
 require 'blabber/version'
 
 
