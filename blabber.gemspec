@@ -6,7 +6,7 @@ require 'blabber/version'
 
 Gem::Specification.new do |s|
     s.name        = 'blabber'
-    s.version     = Blabber::Version
+    s.version     = Blabber::VERSION
     s.date        = '2018-11-13'
     s.summary     = "GRPC service library for chatting system"
     s.authors     = ["Junan Chakma"]
