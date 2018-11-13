@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
     s.name        = 'blabber'
     s.version     = Blabber::VERSION
     s.date        = '2018-11-13'
-    s.summary     = "GRPC service library for chatting system"
-    s.authors     = ["Junan Chakma"]
+    s.summary     = '"Protobuf SDK for gRPC communication'
+    s.authors     = ['Junan Chakma']
     s.email       = 'junan.chakma@welldev.io'
     s.files       = `git ls-files -z ruby lib`.split("\x0")
     s.require_paths = ['lib', 'ruby']
