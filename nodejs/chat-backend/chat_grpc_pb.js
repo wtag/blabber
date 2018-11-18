@@ -3,7 +3,7 @@
 'use strict';
 var grpc = require('grpc');
 var chat$backend_chat_pb = require('../chat-backend/chat_pb.js');
-var Model_user_pb = require('../model/user_pb.js');
+var Model_user_pb = require('../Model/user_pb.js');
 
 function serialize_ChatService_AccessToken(arg) {
   if (!(arg instanceof chat$backend_chat_pb.AccessToken)) {
