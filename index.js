@@ -15,7 +15,9 @@ exports.Blabber.User = user.User;
 
 /**GRPC Service Exposed By Agent
  ***Service: User RelationShip**/
-exports.Blabber.Agent.UserRelationships = require("./nodejs/agent-platform/userRelationships_grpc_pb");
-exports.Blabber.Agent.UserRelationships.UserRelationsCustomer = agentUserRelationships.UserRelationsCustomer;
-exports.Blabber.Agent.UserRelationships.UserRelationsAgent = agentUserRelationships.UserRelationsAgent;
-exports.Blabber.Agent.UserRelationships.User = user.User;
+exports.Blabber.Agent = require("./nodejs/agent-platform/userRelationships_grpc_pb");
+exports.Blabber.Agent.UserRelationsCustomer =
+  agentUserRelationships.UserRelationsCustomer;
+exports.Blabber.Agent.UserRelationsAgent =
+  agentUserRelationships.UserRelationsAgent;
+exports.Blabber.Agent.User = user.User;
