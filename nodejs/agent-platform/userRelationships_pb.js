@@ -11,7 +11,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var Model_user_pb = require('../Model/user_pb.js');
+var Model_user_pb = require('./../model/user_pb.js');
 goog.exportSymbol('proto.Agent.UserRelationsAgent', null, global);
 goog.exportSymbol('proto.Agent.UserRelationsCustomer', null, global);
 
