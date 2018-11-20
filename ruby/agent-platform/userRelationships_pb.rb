@@ -9,6 +9,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :agents, :message, 1, "Model.User"
     repeated :travelArrangers, :message, 2, "Model.User"
     repeated :colleagues, :message, 3, "Model.User"
+    repeated :travelClients, :message, 4, "Model.User"
   end
   add_message "Agent.UserRelationsAgent" do
     repeated :customers, :message, 1, "Model.User"

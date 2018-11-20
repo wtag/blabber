@@ -37,7 +37,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.Agent.UserRelationsCustomer.repeatedFields_ = [1,2,3];
+proto.Agent.UserRelationsCustomer.repeatedFields_ = [1,2,3,4];
 
 
 
@@ -73,6 +73,8 @@ proto.Agent.UserRelationsCustomer.toObject = function(includeInstance, msg) {
     travelarrangersList: jspb.Message.toObjectList(msg.getTravelarrangersList(),
     Model_user_pb.User.toObject, includeInstance),
     colleaguesList: jspb.Message.toObjectList(msg.getColleaguesList(),
+    Model_user_pb.User.toObject, includeInstance),
+    travelclientsList: jspb.Message.toObjectList(msg.getTravelclientsList(),
     Model_user_pb.User.toObject, includeInstance)
   };
 
@@ -125,6 +127,11 @@ proto.Agent.UserRelationsCustomer.deserializeBinaryFromReader = function(msg, re
       reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
       msg.addColleagues(value);
       break;
+    case 4:
+      var value = new Model_user_pb.User;
+      reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
+      msg.addTravelclients(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -174,6 +181,14 @@ proto.Agent.UserRelationsCustomer.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       3,
+      f,
+      Model_user_pb.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getTravelclientsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
       f,
       Model_user_pb.User.serializeBinaryToWriter
     );
@@ -271,6 +286,37 @@ proto.Agent.UserRelationsCustomer.prototype.addColleagues = function(opt_value, 
 
 proto.Agent.UserRelationsCustomer.prototype.clearColleaguesList = function() {
   this.setColleaguesList([]);
+};
+
+
+/**
+ * repeated Model.User travelClients = 4;
+ * @return {!Array.<!proto.Model.User>}
+ */
+proto.Agent.UserRelationsCustomer.prototype.getTravelclientsList = function() {
+  return /** @type{!Array.<!proto.Model.User>} */ (
+    jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 4));
+};
+
+
+/** @param {!Array.<!proto.Model.User>} value */
+proto.Agent.UserRelationsCustomer.prototype.setTravelclientsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.Model.User=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.Model.User}
+ */
+proto.Agent.UserRelationsCustomer.prototype.addTravelclients = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.Model.User, opt_index);
+};
+
+
+proto.Agent.UserRelationsCustomer.prototype.clearTravelclientsList = function() {
+  this.setTravelclientsList([]);
 };
 
 

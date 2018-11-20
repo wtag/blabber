@@ -16,6 +16,7 @@ module ChatService
 
       rpc :RetrieveMessages, Room, MessageList
       rpc :SendMessage, Message, SendMessageResponse
+      rpc :RetriveChannels, Model::User, ChannelList
     end
 
     Stub = Service.rpc_stub_class

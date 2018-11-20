@@ -25,6 +25,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :id, :string, 2
     optional :lastSeenMessageTimestamp, :string, 3
   end
+  add_message "ChatService.Channel" do
+    optional :id, :int64, 1
+    optional :channelUniqueId, :string, 2
+    optional :channelType, :string, 3
+    optional :channelTitle, :string, 4
+    optional :tenant, :string, 5
+    repeated :users, :message, 6, "Model.User"
+  end
+  add_message "ChatService.ChannelList" do
+    repeated :channels, :message, 1, "ChatService.Channel"
+  end
   add_message "ChatService.Empty" do
   end
   add_message "ChatService.AccessToken" do
@@ -37,6 +48,8 @@ module ChatService
   MessageList = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MessageList").msgclass
   SendMessageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendMessageResponse").msgclass
   Room = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Room").msgclass
+  Channel = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Channel").msgclass
+  ChannelList = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.ChannelList").msgclass
   Empty = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Empty").msgclass
   AccessToken = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.AccessToken").msgclass
 end

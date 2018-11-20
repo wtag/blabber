@@ -2,7 +2,7 @@
 
 'use strict';
 var grpc = require('grpc');
-var chat$backend_chat_pb = require('./../chat-backend/chat_pb.js');
+var chat$backend_chat_pb = require('../chat-backend/chat_pb.js');
 var Model_user_pb = require('./../model/user_pb.js');
 
 function serialize_ChatService_AccessToken(arg) {
@@ -14,6 +14,17 @@ function serialize_ChatService_AccessToken(arg) {
 
 function deserialize_ChatService_AccessToken(buffer_arg) {
   return chat$backend_chat_pb.AccessToken.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ChatService_ChannelList(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.ChannelList)) {
+    throw new Error('Expected argument of type ChatService.ChannelList');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_ChatService_ChannelList(buffer_arg) {
+  return chat$backend_chat_pb.ChannelList.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_Message(arg) {
@@ -94,6 +105,17 @@ var ChatService = exports.ChatService = {
     requestDeserialize: deserialize_ChatService_Message,
     responseSerialize: serialize_ChatService_SendMessageResponse,
     responseDeserialize: deserialize_ChatService_SendMessageResponse,
+  },
+  retriveChannels: {
+    path: '/ChatService.Chat/RetriveChannels',
+    requestStream: false,
+    responseStream: false,
+    requestType: Model_user_pb.User,
+    responseType: chat$backend_chat_pb.ChannelList,
+    requestSerialize: serialize_Model_User,
+    requestDeserialize: deserialize_Model_User,
+    responseSerialize: serialize_ChatService_ChannelList,
+    responseDeserialize: deserialize_ChatService_ChannelList,
   },
 };
 
