@@ -23,9 +23,17 @@ message SendMessageResponse {
 }
 
 message Room {
-  string tenant = 1;
-  string id = 2;
-  string lastSeenMessageTimestamp = 3;
+  int64 id = 1;
+  string uid = 2;
+  string type = 3;
+  string title = 4;
+  string tenant = 5;
+  repeated Model.User users = 6;
+  string lastSeenMessageTimestamp = 7;
+}
+
+message RoomList {
+  repeated Room rooms = 1;
 }
 
 message Empty {
@@ -39,6 +47,7 @@ message AccessToken {
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
+  rpc RetrieveAvailableRooms(Model.User) returns (RoomList) {}
 }
 
 service Authentication {

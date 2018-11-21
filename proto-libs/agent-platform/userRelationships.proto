@@ -8,6 +8,7 @@ message UserRelationsCustomer {
   repeated Model.User agents = 1;
   repeated Model.User travelArrangers = 2;
   repeated Model.User colleagues = 3;
+  repeated Model.User travelArrangementClients = 4;
 }
 
 message UserRelationsAgent {
