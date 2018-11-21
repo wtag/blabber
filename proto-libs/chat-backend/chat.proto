@@ -51,7 +51,7 @@ message AccessToken {
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
-  rpc RetriveChannels(Model.User) returns (ChannelList) {}
+  rpc RetrieveAvailableChannels(Model.User) returns (ChannelList) {}
 }
 
 service Authentication {
