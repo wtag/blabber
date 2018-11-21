@@ -11,8 +11,7 @@ exports.Blabber.SendMessageResponse = chatLib.SendMessageResponse;
 exports.Blabber.Empty = chatLib.Empty;
 exports.Blabber.Message = chatLib.Message;
 exports.Blabber.AccessToken = chatLib.AccessToken;
-exports.Blabber.Channel = chatLib.Channel;
-exports.Blabber.ChannelList = chatLib.ChannelList;
+exports.Blabber.RoomList = chatLib.RoomList;
 exports.Blabber.User = user.User;
 
 /**GRPC Service Exposed By Agent
