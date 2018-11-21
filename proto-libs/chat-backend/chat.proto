@@ -24,11 +24,12 @@ message SendMessageResponse {
 
 message Room {
   int64 id = 1;
-  string type = 2;
-  string title = 3;
-  string tenant = 4;
-  repeated Model.User users = 5;
-  string lastSeenMessageTimestamp = 6;
+  string uid = 2;
+  string type = 3;
+  string title = 4;
+  string tenant = 5;
+  repeated Model.User users = 6;
+  string lastSeenMessageTimestamp = 7;
 }
 
 message RoomList {
