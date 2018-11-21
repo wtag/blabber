@@ -44,10 +44,40 @@ message AccessToken {
   string token = 1;
 }
 
+message Mention {
+  int64 id = 1;
+  int64 messageId = 2;
+  string roomUid = 3;
+  int64 userId = 4;
+  string statue = 5;
+  string tenant = 6;
+}
+
+message MessageSeen {
+  int64 id = 1;
+  int64 messageId = 2;
+  string roomUid = 3;
+  int64 userId = 4;
+  string tenant = 5;
+  string timestamp = 6;
+}
+
+message MessageSeenAndMentionRequest {
+  string tenant = 1;
+  string roomUid = 2;
+  Model.User user = 3;
+}
+
+message MessageSeenAndMentionResponse {
+  repeated MessageSeen messageSeens = 1;
+  repeated Mention mentions = 2;
+}
+
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
   rpc RetrieveAvailableRooms(Model.User) returns (RoomList) {}
+  rpc RetrieveMessageSeenAndMention(MessageSeenAndMentionRequest) returns (MessageSeenAndMentionResponse) {}
 }
 
 service Authentication {
