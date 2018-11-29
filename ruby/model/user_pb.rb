@@ -8,7 +8,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :id, :int64, 1
     optional :name, :string, 2
     optional :tenant, :string, 3
-    optional :isCustomer, :string, 4
+    optional :isCustomer, :bool, 4
     optional :avatarURL, :string, 5
   end
 end
