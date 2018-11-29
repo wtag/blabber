@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "Model/user.proto";
+import "model/user.proto";
 
 package Agent;
 

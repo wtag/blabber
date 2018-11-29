@@ -3,7 +3,7 @@
 
 require 'google/protobuf'
 
-require 'Model/user_pb'
+require 'model/user_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "Agent.UserRelationsCustomer" do
     repeated :agents, :message, 1, "Model.User"
