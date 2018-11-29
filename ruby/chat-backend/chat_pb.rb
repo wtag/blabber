@@ -3,7 +3,7 @@
 
 require 'google/protobuf'
 
-require 'Model/user_pb'
+require 'model/user_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "ChatService.Message" do
     optional :id, :int64, 1
