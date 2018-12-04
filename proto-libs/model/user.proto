@@ -8,4 +8,5 @@ message User {
   string tenant = 3;
   string isCustomer = 4;
   string avatarURL = 5;
+  bool isOnline = 6;
 }

@@ -11,14 +11,17 @@ exports.Blabber.SendMessageResponse = chatLib.SendMessageResponse;
 exports.Blabber.Empty = chatLib.Empty;
 exports.Blabber.Message = chatLib.Message;
 exports.Blabber.AccessToken = chatLib.AccessToken;
-exports.Blabber.RoomList = chatLib.RoomList;
+exports.Blabber.RoomCategory = chatLib.RoomCategory;
+exports.Blabber.RoomCategoryList = chatLib.RoomCategoryList;
 exports.Blabber.User = user.User;
 exports.Blabber.Mention = chatLib.Mention;
 exports.Blabber.MessageSeen = chatLib.MessageSeen;
-exports.Blabber.MessageSeenAndMentionRequest =
-  chatLib.MessageSeenAndMentionRequest;
-exports.Blabber.MessageSeenAndMentionResponse =
-  chatLib.MessageSeenAndMentionResponse;
+exports.Blabber.RemoveMentionRequest =
+  chatLib.RemoveMentionRequest;
+exports.Blabber.RemoveMessageSeenRequest =
+  chatLib.RemoveMessageSeenRequest;
+exports.Blabber.RemoveMentionAndSeenResponse =
+  chatLib.RemoveMentionAndSeenResponse;
 
 /**GRPC Service Exposed By Agent
  ***Service: User RelationShip**/

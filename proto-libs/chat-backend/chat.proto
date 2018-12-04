@@ -8,10 +8,12 @@ message Message {
   int64 id = 1;
   string timestamp = 2;
   string tenant = 3;
-  string roomId = 4;
+  string roomUid = 4;
   string text = 5;
   string senderId = 6;
   string senderName = 7;
+  string isCustomer = 8;
+  repeated Model.User users = 9;
 }
 
 message MessageList {
@@ -30,10 +32,19 @@ message Room {
   string tenant = 5;
   repeated Model.User users = 6;
   string lastSeenMessageTimestamp = 7;
+  repeated MessageSeen messageSeens = 8;
+  repeated Mention mentions = 9;
 }
 
-message RoomList {
-  repeated Room rooms = 1;
+message RoomCategory {
+  string title = 1;
+  string type = 2;
+  repeated Room rooms = 3;
+}
+
+message RoomCategoryList {
+  string tenant = 1;
+  repeated RoomCategory roomCategories = 2;
 }
 
 message Empty {
@@ -49,7 +60,7 @@ message Mention {
   int64 messageId = 2;
   string roomUid = 3;
   int64 userId = 4;
-  string statue = 5;
+  string status = 5;
   string tenant = 6;
 }
 
@@ -59,25 +70,36 @@ message MessageSeen {
   string roomUid = 3;
   int64 userId = 4;
   string tenant = 5;
-  string timestamp = 6;
+  string status = 6;
+  string timestamp = 7;
 }
 
-message MessageSeenAndMentionRequest {
+message RemoveMentionRequest {
   string tenant = 1;
   string roomUid = 2;
   Model.User user = 3;
+  int64 mentionId = 4;
+  int64 messageId = 5;
 }
 
-message MessageSeenAndMentionResponse {
-  repeated MessageSeen messageSeens = 1;
-  repeated Mention mentions = 2;
+message RemoveMessageSeenRequest {
+  string tenant = 1;
+  string roomUid = 2;
+  Model.User user = 3;
+  int64 messageSeenId = 4;
+  int64 messageId = 5;
+}
+
+message RemoveMentionAndSeenResponse {
+  string response = 1;
 }
 
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
-  rpc RetrieveAvailableRooms(Model.User) returns (RoomList) {}
-  rpc RetrieveMessageSeenAndMention(MessageSeenAndMentionRequest) returns (MessageSeenAndMentionResponse) {}
+  rpc RetrieveAvailableRooms(Model.User) returns (RoomCategoryList) {}
+  rpc RetrieveMessageSeenRemove(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
+  rpc RetrieveMentionRemove(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
 }
 
 service Authentication {
