@@ -12,7 +12,7 @@ message Message {
   string text = 5;
   string senderId = 6;
   string senderName = 7;
-  string isCustomer = 8;
+  bool isCustomer = 8;
   repeated Model.User users = 9;
 }
 
