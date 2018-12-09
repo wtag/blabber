@@ -14,6 +14,7 @@ message Message {
   string senderName = 7;
   bool isCustomer = 8;
   repeated Model.User users = 9;
+  repeated Model.User mentionList = 10;
 }
 
 message MessageList {
@@ -34,6 +35,7 @@ message Room {
   string lastSeenMessageTimestamp = 7;
   repeated MessageSeen messageSeens = 8;
   repeated Mention mentions = 9;
+  string lastMessage = 10;
 }
 
 message RoomCategory {
@@ -98,8 +100,8 @@ service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
   rpc RetrieveAvailableRooms(Model.User) returns (RoomCategoryList) {}
-  rpc RetrieveMessageSeenRemove(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
-  rpc RetrieveMentionRemove(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
+  rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
+  rpc MarkMentionAsRead(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
 }
 
 service Authentication {
