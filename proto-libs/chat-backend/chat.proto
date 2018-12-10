@@ -14,7 +14,7 @@ message Message {
   string senderName = 7;
   bool isCustomer = 8;
   repeated Model.User users = 9;
-  repeated Model.User mentionList = 10;
+  repeated Model.User mentionedUsers = 10;
 }
 
 message MessageList {
@@ -101,7 +101,7 @@ service Chat {
   rpc SendMessage(Message) returns (SendMessageResponse) {}
   rpc RetrieveAvailableRooms(Model.User) returns (RoomCategoryList) {}
   rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
-  rpc MarkMentionAsRead(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
+  rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
 }
 
 service Authentication {
