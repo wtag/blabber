@@ -74,7 +74,7 @@ proto.Agent.UserRelationsCustomer.toObject = function(includeInstance, msg) {
     Model_user_pb.User.toObject, includeInstance),
     colleaguesList: jspb.Message.toObjectList(msg.getColleaguesList(),
     Model_user_pb.User.toObject, includeInstance),
-    travelclientsList: jspb.Message.toObjectList(msg.getTravelclientsList(),
+    travelarrangementclientsList: jspb.Message.toObjectList(msg.getTravelarrangementclientsList(),
     Model_user_pb.User.toObject, includeInstance)
   };
 
@@ -130,7 +130,7 @@ proto.Agent.UserRelationsCustomer.deserializeBinaryFromReader = function(msg, re
     case 4:
       var value = new Model_user_pb.User;
       reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
-      msg.addTravelclients(value);
+      msg.addTravelarrangementclients(value);
       break;
     default:
       reader.skipField();
@@ -185,7 +185,7 @@ proto.Agent.UserRelationsCustomer.serializeBinaryToWriter = function(message, wr
       Model_user_pb.User.serializeBinaryToWriter
     );
   }
-  f = message.getTravelclientsList();
+  f = message.getTravelarrangementclientsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       4,
@@ -290,17 +290,17 @@ proto.Agent.UserRelationsCustomer.prototype.clearColleaguesList = function() {
 
 
 /**
- * repeated Model.User travelClients = 4;
+ * repeated Model.User travelArrangementClients = 4;
  * @return {!Array.<!proto.Model.User>}
  */
-proto.Agent.UserRelationsCustomer.prototype.getTravelclientsList = function() {
+proto.Agent.UserRelationsCustomer.prototype.getTravelarrangementclientsList = function() {
   return /** @type{!Array.<!proto.Model.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 4));
 };
 
 
 /** @param {!Array.<!proto.Model.User>} value */
-proto.Agent.UserRelationsCustomer.prototype.setTravelclientsList = function(value) {
+proto.Agent.UserRelationsCustomer.prototype.setTravelarrangementclientsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
@@ -310,13 +310,13 @@ proto.Agent.UserRelationsCustomer.prototype.setTravelclientsList = function(valu
  * @param {number=} opt_index
  * @return {!proto.Model.User}
  */
-proto.Agent.UserRelationsCustomer.prototype.addTravelclients = function(opt_value, opt_index) {
+proto.Agent.UserRelationsCustomer.prototype.addTravelarrangementclients = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.Model.User, opt_index);
 };
 
 
-proto.Agent.UserRelationsCustomer.prototype.clearTravelclientsList = function() {
-  this.setTravelclientsList([]);
+proto.Agent.UserRelationsCustomer.prototype.clearTravelarrangementclientsList = function() {
+  this.setTravelarrangementclientsList([]);
 };
 
 

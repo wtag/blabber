@@ -16,7 +16,9 @@ module ChatService
 
       rpc :RetrieveMessages, Room, MessageList
       rpc :SendMessage, Message, SendMessageResponse
-      rpc :RetriveChannels, Model::User, ChannelList
+      rpc :RetrieveAvailableRooms, Model::User, RoomCategoryList
+      rpc :MarkMessageAsSeen, RemoveMessageSeenRequest, RemoveMentionAndSeenResponse
+      rpc :MarkMentionAsSeen, RemoveMentionRequest, RemoveMentionAndSeenResponse
     end
 
     Stub = Service.rpc_stub_class

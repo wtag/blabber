@@ -10,14 +10,20 @@
 var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
+
 var Model_user_pb = require('./../model/user_pb.js');
 goog.exportSymbol('proto.ChatService.AccessToken', null, global);
-goog.exportSymbol('proto.ChatService.Channel', null, global);
-goog.exportSymbol('proto.ChatService.ChannelList', null, global);
 goog.exportSymbol('proto.ChatService.Empty', null, global);
+goog.exportSymbol('proto.ChatService.Mention', null, global);
 goog.exportSymbol('proto.ChatService.Message', null, global);
 goog.exportSymbol('proto.ChatService.MessageList', null, global);
+goog.exportSymbol('proto.ChatService.MessageSeen', null, global);
+goog.exportSymbol('proto.ChatService.RemoveMentionAndSeenResponse', null, global);
+goog.exportSymbol('proto.ChatService.RemoveMentionRequest', null, global);
+goog.exportSymbol('proto.ChatService.RemoveMessageSeenRequest', null, global);
 goog.exportSymbol('proto.ChatService.Room', null, global);
+goog.exportSymbol('proto.ChatService.RoomCategory', null, global);
+goog.exportSymbol('proto.ChatService.RoomCategoryList', null, global);
 goog.exportSymbol('proto.ChatService.SendMessageResponse', null, global);
 
 /**
@@ -31,12 +37,19 @@ goog.exportSymbol('proto.ChatService.SendMessageResponse', null, global);
  * @constructor
  */
 proto.ChatService.Message = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ChatService.Message.repeatedFields_, null);
 };
 goog.inherits(proto.ChatService.Message, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.ChatService.Message.displayName = 'proto.ChatService.Message';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ChatService.Message.repeatedFields_ = [9,10];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -69,10 +82,15 @@ proto.ChatService.Message.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     timestamp: jspb.Message.getFieldWithDefault(msg, 2, ""),
     tenant: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    roomid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    roomuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     text: jspb.Message.getFieldWithDefault(msg, 5, ""),
     senderid: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    sendername: jspb.Message.getFieldWithDefault(msg, 7, "")
+    sendername: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    iscustomer: jspb.Message.getFieldWithDefault(msg, 8, false),
+    usersList: jspb.Message.toObjectList(msg.getUsersList(),
+    Model_user_pb.User.toObject, includeInstance),
+    mentionedusersList: jspb.Message.toObjectList(msg.getMentionedusersList(),
+    Model_user_pb.User.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -123,7 +141,7 @@ proto.ChatService.Message.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRoomid(value);
+      msg.setRoomuid(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -136,6 +154,20 @@ proto.ChatService.Message.deserializeBinaryFromReader = function(msg, reader) {
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setSendername(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIscustomer(value);
+      break;
+    case 9:
+      var value = new Model_user_pb.User;
+      reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
+      msg.addUsers(value);
+      break;
+    case 10:
+      var value = new Model_user_pb.User;
+      reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
+      msg.addMentionedusers(value);
       break;
     default:
       reader.skipField();
@@ -187,7 +219,7 @@ proto.ChatService.Message.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getRoomid();
+  f = message.getRoomuid();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -213,6 +245,29 @@ proto.ChatService.Message.serializeBinaryToWriter = function(message, writer) {
     writer.writeString(
       7,
       f
+    );
+  }
+  f = message.getIscustomer();
+  if (f) {
+    writer.writeBool(
+      8,
+      f
+    );
+  }
+  f = message.getUsersList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      9,
+      f,
+      Model_user_pb.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getMentionedusersList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      10,
+      f,
+      Model_user_pb.User.serializeBinaryToWriter
     );
   }
 };
@@ -264,16 +319,16 @@ proto.ChatService.Message.prototype.setTenant = function(value) {
 
 
 /**
- * optional string roomId = 4;
+ * optional string roomUid = 4;
  * @return {string}
  */
-proto.ChatService.Message.prototype.getRoomid = function() {
+proto.ChatService.Message.prototype.getRoomuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.ChatService.Message.prototype.setRoomid = function(value) {
+proto.ChatService.Message.prototype.setRoomuid = function(value) {
   jspb.Message.setField(this, 4, value);
 };
 
@@ -320,6 +375,85 @@ proto.ChatService.Message.prototype.getSendername = function() {
 /** @param {string} value */
 proto.ChatService.Message.prototype.setSendername = function(value) {
   jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional bool isCustomer = 8;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.ChatService.Message.prototype.getIscustomer = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 8, false));
+};
+
+
+/** @param {boolean} value */
+proto.ChatService.Message.prototype.setIscustomer = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * repeated Model.User users = 9;
+ * @return {!Array.<!proto.Model.User>}
+ */
+proto.ChatService.Message.prototype.getUsersList = function() {
+  return /** @type{!Array.<!proto.Model.User>} */ (
+    jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 9));
+};
+
+
+/** @param {!Array.<!proto.Model.User>} value */
+proto.ChatService.Message.prototype.setUsersList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 9, value);
+};
+
+
+/**
+ * @param {!proto.Model.User=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.Model.User}
+ */
+proto.ChatService.Message.prototype.addUsers = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 9, opt_value, proto.Model.User, opt_index);
+};
+
+
+proto.ChatService.Message.prototype.clearUsersList = function() {
+  this.setUsersList([]);
+};
+
+
+/**
+ * repeated Model.User mentionedUsers = 10;
+ * @return {!Array.<!proto.Model.User>}
+ */
+proto.ChatService.Message.prototype.getMentionedusersList = function() {
+  return /** @type{!Array.<!proto.Model.User>} */ (
+    jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 10));
+};
+
+
+/** @param {!Array.<!proto.Model.User>} value */
+proto.ChatService.Message.prototype.setMentionedusersList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 10, value);
+};
+
+
+/**
+ * @param {!proto.Model.User=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.Model.User}
+ */
+proto.ChatService.Message.prototype.addMentionedusers = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.Model.User, opt_index);
+};
+
+
+proto.ChatService.Message.prototype.clearMentionedusersList = function() {
+  this.setMentionedusersList([]);
 };
 
 
@@ -647,12 +781,19 @@ proto.ChatService.SendMessageResponse.prototype.setSent = function(value) {
  * @constructor
  */
 proto.ChatService.Room = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ChatService.Room.repeatedFields_, null);
 };
 goog.inherits(proto.ChatService.Room, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.ChatService.Room.displayName = 'proto.ChatService.Room';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ChatService.Room.repeatedFields_ = [6,8,9];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -682,9 +823,19 @@ proto.ChatService.Room.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ChatService.Room.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    lastseenmessagetimestamp: jspb.Message.getFieldWithDefault(msg, 3, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    uid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    title: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    tenant: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    usersList: jspb.Message.toObjectList(msg.getUsersList(),
+    Model_user_pb.User.toObject, includeInstance),
+    lastseenmessagetimestamp: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    messageseensList: jspb.Message.toObjectList(msg.getMessageseensList(),
+    proto.ChatService.MessageSeen.toObject, includeInstance),
+    mentionsList: jspb.Message.toObjectList(msg.getMentionsList(),
+    proto.ChatService.Mention.toObject, includeInstance),
+    lastmessage: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -722,16 +873,47 @@ proto.ChatService.Room.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTenant(value);
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
+      msg.setUid(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTenant(value);
+      break;
+    case 6:
+      var value = new Model_user_pb.User;
+      reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
+      msg.addUsers(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
       msg.setLastseenmessagetimestamp(value);
+      break;
+    case 8:
+      var value = new proto.ChatService.MessageSeen;
+      reader.readMessage(value,proto.ChatService.MessageSeen.deserializeBinaryFromReader);
+      msg.addMessageseens(value);
+      break;
+    case 9:
+      var value = new proto.ChatService.Mention;
+      reader.readMessage(value,proto.ChatService.Mention.deserializeBinaryFromReader);
+      msg.addMentions(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLastmessage(value);
       break;
     default:
       reader.skipField();
@@ -762,226 +944,6 @@ proto.ChatService.Room.prototype.serializeBinary = function() {
  */
 proto.ChatService.Room.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTenant();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
-  f = message.getLastseenmessagetimestamp();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string tenant = 1;
- * @return {string}
- */
-proto.ChatService.Room.prototype.getTenant = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/** @param {string} value */
-proto.ChatService.Room.prototype.setTenant = function(value) {
-  jspb.Message.setField(this, 1, value);
-};
-
-
-/**
- * optional string id = 2;
- * @return {string}
- */
-proto.ChatService.Room.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/** @param {string} value */
-proto.ChatService.Room.prototype.setId = function(value) {
-  jspb.Message.setField(this, 2, value);
-};
-
-
-/**
- * optional string lastSeenMessageTimestamp = 3;
- * @return {string}
- */
-proto.ChatService.Room.prototype.getLastseenmessagetimestamp = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/** @param {string} value */
-proto.ChatService.Room.prototype.setLastseenmessagetimestamp = function(value) {
-  jspb.Message.setField(this, 3, value);
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.ChatService.Channel = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.ChatService.Channel.repeatedFields_, null);
-};
-goog.inherits(proto.ChatService.Channel, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.ChatService.Channel.displayName = 'proto.ChatService.Channel';
-}
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.ChatService.Channel.repeatedFields_ = [6];
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.ChatService.Channel.prototype.toObject = function(opt_includeInstance) {
-  return proto.ChatService.Channel.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.ChatService.Channel} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.ChatService.Channel.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    channeluniqueid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    channeltype: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    channeltitle: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    tenant: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    usersList: jspb.Message.toObjectList(msg.getUsersList(),
-    Model_user_pb.User.toObject, includeInstance)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.ChatService.Channel}
- */
-proto.ChatService.Channel.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.ChatService.Channel;
-  return proto.ChatService.Channel.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.ChatService.Channel} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.ChatService.Channel}
- */
-proto.ChatService.Channel.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setId(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setChanneluniqueid(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setChanneltype(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setChanneltitle(value);
-      break;
-    case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTenant(value);
-      break;
-    case 6:
-      var value = new Model_user_pb.User;
-      reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
-      msg.addUsers(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.ChatService.Channel.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.ChatService.Channel.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.ChatService.Channel} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.ChatService.Channel.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
   f = message.getId();
   if (f !== 0) {
     writer.writeInt64(
@@ -989,21 +951,21 @@ proto.ChatService.Channel.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getChanneluniqueid();
+  f = message.getUid();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getChanneltype();
+  f = message.getType();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getChanneltitle();
+  f = message.getTitle();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -1025,6 +987,36 @@ proto.ChatService.Channel.serializeBinaryToWriter = function(message, writer) {
       Model_user_pb.User.serializeBinaryToWriter
     );
   }
+  f = message.getLastseenmessagetimestamp();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getMessageseensList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      8,
+      f,
+      proto.ChatService.MessageSeen.serializeBinaryToWriter
+    );
+  }
+  f = message.getMentionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      9,
+      f,
+      proto.ChatService.Mention.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastmessage();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
 };
 
 
@@ -1032,58 +1024,58 @@ proto.ChatService.Channel.serializeBinaryToWriter = function(message, writer) {
  * optional int64 id = 1;
  * @return {number}
  */
-proto.ChatService.Channel.prototype.getId = function() {
+proto.ChatService.Room.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /** @param {number} value */
-proto.ChatService.Channel.prototype.setId = function(value) {
+proto.ChatService.Room.prototype.setId = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
 
 /**
- * optional string channelUniqueId = 2;
+ * optional string uid = 2;
  * @return {string}
  */
-proto.ChatService.Channel.prototype.getChanneluniqueid = function() {
+proto.ChatService.Room.prototype.getUid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.ChatService.Channel.prototype.setChanneluniqueid = function(value) {
+proto.ChatService.Room.prototype.setUid = function(value) {
   jspb.Message.setField(this, 2, value);
 };
 
 
 /**
- * optional string channelType = 3;
+ * optional string type = 3;
  * @return {string}
  */
-proto.ChatService.Channel.prototype.getChanneltype = function() {
+proto.ChatService.Room.prototype.getType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.ChatService.Channel.prototype.setChanneltype = function(value) {
+proto.ChatService.Room.prototype.setType = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
 
 /**
- * optional string channelTitle = 4;
+ * optional string title = 4;
  * @return {string}
  */
-proto.ChatService.Channel.prototype.getChanneltitle = function() {
+proto.ChatService.Room.prototype.getTitle = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.ChatService.Channel.prototype.setChanneltitle = function(value) {
+proto.ChatService.Room.prototype.setTitle = function(value) {
   jspb.Message.setField(this, 4, value);
 };
 
@@ -1092,13 +1084,13 @@ proto.ChatService.Channel.prototype.setChanneltitle = function(value) {
  * optional string tenant = 5;
  * @return {string}
  */
-proto.ChatService.Channel.prototype.getTenant = function() {
+proto.ChatService.Room.prototype.getTenant = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /** @param {string} value */
-proto.ChatService.Channel.prototype.setTenant = function(value) {
+proto.ChatService.Room.prototype.setTenant = function(value) {
   jspb.Message.setField(this, 5, value);
 };
 
@@ -1107,14 +1099,14 @@ proto.ChatService.Channel.prototype.setTenant = function(value) {
  * repeated Model.User users = 6;
  * @return {!Array.<!proto.Model.User>}
  */
-proto.ChatService.Channel.prototype.getUsersList = function() {
+proto.ChatService.Room.prototype.getUsersList = function() {
   return /** @type{!Array.<!proto.Model.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 6));
 };
 
 
 /** @param {!Array.<!proto.Model.User>} value */
-proto.ChatService.Channel.prototype.setUsersList = function(value) {
+proto.ChatService.Room.prototype.setUsersList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
 
@@ -1124,13 +1116,105 @@ proto.ChatService.Channel.prototype.setUsersList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.Model.User}
  */
-proto.ChatService.Channel.prototype.addUsers = function(opt_value, opt_index) {
+proto.ChatService.Room.prototype.addUsers = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.Model.User, opt_index);
 };
 
 
-proto.ChatService.Channel.prototype.clearUsersList = function() {
+proto.ChatService.Room.prototype.clearUsersList = function() {
   this.setUsersList([]);
+};
+
+
+/**
+ * optional string lastSeenMessageTimestamp = 7;
+ * @return {string}
+ */
+proto.ChatService.Room.prototype.getLastseenmessagetimestamp = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.Room.prototype.setLastseenmessagetimestamp = function(value) {
+  jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * repeated MessageSeen messageSeens = 8;
+ * @return {!Array.<!proto.ChatService.MessageSeen>}
+ */
+proto.ChatService.Room.prototype.getMessageseensList = function() {
+  return /** @type{!Array.<!proto.ChatService.MessageSeen>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ChatService.MessageSeen, 8));
+};
+
+
+/** @param {!Array.<!proto.ChatService.MessageSeen>} value */
+proto.ChatService.Room.prototype.setMessageseensList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 8, value);
+};
+
+
+/**
+ * @param {!proto.ChatService.MessageSeen=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ChatService.MessageSeen}
+ */
+proto.ChatService.Room.prototype.addMessageseens = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 8, opt_value, proto.ChatService.MessageSeen, opt_index);
+};
+
+
+proto.ChatService.Room.prototype.clearMessageseensList = function() {
+  this.setMessageseensList([]);
+};
+
+
+/**
+ * repeated Mention mentions = 9;
+ * @return {!Array.<!proto.ChatService.Mention>}
+ */
+proto.ChatService.Room.prototype.getMentionsList = function() {
+  return /** @type{!Array.<!proto.ChatService.Mention>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ChatService.Mention, 9));
+};
+
+
+/** @param {!Array.<!proto.ChatService.Mention>} value */
+proto.ChatService.Room.prototype.setMentionsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 9, value);
+};
+
+
+/**
+ * @param {!proto.ChatService.Mention=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ChatService.Mention}
+ */
+proto.ChatService.Room.prototype.addMentions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 9, opt_value, proto.ChatService.Mention, opt_index);
+};
+
+
+proto.ChatService.Room.prototype.clearMentionsList = function() {
+  this.setMentionsList([]);
+};
+
+
+/**
+ * optional string lastMessage = 10;
+ * @return {string}
+ */
+proto.ChatService.Room.prototype.getLastmessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.Room.prototype.setLastmessage = function(value) {
+  jspb.Message.setField(this, 10, value);
 };
 
 
@@ -1145,19 +1229,19 @@ proto.ChatService.Channel.prototype.clearUsersList = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.ChatService.ChannelList = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.ChatService.ChannelList.repeatedFields_, null);
+proto.ChatService.RoomCategory = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ChatService.RoomCategory.repeatedFields_, null);
 };
-goog.inherits(proto.ChatService.ChannelList, jspb.Message);
+goog.inherits(proto.ChatService.RoomCategory, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.ChatService.ChannelList.displayName = 'proto.ChatService.ChannelList';
+  proto.ChatService.RoomCategory.displayName = 'proto.ChatService.RoomCategory';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.ChatService.ChannelList.repeatedFields_ = [1];
+proto.ChatService.RoomCategory.repeatedFields_ = [3];
 
 
 
@@ -1172,8 +1256,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.ChatService.ChannelList.prototype.toObject = function(opt_includeInstance) {
-  return proto.ChatService.ChannelList.toObject(opt_includeInstance, this);
+proto.ChatService.RoomCategory.prototype.toObject = function(opt_includeInstance) {
+  return proto.ChatService.RoomCategory.toObject(opt_includeInstance, this);
 };
 
 
@@ -1182,14 +1266,16 @@ proto.ChatService.ChannelList.prototype.toObject = function(opt_includeInstance)
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.ChatService.ChannelList} msg The msg instance to transform.
+ * @param {!proto.ChatService.RoomCategory} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.ChatService.ChannelList.toObject = function(includeInstance, msg) {
+proto.ChatService.RoomCategory.toObject = function(includeInstance, msg) {
   var f, obj = {
-    channelsList: jspb.Message.toObjectList(msg.getChannelsList(),
-    proto.ChatService.Channel.toObject, includeInstance)
+    title: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    roomsList: jspb.Message.toObjectList(msg.getRoomsList(),
+    proto.ChatService.Room.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -1203,23 +1289,23 @@ proto.ChatService.ChannelList.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.ChatService.ChannelList}
+ * @return {!proto.ChatService.RoomCategory}
  */
-proto.ChatService.ChannelList.deserializeBinary = function(bytes) {
+proto.ChatService.RoomCategory.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.ChatService.ChannelList;
-  return proto.ChatService.ChannelList.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.ChatService.RoomCategory;
+  return proto.ChatService.RoomCategory.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.ChatService.ChannelList} msg The message object to deserialize into.
+ * @param {!proto.ChatService.RoomCategory} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.ChatService.ChannelList}
+ * @return {!proto.ChatService.RoomCategory}
  */
-proto.ChatService.ChannelList.deserializeBinaryFromReader = function(msg, reader) {
+proto.ChatService.RoomCategory.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1227,9 +1313,17 @@ proto.ChatService.ChannelList.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.ChatService.Channel;
-      reader.readMessage(value,proto.ChatService.Channel.deserializeBinaryFromReader);
-      msg.addChannels(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
+    case 3:
+      var value = new proto.ChatService.Room;
+      reader.readMessage(value,proto.ChatService.Room.deserializeBinaryFromReader);
+      msg.addRooms(value);
       break;
     default:
       reader.skipField();
@@ -1244,9 +1338,9 @@ proto.ChatService.ChannelList.deserializeBinaryFromReader = function(msg, reader
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.ChatService.ChannelList.prototype.serializeBinary = function() {
+proto.ChatService.RoomCategory.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.ChatService.ChannelList.serializeBinaryToWriter(this, writer);
+  proto.ChatService.RoomCategory.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1254,51 +1348,290 @@ proto.ChatService.ChannelList.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.ChatService.ChannelList} message
+ * @param {!proto.ChatService.RoomCategory} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.ChatService.ChannelList.serializeBinaryToWriter = function(message, writer) {
+proto.ChatService.RoomCategory.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getChannelsList();
+  f = message.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getType();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getRoomsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      1,
+      3,
       f,
-      proto.ChatService.Channel.serializeBinaryToWriter
+      proto.ChatService.Room.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated Channel channels = 1;
- * @return {!Array.<!proto.ChatService.Channel>}
+ * optional string title = 1;
+ * @return {string}
  */
-proto.ChatService.ChannelList.prototype.getChannelsList = function() {
-  return /** @type{!Array.<!proto.ChatService.Channel>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.ChatService.Channel, 1));
+proto.ChatService.RoomCategory.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
-/** @param {!Array.<!proto.ChatService.Channel>} value */
-proto.ChatService.ChannelList.prototype.setChannelsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 1, value);
+/** @param {string} value */
+proto.ChatService.RoomCategory.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.ChatService.Channel=} opt_value
- * @param {number=} opt_index
- * @return {!proto.ChatService.Channel}
+ * optional string type = 2;
+ * @return {string}
  */
-proto.ChatService.ChannelList.prototype.addChannels = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.ChatService.Channel, opt_index);
+proto.ChatService.RoomCategory.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
-proto.ChatService.ChannelList.prototype.clearChannelsList = function() {
-  this.setChannelsList([]);
+/** @param {string} value */
+proto.ChatService.RoomCategory.prototype.setType = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * repeated Room rooms = 3;
+ * @return {!Array.<!proto.ChatService.Room>}
+ */
+proto.ChatService.RoomCategory.prototype.getRoomsList = function() {
+  return /** @type{!Array.<!proto.ChatService.Room>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ChatService.Room, 3));
+};
+
+
+/** @param {!Array.<!proto.ChatService.Room>} value */
+proto.ChatService.RoomCategory.prototype.setRoomsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.ChatService.Room=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ChatService.Room}
+ */
+proto.ChatService.RoomCategory.prototype.addRooms = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.ChatService.Room, opt_index);
+};
+
+
+proto.ChatService.RoomCategory.prototype.clearRoomsList = function() {
+  this.setRoomsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ChatService.RoomCategoryList = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ChatService.RoomCategoryList.repeatedFields_, null);
+};
+goog.inherits(proto.ChatService.RoomCategoryList, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.ChatService.RoomCategoryList.displayName = 'proto.ChatService.RoomCategoryList';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ChatService.RoomCategoryList.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ChatService.RoomCategoryList.prototype.toObject = function(opt_includeInstance) {
+  return proto.ChatService.RoomCategoryList.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ChatService.RoomCategoryList} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.RoomCategoryList.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    roomcategoriesList: jspb.Message.toObjectList(msg.getRoomcategoriesList(),
+    proto.ChatService.RoomCategory.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ChatService.RoomCategoryList}
+ */
+proto.ChatService.RoomCategoryList.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ChatService.RoomCategoryList;
+  return proto.ChatService.RoomCategoryList.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ChatService.RoomCategoryList} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ChatService.RoomCategoryList}
+ */
+proto.ChatService.RoomCategoryList.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTenant(value);
+      break;
+    case 2:
+      var value = new proto.ChatService.RoomCategory;
+      reader.readMessage(value,proto.ChatService.RoomCategory.deserializeBinaryFromReader);
+      msg.addRoomcategories(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ChatService.RoomCategoryList.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ChatService.RoomCategoryList.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ChatService.RoomCategoryList} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.RoomCategoryList.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTenant();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getRoomcategoriesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.ChatService.RoomCategory.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string tenant = 1;
+ * @return {string}
+ */
+proto.ChatService.RoomCategoryList.prototype.getTenant = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.RoomCategoryList.prototype.setTenant = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * repeated RoomCategory roomCategories = 2;
+ * @return {!Array.<!proto.ChatService.RoomCategory>}
+ */
+proto.ChatService.RoomCategoryList.prototype.getRoomcategoriesList = function() {
+  return /** @type{!Array.<!proto.ChatService.RoomCategory>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ChatService.RoomCategory, 2));
+};
+
+
+/** @param {!Array.<!proto.ChatService.RoomCategory>} value */
+proto.ChatService.RoomCategoryList.prototype.setRoomcategoriesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.ChatService.RoomCategory=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.ChatService.RoomCategory}
+ */
+proto.ChatService.RoomCategoryList.prototype.addRoomcategories = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.ChatService.RoomCategory, opt_index);
+};
+
+
+proto.ChatService.RoomCategoryList.prototype.clearRoomcategoriesList = function() {
+  this.setRoomcategoriesList([]);
 };
 
 
@@ -1556,6 +1889,1263 @@ proto.ChatService.AccessToken.prototype.getToken = function() {
 
 /** @param {string} value */
 proto.ChatService.AccessToken.prototype.setToken = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ChatService.Mention = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ChatService.Mention, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.ChatService.Mention.displayName = 'proto.ChatService.Mention';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ChatService.Mention.prototype.toObject = function(opt_includeInstance) {
+  return proto.ChatService.Mention.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ChatService.Mention} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.Mention.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    messageid: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    roomuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    userid: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    status: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    tenant: jspb.Message.getFieldWithDefault(msg, 6, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ChatService.Mention}
+ */
+proto.ChatService.Mention.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ChatService.Mention;
+  return proto.ChatService.Mention.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ChatService.Mention} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ChatService.Mention}
+ */
+proto.ChatService.Mention.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMessageid(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRoomuid(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setUserid(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setStatus(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTenant(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ChatService.Mention.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ChatService.Mention.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ChatService.Mention} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.Mention.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+  f = message.getMessageid();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+  f = message.getRoomuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getUserid();
+  if (f !== 0) {
+    writer.writeInt64(
+      4,
+      f
+    );
+  }
+  f = message.getStatus();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getTenant();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int64 id = 1;
+ * @return {number}
+ */
+proto.ChatService.Mention.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.Mention.prototype.setId = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional int64 messageId = 2;
+ * @return {number}
+ */
+proto.ChatService.Mention.prototype.getMessageid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.Mention.prototype.setMessageid = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string roomUid = 3;
+ * @return {string}
+ */
+proto.ChatService.Mention.prototype.getRoomuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.Mention.prototype.setRoomuid = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional int64 userId = 4;
+ * @return {number}
+ */
+proto.ChatService.Mention.prototype.getUserid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.Mention.prototype.setUserid = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional string status = 5;
+ * @return {string}
+ */
+proto.ChatService.Mention.prototype.getStatus = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.Mention.prototype.setStatus = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string tenant = 6;
+ * @return {string}
+ */
+proto.ChatService.Mention.prototype.getTenant = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.Mention.prototype.setTenant = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ChatService.MessageSeen = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ChatService.MessageSeen, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.ChatService.MessageSeen.displayName = 'proto.ChatService.MessageSeen';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ChatService.MessageSeen.prototype.toObject = function(opt_includeInstance) {
+  return proto.ChatService.MessageSeen.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ChatService.MessageSeen} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.MessageSeen.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    messageid: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    roomuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    userid: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    tenant: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    status: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    timestamp: jspb.Message.getFieldWithDefault(msg, 7, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ChatService.MessageSeen}
+ */
+proto.ChatService.MessageSeen.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ChatService.MessageSeen;
+  return proto.ChatService.MessageSeen.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ChatService.MessageSeen} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ChatService.MessageSeen}
+ */
+proto.ChatService.MessageSeen.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMessageid(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRoomuid(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setUserid(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTenant(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setStatus(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTimestamp(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ChatService.MessageSeen.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ChatService.MessageSeen.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ChatService.MessageSeen} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.MessageSeen.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+  f = message.getMessageid();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+  f = message.getRoomuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getUserid();
+  if (f !== 0) {
+    writer.writeInt64(
+      4,
+      f
+    );
+  }
+  f = message.getTenant();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getStatus();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getTimestamp();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int64 id = 1;
+ * @return {number}
+ */
+proto.ChatService.MessageSeen.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.MessageSeen.prototype.setId = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional int64 messageId = 2;
+ * @return {number}
+ */
+proto.ChatService.MessageSeen.prototype.getMessageid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.MessageSeen.prototype.setMessageid = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string roomUid = 3;
+ * @return {string}
+ */
+proto.ChatService.MessageSeen.prototype.getRoomuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.MessageSeen.prototype.setRoomuid = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional int64 userId = 4;
+ * @return {number}
+ */
+proto.ChatService.MessageSeen.prototype.getUserid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.MessageSeen.prototype.setUserid = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional string tenant = 5;
+ * @return {string}
+ */
+proto.ChatService.MessageSeen.prototype.getTenant = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.MessageSeen.prototype.setTenant = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string status = 6;
+ * @return {string}
+ */
+proto.ChatService.MessageSeen.prototype.getStatus = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.MessageSeen.prototype.setStatus = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional string timestamp = 7;
+ * @return {string}
+ */
+proto.ChatService.MessageSeen.prototype.getTimestamp = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.MessageSeen.prototype.setTimestamp = function(value) {
+  jspb.Message.setField(this, 7, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ChatService.RemoveMentionRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ChatService.RemoveMentionRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.ChatService.RemoveMentionRequest.displayName = 'proto.ChatService.RemoveMentionRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ChatService.RemoveMentionRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ChatService.RemoveMentionRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ChatService.RemoveMentionRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.RemoveMentionRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    roomuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    user: (f = msg.getUser()) && Model_user_pb.User.toObject(includeInstance, f),
+    mentionid: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    messageid: jspb.Message.getFieldWithDefault(msg, 5, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ChatService.RemoveMentionRequest}
+ */
+proto.ChatService.RemoveMentionRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ChatService.RemoveMentionRequest;
+  return proto.ChatService.RemoveMentionRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ChatService.RemoveMentionRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ChatService.RemoveMentionRequest}
+ */
+proto.ChatService.RemoveMentionRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTenant(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRoomuid(value);
+      break;
+    case 3:
+      var value = new Model_user_pb.User;
+      reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
+      msg.setUser(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMentionid(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMessageid(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ChatService.RemoveMentionRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ChatService.RemoveMentionRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ChatService.RemoveMentionRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.RemoveMentionRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTenant();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getRoomuid();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      Model_user_pb.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getMentionid();
+  if (f !== 0) {
+    writer.writeInt64(
+      4,
+      f
+    );
+  }
+  f = message.getMessageid();
+  if (f !== 0) {
+    writer.writeInt64(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string tenant = 1;
+ * @return {string}
+ */
+proto.ChatService.RemoveMentionRequest.prototype.getTenant = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.RemoveMentionRequest.prototype.setTenant = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string roomUid = 2;
+ * @return {string}
+ */
+proto.ChatService.RemoveMentionRequest.prototype.getRoomuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.RemoveMentionRequest.prototype.setRoomuid = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional Model.User user = 3;
+ * @return {?proto.Model.User}
+ */
+proto.ChatService.RemoveMentionRequest.prototype.getUser = function() {
+  return /** @type{?proto.Model.User} */ (
+    jspb.Message.getWrapperField(this, Model_user_pb.User, 3));
+};
+
+
+/** @param {?proto.Model.User|undefined} value */
+proto.ChatService.RemoveMentionRequest.prototype.setUser = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.ChatService.RemoveMentionRequest.prototype.clearUser = function() {
+  this.setUser(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.ChatService.RemoveMentionRequest.prototype.hasUser = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional int64 mentionId = 4;
+ * @return {number}
+ */
+proto.ChatService.RemoveMentionRequest.prototype.getMentionid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.RemoveMentionRequest.prototype.setMentionid = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional int64 messageId = 5;
+ * @return {number}
+ */
+proto.ChatService.RemoveMentionRequest.prototype.getMessageid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.RemoveMentionRequest.prototype.setMessageid = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ChatService.RemoveMessageSeenRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ChatService.RemoveMessageSeenRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.ChatService.RemoveMessageSeenRequest.displayName = 'proto.ChatService.RemoveMessageSeenRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ChatService.RemoveMessageSeenRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.ChatService.RemoveMessageSeenRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ChatService.RemoveMessageSeenRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.RemoveMessageSeenRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    roomuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    user: (f = msg.getUser()) && Model_user_pb.User.toObject(includeInstance, f),
+    messageseenid: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    messageid: jspb.Message.getFieldWithDefault(msg, 5, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ChatService.RemoveMessageSeenRequest}
+ */
+proto.ChatService.RemoveMessageSeenRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ChatService.RemoveMessageSeenRequest;
+  return proto.ChatService.RemoveMessageSeenRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ChatService.RemoveMessageSeenRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ChatService.RemoveMessageSeenRequest}
+ */
+proto.ChatService.RemoveMessageSeenRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTenant(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRoomuid(value);
+      break;
+    case 3:
+      var value = new Model_user_pb.User;
+      reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
+      msg.setUser(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMessageseenid(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setMessageid(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ChatService.RemoveMessageSeenRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ChatService.RemoveMessageSeenRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ChatService.RemoveMessageSeenRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.RemoveMessageSeenRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTenant();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getRoomuid();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      Model_user_pb.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getMessageseenid();
+  if (f !== 0) {
+    writer.writeInt64(
+      4,
+      f
+    );
+  }
+  f = message.getMessageid();
+  if (f !== 0) {
+    writer.writeInt64(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string tenant = 1;
+ * @return {string}
+ */
+proto.ChatService.RemoveMessageSeenRequest.prototype.getTenant = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.RemoveMessageSeenRequest.prototype.setTenant = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string roomUid = 2;
+ * @return {string}
+ */
+proto.ChatService.RemoveMessageSeenRequest.prototype.getRoomuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.RemoveMessageSeenRequest.prototype.setRoomuid = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional Model.User user = 3;
+ * @return {?proto.Model.User}
+ */
+proto.ChatService.RemoveMessageSeenRequest.prototype.getUser = function() {
+  return /** @type{?proto.Model.User} */ (
+    jspb.Message.getWrapperField(this, Model_user_pb.User, 3));
+};
+
+
+/** @param {?proto.Model.User|undefined} value */
+proto.ChatService.RemoveMessageSeenRequest.prototype.setUser = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.ChatService.RemoveMessageSeenRequest.prototype.clearUser = function() {
+  this.setUser(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.ChatService.RemoveMessageSeenRequest.prototype.hasUser = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional int64 messageSeenId = 4;
+ * @return {number}
+ */
+proto.ChatService.RemoveMessageSeenRequest.prototype.getMessageseenid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.RemoveMessageSeenRequest.prototype.setMessageseenid = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional int64 messageId = 5;
+ * @return {number}
+ */
+proto.ChatService.RemoveMessageSeenRequest.prototype.getMessageid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {number} value */
+proto.ChatService.RemoveMessageSeenRequest.prototype.setMessageid = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ChatService.RemoveMentionAndSeenResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ChatService.RemoveMentionAndSeenResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.ChatService.RemoveMentionAndSeenResponse.displayName = 'proto.ChatService.RemoveMentionAndSeenResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ChatService.RemoveMentionAndSeenResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ChatService.RemoveMentionAndSeenResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ChatService.RemoveMentionAndSeenResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.RemoveMentionAndSeenResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    response: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ChatService.RemoveMentionAndSeenResponse}
+ */
+proto.ChatService.RemoveMentionAndSeenResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ChatService.RemoveMentionAndSeenResponse;
+  return proto.ChatService.RemoveMentionAndSeenResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ChatService.RemoveMentionAndSeenResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ChatService.RemoveMentionAndSeenResponse}
+ */
+proto.ChatService.RemoveMentionAndSeenResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResponse(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ChatService.RemoveMentionAndSeenResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.ChatService.RemoveMentionAndSeenResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.ChatService.RemoveMentionAndSeenResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.ChatService.RemoveMentionAndSeenResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getResponse();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string response = 1;
+ * @return {string}
+ */
+proto.ChatService.RemoveMentionAndSeenResponse.prototype.getResponse = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.RemoveMentionAndSeenResponse.prototype.setResponse = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 

@@ -62,8 +62,9 @@ proto.Model.User.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     tenant: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    iscustomer: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    avatarurl: jspb.Message.getFieldWithDefault(msg, 5, "")
+    iscustomer: jspb.Message.getFieldWithDefault(msg, 4, false),
+    avatarurl: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    isonline: jspb.Message.getFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -113,12 +114,16 @@ proto.Model.User.deserializeBinaryFromReader = function(msg, reader) {
       msg.setTenant(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {boolean} */ (reader.readBool());
       msg.setIscustomer(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setAvatarurl(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsonline(value);
       break;
     default:
       reader.skipField();
@@ -171,8 +176,8 @@ proto.Model.User.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getIscustomer();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f) {
+    writer.writeBool(
       4,
       f
     );
@@ -181,6 +186,13 @@ proto.Model.User.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getIsonline();
+  if (f) {
+    writer.writeBool(
+      6,
       f
     );
   }
@@ -233,15 +245,17 @@ proto.Model.User.prototype.setTenant = function(value) {
 
 
 /**
- * optional string isCustomer = 4;
- * @return {string}
+ * optional bool isCustomer = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
  */
 proto.Model.User.prototype.getIscustomer = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
 };
 
 
-/** @param {string} value */
+/** @param {boolean} value */
 proto.Model.User.prototype.setIscustomer = function(value) {
   jspb.Message.setField(this, 4, value);
 };
@@ -259,6 +273,23 @@ proto.Model.User.prototype.getAvatarurl = function() {
 /** @param {string} value */
 proto.Model.User.prototype.setAvatarurl = function(value) {
   jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional bool isOnline = 6;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.Model.User.prototype.getIsonline = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 6, false));
+};
+
+
+/** @param {boolean} value */
+proto.Model.User.prototype.setIsonline = function(value) {
+  jspb.Message.setField(this, 6, value);
 };
 
 
