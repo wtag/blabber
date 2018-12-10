@@ -6,6 +6,7 @@ message User {
   int64 id = 1;
   string name = 2;
   string tenant = 3;
-  string isCustomer = 4;
+  bool isCustomer = 4;
   string avatarURL = 5;
+  bool isOnline = 6;
 }
