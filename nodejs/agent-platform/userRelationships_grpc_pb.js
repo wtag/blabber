@@ -2,7 +2,7 @@
 
 'use strict';
 var grpc = require('grpc');
-var agent$platform_userRelationships_pb = require('./../agent-platform/userRelationships_pb.js');
+var agent$platform_userRelationships_pb = require('../agent-platform/userRelationships_pb.js');
 var Model_user_pb = require('./../model/user_pb.js');
 
 function serialize_Agent_UserRelationsAgent(arg) {
