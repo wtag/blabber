@@ -11,7 +11,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :tenant, :string, 3
     optional :roomUid, :string, 4
     optional :text, :string, 5
-    optional :senderId, :string, 6
+    optional :senderId, :int64, 6
     optional :senderName, :string, 7
     optional :isCustomer, :bool, 8
     repeated :users, :message, 9, "Model.User"

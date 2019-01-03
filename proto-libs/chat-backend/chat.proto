@@ -10,7 +10,7 @@ message Message {
   string tenant = 3;
   string roomUid = 4;
   string text = 5;
-  string senderId = 6;
+  int64 senderId = 6;
   string senderName = 7;
   bool isCustomer = 8;
   repeated Model.User users = 9;
