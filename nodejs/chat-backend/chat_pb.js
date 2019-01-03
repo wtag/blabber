@@ -84,7 +84,7 @@ proto.ChatService.Message.toObject = function(includeInstance, msg) {
     tenant: jspb.Message.getFieldWithDefault(msg, 3, ""),
     roomuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     text: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    senderid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    senderid: jspb.Message.getFieldWithDefault(msg, 6, 0),
     sendername: jspb.Message.getFieldWithDefault(msg, 7, ""),
     iscustomer: jspb.Message.getFieldWithDefault(msg, 8, false),
     usersList: jspb.Message.toObjectList(msg.getUsersList(),
@@ -148,7 +148,7 @@ proto.ChatService.Message.deserializeBinaryFromReader = function(msg, reader) {
       msg.setText(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setSenderid(value);
       break;
     case 7:
@@ -234,8 +234,8 @@ proto.ChatService.Message.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getSenderid();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0) {
+    writer.writeInt64(
       6,
       f
     );
@@ -349,15 +349,15 @@ proto.ChatService.Message.prototype.setText = function(value) {
 
 
 /**
- * optional string senderId = 6;
- * @return {string}
+ * optional int64 senderId = 6;
+ * @return {number}
  */
 proto.ChatService.Message.prototype.getSenderid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
-/** @param {string} value */
+/** @param {number} value */
 proto.ChatService.Message.prototype.setSenderid = function(value) {
   jspb.Message.setField(this, 6, value);
 };
