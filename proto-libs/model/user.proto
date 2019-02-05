@@ -9,4 +9,5 @@ message User {
   bool isCustomer = 4;
   string avatarURL = 5;
   bool isOnline = 6;
+  repeated Model.User agents = 7;
 }
