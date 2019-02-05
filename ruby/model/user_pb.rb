@@ -11,6 +11,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :isCustomer, :bool, 4
     optional :avatarURL, :string, 5
     optional :isOnline, :bool, 6
+    repeated :agents, :message, 7, "Model.User"
   end
 end
 

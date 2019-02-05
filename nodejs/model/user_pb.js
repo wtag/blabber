@@ -24,12 +24,19 @@ goog.exportSymbol('proto.Model.User', null, global);
  * @constructor
  */
 proto.Model.User = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.Model.User.repeatedFields_, null);
 };
 goog.inherits(proto.Model.User, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.Model.User.displayName = 'proto.Model.User';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.Model.User.repeatedFields_ = [7];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -64,7 +71,9 @@ proto.Model.User.toObject = function(includeInstance, msg) {
     tenant: jspb.Message.getFieldWithDefault(msg, 3, ""),
     iscustomer: jspb.Message.getFieldWithDefault(msg, 4, false),
     avatarurl: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    isonline: jspb.Message.getFieldWithDefault(msg, 6, false)
+    isonline: jspb.Message.getFieldWithDefault(msg, 6, false),
+    agentsList: jspb.Message.toObjectList(msg.getAgentsList(),
+    proto.Model.User.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -124,6 +133,11 @@ proto.Model.User.deserializeBinaryFromReader = function(msg, reader) {
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsonline(value);
+      break;
+    case 7:
+      var value = new proto.Model.User;
+      reader.readMessage(value,proto.Model.User.deserializeBinaryFromReader);
+      msg.addAgents(value);
       break;
     default:
       reader.skipField();
@@ -194,6 +208,14 @@ proto.Model.User.serializeBinaryToWriter = function(message, writer) {
     writer.writeBool(
       6,
       f
+    );
+  }
+  f = message.getAgentsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      7,
+      f,
+      proto.Model.User.serializeBinaryToWriter
     );
   }
 };
@@ -290,6 +312,37 @@ proto.Model.User.prototype.getIsonline = function() {
 /** @param {boolean} value */
 proto.Model.User.prototype.setIsonline = function(value) {
   jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * repeated User agents = 7;
+ * @return {!Array.<!proto.Model.User>}
+ */
+proto.Model.User.prototype.getAgentsList = function() {
+  return /** @type{!Array.<!proto.Model.User>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.Model.User, 7));
+};
+
+
+/** @param {!Array.<!proto.Model.User>} value */
+proto.Model.User.prototype.setAgentsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 7, value);
+};
+
+
+/**
+ * @param {!proto.Model.User=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.Model.User}
+ */
+proto.Model.User.prototype.addAgents = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.Model.User, opt_index);
+};
+
+
+proto.Model.User.prototype.clearAgentsList = function() {
+  this.setAgentsList([]);
 };
 
 
