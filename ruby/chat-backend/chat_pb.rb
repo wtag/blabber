@@ -3,7 +3,7 @@
 
 require 'google/protobuf'
 
-require 'model/user_pb'
+require 'Model/user_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "ChatService.Message" do
     optional :id, :int64, 1
@@ -34,6 +34,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :messageSeens, :message, 8, "ChatService.MessageSeen"
     repeated :mentions, :message, 9, "ChatService.Mention"
     optional :lastMessage, :string, 10
+    optional :lastMessageTimestamp, :string, 11
   end
   add_message "ChatService.RoomCategory" do
     optional :title, :string, 1
