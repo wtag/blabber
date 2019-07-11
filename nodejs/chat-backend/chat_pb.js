@@ -863,7 +863,8 @@ proto.ChatService.Room.toObject = function(includeInstance, msg) {
     mentionsList: jspb.Message.toObjectList(msg.getMentionsList(),
     proto.ChatService.Mention.toObject, includeInstance),
     lastmessage: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    lastmessagetimestamp: jspb.Message.getFieldWithDefault(msg, 11, "")
+    lastmessagetimestamp: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    lastmessagetype: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -946,6 +947,10 @@ proto.ChatService.Room.deserializeBinaryFromReader = function(msg, reader) {
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setLastmessagetimestamp(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLastmessagetype(value);
       break;
     default:
       reader.skipField();
@@ -1053,6 +1058,13 @@ proto.ChatService.Room.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       11,
+      f
+    );
+  }
+  f = message.getLastmessagetype();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
       f
     );
   }
@@ -1269,6 +1281,21 @@ proto.ChatService.Room.prototype.getLastmessagetimestamp = function() {
 /** @param {string} value */
 proto.ChatService.Room.prototype.setLastmessagetimestamp = function(value) {
   jspb.Message.setField(this, 11, value);
+};
+
+
+/**
+ * optional string lastMessageType = 12;
+ * @return {string}
+ */
+proto.ChatService.Room.prototype.getLastmessagetype = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.Room.prototype.setLastmessagetype = function(value) {
+  jspb.Message.setField(this, 12, value);
 };
 
 

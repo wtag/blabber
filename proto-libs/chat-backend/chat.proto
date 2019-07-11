@@ -38,6 +38,7 @@ message Room {
   repeated Mention mentions = 9;
   string lastMessage = 10;
   string lastMessageTimestamp = 11;
+  string lastMessageType = 12;
 }
 
 message RoomCategory {
