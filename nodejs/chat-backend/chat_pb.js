@@ -11,7 +11,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var Model_user_pb = require('./../model/user_pb.js');
+var Model_user_pb = require('./../Model/user_pb.js');
 goog.exportSymbol('proto.ChatService.AccessToken', null, global);
 goog.exportSymbol('proto.ChatService.Empty', null, global);
 goog.exportSymbol('proto.ChatService.Mention', null, global);
@@ -90,7 +90,8 @@ proto.ChatService.Message.toObject = function(includeInstance, msg) {
     usersList: jspb.Message.toObjectList(msg.getUsersList(),
     Model_user_pb.User.toObject, includeInstance),
     mentionedusersList: jspb.Message.toObjectList(msg.getMentionedusersList(),
-    Model_user_pb.User.toObject, includeInstance)
+    Model_user_pb.User.toObject, includeInstance),
+    messagetype: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {
@@ -168,6 +169,10 @@ proto.ChatService.Message.deserializeBinaryFromReader = function(msg, reader) {
       var value = new Model_user_pb.User;
       reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
       msg.addMentionedusers(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagetype(value);
       break;
     default:
       reader.skipField();
@@ -268,6 +273,13 @@ proto.ChatService.Message.serializeBinaryToWriter = function(message, writer) {
       10,
       f,
       Model_user_pb.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getMessagetype();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
     );
   }
 };
@@ -454,6 +466,21 @@ proto.ChatService.Message.prototype.addMentionedusers = function(opt_value, opt_
 
 proto.ChatService.Message.prototype.clearMentionedusersList = function() {
   this.setMentionedusersList([]);
+};
+
+
+/**
+ * optional string messageType = 11;
+ * @return {string}
+ */
+proto.ChatService.Message.prototype.getMessagetype = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatService.Message.prototype.setMessagetype = function(value) {
+  jspb.Message.setField(this, 11, value);
 };
 
 
