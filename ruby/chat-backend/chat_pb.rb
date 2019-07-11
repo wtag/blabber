@@ -36,6 +36,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :mentions, :message, 9, "ChatService.Mention"
     optional :lastMessage, :string, 10
     optional :lastMessageTimestamp, :string, 11
+    optional :lastMessageType, :string, 12
   end
   add_message "ChatService.RoomCategory" do
     optional :title, :string, 1
