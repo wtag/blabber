@@ -16,6 +16,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :isCustomer, :bool, 8
     repeated :users, :message, 9, "Model.User"
     repeated :mentionedUsers, :message, 10, "Model.User"
+    optional :messageType, :string, 11
   end
   add_message "ChatService.MessageList" do
     repeated :messages, :message, 1, "ChatService.Message"
