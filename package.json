@@ -1,6 +1,6 @@
 {
   "name": "blabber",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "PROTO FILE FOR GRPC BACKEND SERVER",
   "main": "index.js",
   "scripts": {
