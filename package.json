@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/wtag/blabber#readme",
   "dependencies": {
-    "grpc-tools": "1.7.0"
+    "grpc-tools": "1.9.0"
   },
   "engines": {
     "node": "8.x"
