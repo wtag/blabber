@@ -1,4 +1,4 @@
-// source: model/user.proto
+// source: Model/user.proto
 /**
  * @fileoverview
  * @enhanceable
