@@ -11,12 +11,8 @@ message UserRelationsCustomer {
   repeated Model.User travelArrangementClients = 4;
 }
 
-message UserRelationsAgent {
-  repeated Model.User customers = 1;
-  repeated Model.User colleagues = 2;
-}
-
 service UserRelationships {
   rpc RetrieveCustomerRelations(Model.User) returns (UserRelationsCustomer) {}
-  rpc RetrieveAgentRelations(Model.User) returns (UserRelationsAgent) {}
+  rpc RetrieveAgentCustomerRelations(Model.User) returns (stream Model.User) {}
+  rpc RetrieveAgentColleagueRelations(Model.User) returns (stream Model.User) {}
 }
