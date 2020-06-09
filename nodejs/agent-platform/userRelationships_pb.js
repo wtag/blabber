@@ -11,7 +11,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var Model_user_pb = require('./../model/user_pb.js');
+var Model_user_pb = require('../model/user_pb.js');
+goog.object.extend(proto, Model_user_pb);
 goog.exportSymbol('proto.Agent.UserRelationsAgent', null, global);
 goog.exportSymbol('proto.Agent.UserRelationsCustomer', null, global);
 
@@ -198,15 +199,15 @@ proto.Agent.UserRelationsCustomer.serializeBinaryToWriter = function(message, wr
 
 /**
  * repeated Model.User agents = 1;
- * @return {!Array.<!proto.Model.User>}
+ * @return {!Array<!proto.Model.User>}
  */
 proto.Agent.UserRelationsCustomer.prototype.getAgentsList = function() {
-  return /** @type{!Array.<!proto.Model.User>} */ (
+  return /** @type{!Array<!proto.Model.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 1));
 };
 
 
-/** @param {!Array.<!proto.Model.User>} value */
+/** @param {!Array<!proto.Model.User>} value */
 proto.Agent.UserRelationsCustomer.prototype.setAgentsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -229,15 +230,15 @@ proto.Agent.UserRelationsCustomer.prototype.clearAgentsList = function() {
 
 /**
  * repeated Model.User travelArrangers = 2;
- * @return {!Array.<!proto.Model.User>}
+ * @return {!Array<!proto.Model.User>}
  */
 proto.Agent.UserRelationsCustomer.prototype.getTravelarrangersList = function() {
-  return /** @type{!Array.<!proto.Model.User>} */ (
+  return /** @type{!Array<!proto.Model.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 2));
 };
 
 
-/** @param {!Array.<!proto.Model.User>} value */
+/** @param {!Array<!proto.Model.User>} value */
 proto.Agent.UserRelationsCustomer.prototype.setTravelarrangersList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -260,15 +261,15 @@ proto.Agent.UserRelationsCustomer.prototype.clearTravelarrangersList = function(
 
 /**
  * repeated Model.User colleagues = 3;
- * @return {!Array.<!proto.Model.User>}
+ * @return {!Array<!proto.Model.User>}
  */
 proto.Agent.UserRelationsCustomer.prototype.getColleaguesList = function() {
-  return /** @type{!Array.<!proto.Model.User>} */ (
+  return /** @type{!Array<!proto.Model.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 3));
 };
 
 
-/** @param {!Array.<!proto.Model.User>} value */
+/** @param {!Array<!proto.Model.User>} value */
 proto.Agent.UserRelationsCustomer.prototype.setColleaguesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -291,15 +292,15 @@ proto.Agent.UserRelationsCustomer.prototype.clearColleaguesList = function() {
 
 /**
  * repeated Model.User travelArrangementClients = 4;
- * @return {!Array.<!proto.Model.User>}
+ * @return {!Array<!proto.Model.User>}
  */
 proto.Agent.UserRelationsCustomer.prototype.getTravelarrangementclientsList = function() {
-  return /** @type{!Array.<!proto.Model.User>} */ (
+  return /** @type{!Array<!proto.Model.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 4));
 };
 
 
-/** @param {!Array.<!proto.Model.User>} value */
+/** @param {!Array<!proto.Model.User>} value */
 proto.Agent.UserRelationsCustomer.prototype.setTravelarrangementclientsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
@@ -474,15 +475,15 @@ proto.Agent.UserRelationsAgent.serializeBinaryToWriter = function(message, write
 
 /**
  * repeated Model.User customers = 1;
- * @return {!Array.<!proto.Model.User>}
+ * @return {!Array<!proto.Model.User>}
  */
 proto.Agent.UserRelationsAgent.prototype.getCustomersList = function() {
-  return /** @type{!Array.<!proto.Model.User>} */ (
+  return /** @type{!Array<!proto.Model.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 1));
 };
 
 
-/** @param {!Array.<!proto.Model.User>} value */
+/** @param {!Array<!proto.Model.User>} value */
 proto.Agent.UserRelationsAgent.prototype.setCustomersList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -505,15 +506,15 @@ proto.Agent.UserRelationsAgent.prototype.clearCustomersList = function() {
 
 /**
  * repeated Model.User colleagues = 2;
- * @return {!Array.<!proto.Model.User>}
+ * @return {!Array<!proto.Model.User>}
  */
 proto.Agent.UserRelationsAgent.prototype.getColleaguesList = function() {
-  return /** @type{!Array.<!proto.Model.User>} */ (
+  return /** @type{!Array<!proto.Model.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 2));
 };
 
 
-/** @param {!Array.<!proto.Model.User>} value */
+/** @param {!Array<!proto.Model.User>} value */
 proto.Agent.UserRelationsAgent.prototype.setColleaguesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };

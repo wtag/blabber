@@ -92,17 +92,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module ChatService
-  Message = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Message").msgclass
-  MessageList = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MessageList").msgclass
-  SendMessageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendMessageResponse").msgclass
-  Room = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Room").msgclass
-  RoomCategory = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RoomCategory").msgclass
-  RoomCategoryList = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RoomCategoryList").msgclass
-  Empty = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Empty").msgclass
-  AccessToken = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.AccessToken").msgclass
-  Mention = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Mention").msgclass
-  MessageSeen = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MessageSeen").msgclass
-  RemoveMentionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMentionRequest").msgclass
-  RemoveMessageSeenRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMessageSeenRequest").msgclass
-  RemoveMentionAndSeenResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMentionAndSeenResponse").msgclass
+  Message = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Message").msgclass
+  MessageList = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MessageList").msgclass
+  SendMessageResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendMessageResponse").msgclass
+  Room = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Room").msgclass
+  RoomCategory = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RoomCategory").msgclass
+  RoomCategoryList = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RoomCategoryList").msgclass
+  Empty = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Empty").msgclass
+  AccessToken = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.AccessToken").msgclass
+  Mention = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Mention").msgclass
+  MessageSeen = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MessageSeen").msgclass
+  RemoveMentionRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMentionRequest").msgclass
+  RemoveMessageSeenRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMessageSeenRequest").msgclass
+  RemoveMentionAndSeenResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMentionAndSeenResponse").msgclass
 end

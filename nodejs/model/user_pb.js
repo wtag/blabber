@@ -232,7 +232,7 @@ proto.Model.User.prototype.getId = function() {
 
 /** @param {number} value */
 proto.Model.User.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -247,7 +247,7 @@ proto.Model.User.prototype.getName = function() {
 
 /** @param {string} value */
 proto.Model.User.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -262,7 +262,7 @@ proto.Model.User.prototype.getTenant = function() {
 
 /** @param {string} value */
 proto.Model.User.prototype.setTenant = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -279,7 +279,7 @@ proto.Model.User.prototype.getIscustomer = function() {
 
 /** @param {boolean} value */
 proto.Model.User.prototype.setIscustomer = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -294,7 +294,7 @@ proto.Model.User.prototype.getAvatarurl = function() {
 
 /** @param {string} value */
 proto.Model.User.prototype.setAvatarurl = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -311,21 +311,21 @@ proto.Model.User.prototype.getIsonline = function() {
 
 /** @param {boolean} value */
 proto.Model.User.prototype.setIsonline = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
 /**
  * repeated User agents = 7;
- * @return {!Array.<!proto.Model.User>}
+ * @return {!Array<!proto.Model.User>}
  */
 proto.Model.User.prototype.getAgentsList = function() {
-  return /** @type{!Array.<!proto.Model.User>} */ (
+  return /** @type{!Array<!proto.Model.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.Model.User, 7));
 };
 
 
-/** @param {!Array.<!proto.Model.User>} value */
+/** @param {!Array<!proto.Model.User>} value */
 proto.Model.User.prototype.setAgentsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 7, value);
 };
