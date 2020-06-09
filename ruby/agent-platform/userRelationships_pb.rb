@@ -5,7 +5,6 @@ require 'google/protobuf'
 
 require 'model/user_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_file("agent-platform/userRelationships.proto", :syntax => :proto3) do
     add_message "Agent.UserRelationsCustomer" do
       repeated :agents, :message, 1, "Model.User"
       repeated :travelArrangers, :message, 2, "Model.User"
@@ -16,7 +15,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :customers, :message, 1, "Model.User"
       repeated :colleagues, :message, 2, "Model.User"
     end
-  end
 end
 
 module Agent

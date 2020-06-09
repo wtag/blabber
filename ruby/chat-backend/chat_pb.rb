@@ -5,7 +5,6 @@ require 'google/protobuf'
 
 require 'model/user_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_file("chat-backend/chat.proto", :syntax => :proto3) do
     add_message "ChatService.Message" do
       optional :id, :int64, 1
       optional :timestamp, :string, 2
@@ -88,7 +87,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "ChatService.RemoveMentionAndSeenResponse" do
       optional :response, :string, 1
     end
-  end
 end
 
 module ChatService

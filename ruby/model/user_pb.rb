@@ -4,7 +4,6 @@
 require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_file("model/user.proto", :syntax => :proto3) do
     add_message "Model.User" do
       optional :id, :int64, 1
       optional :name, :string, 2
@@ -13,7 +12,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :avatarURL, :string, 5
       optional :isOnline, :bool, 6
       repeated :agents, :message, 7, "Model.User"
-    end
   end
 end
 
