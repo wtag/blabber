@@ -16,5 +16,5 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Model
-  User = Google::Protobuf::DescriptorPool.generated_pool.lookup("Model.User").msgclass
+  User = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Model.User").msgclass
 end

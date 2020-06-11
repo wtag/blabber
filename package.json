@@ -1,10 +1,13 @@
 {
   "name": "blabber",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "PROTO FILE FOR GRPC BACKEND SERVER",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "yarn build-js & yarn build-ruby",
+    "build-js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/Model/user.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/chat-backend/chat.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/userRelationships.proto",
+    "build-ruby": "grpc_tools_ruby_protoc -I ./proto-libs --ruby_out=./ruby --grpc_out=./ruby ./proto-libs/Model/user.proto && grpc_tools_ruby_protoc -I ./proto-libs --ruby_out=./ruby --grpc_out=./ruby ./proto-libs/chat-backend/chat.proto && grpc_tools_ruby_protoc -I ./proto-libs --ruby_out=./ruby --grpc_out=./ruby ./proto-libs/agent-platform/userRelationships.proto"
   },
   "repository": {
     "type": "git",
@@ -14,6 +17,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/wtag/blabber/issues"
+  },
+  "dependencies": {
+    "grpc-tools": "1.7.2"
   },
   "homepage": "https://github.com/wtag/blabber#readme"
 }

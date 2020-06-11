@@ -15,7 +15,8 @@ module Agent
       self.service_name = 'Agent.UserRelationships'
 
       rpc :RetrieveCustomerRelations, Model::User, UserRelationsCustomer
-      rpc :RetrieveAgentRelations, Model::User, UserRelationsAgent
+      rpc :RetrieveAgentCustomerRelations, Model::User, stream(Model::User)
+      rpc :RetrieveAgentColleagueRelations, Model::User, stream(Model::User)
     end
 
     Stub = Service.rpc_stub_class
