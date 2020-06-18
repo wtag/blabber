@@ -82,17 +82,6 @@ function deserialize_ChatService_Room(buffer_arg) {
   return chat$backend_chat_pb.Room.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_ChatService_RoomCategory(arg) {
-  if (!(arg instanceof chat$backend_chat_pb.RoomCategory)) {
-    throw new Error('Expected argument of type ChatService.RoomCategory');
-  }
-  return new Buffer(arg.serializeBinary())
-}
-
-function deserialize_ChatService_RoomCategory(buffer_arg) {
-  return chat$backend_chat_pb.RoomCategory.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_ChatService_SendMessageResponse(arg) {
   if (!(arg instanceof chat$backend_chat_pb.SendMessageResponse)) {
     throw new Error('Expected argument of type ChatService.SendMessageResponse');
@@ -144,11 +133,11 @@ var ChatService = exports.ChatService = {
     requestStream: false,
     responseStream: true,
     requestType: Model_user_pb.User,
-    responseType: chat$backend_chat_pb.RoomCategory,
+    responseType: chat$backend_chat_pb.Room,
     requestSerialize: serialize_Model_User,
     requestDeserialize: deserialize_Model_User,
-    responseSerialize: serialize_ChatService_RoomCategory,
-    responseDeserialize: deserialize_ChatService_RoomCategory,
+    responseSerialize: serialize_ChatService_Room,
+    responseDeserialize: deserialize_ChatService_Room,
   },
   markMessageAsSeen: {
     path: '/ChatService.Chat/MarkMessageAsSeen',

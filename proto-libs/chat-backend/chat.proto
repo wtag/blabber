@@ -42,12 +42,6 @@ message Room {
   string lastMessageType = 12;
 }
 
-message RoomCategory {
-  string title = 1;
-  string type = 2;
-  repeated Room rooms = 3;
-}
-
 message Empty {
 
 }
@@ -98,7 +92,7 @@ message RemoveMentionAndSeenResponse {
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
-  rpc RetrieveAvailableRooms(Model.User) returns (stream RoomCategory) {}
+  rpc RetrieveAvailableRooms(Model.User) returns (stream Room) {}
   rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
 }

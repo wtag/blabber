@@ -39,11 +39,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :lastMessageTimestamp, :string, 11
     optional :lastMessageType, :string, 12
   end
-  add_message "ChatService.RoomCategory" do
-    optional :title, :string, 1
-    optional :type, :string, 2
-    repeated :rooms, :message, 3, "ChatService.Room"
-  end
   add_message "ChatService.Empty" do
   end
   add_message "ChatService.AccessToken" do
@@ -84,13 +79,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :response, :string, 1
   end
 end
+end
 
 module ChatService
   Message = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Message").msgclass
   MessageList = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MessageList").msgclass
   SendMessageResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendMessageResponse").msgclass
   Room = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Room").msgclass
-  RoomCategory = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RoomCategory").msgclass
   Empty = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Empty").msgclass
   AccessToken = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.AccessToken").msgclass
   Mention = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Mention").msgclass
