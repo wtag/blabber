@@ -16,7 +16,8 @@ module ChatService
 
       rpc :RetrieveMessages, Room, MessageList
       rpc :SendMessage, Message, SendMessageResponse
-      rpc :RetrieveAvailableRooms, Model::User, stream(Room)
+      rpc :RetrieveAvailableCustomerRooms, Model::User, stream(Room)
+      rpc :RetrieveAvailableAgentRooms, Model::User, RoomCategoryList
       rpc :MarkMessageAsSeen, RemoveMessageSeenRequest, RemoveMentionAndSeenResponse
       rpc :MarkMentionAsSeen, RemoveMentionRequest, RemoveMentionAndSeenResponse
     end
