@@ -38,6 +38,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :lastMessage, :string, 10
     optional :lastMessageTimestamp, :string, 11
     optional :lastMessageType, :string, 12
+    optional :roomCategoryTitle, :string, 13
   end
   add_message "ChatService.Empty" do
   end
@@ -78,7 +79,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "ChatService.RemoveMentionAndSeenResponse" do
     optional :response, :string, 1
   end
-end
 end
 
 module ChatService
