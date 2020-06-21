@@ -49,11 +49,6 @@ message RoomCategory {
   repeated Room rooms = 3;
 }
 
-message RoomCategoryList {
-  string tenant = 1;
-  repeated RoomCategory roomCategories = 2;
-}
-
 message Empty {
 
 }
@@ -105,7 +100,7 @@ service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
   rpc RetrieveAvailableCustomerRooms(Model.User) returns (stream Room) {}
-  rpc RetrieveAvailableAgentRooms(Model.User) returns (RoomCategoryList) {}
+  rpc RetrieveAvailableAgentRooms(Model.User) returns (stream RoomCategory) {}
   rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
 }
