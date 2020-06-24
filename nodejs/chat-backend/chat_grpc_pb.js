@@ -82,15 +82,15 @@ function deserialize_ChatService_Room(buffer_arg) {
   return chat$backend_chat_pb.Room.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_ChatService_RoomCategoryList(arg) {
-  if (!(arg instanceof chat$backend_chat_pb.RoomCategoryList)) {
-    throw new Error('Expected argument of type ChatService.RoomCategoryList');
+function serialize_ChatService_RoomCategory(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.RoomCategory)) {
+    throw new Error('Expected argument of type ChatService.RoomCategory');
   }
-  return new Buffer(arg.serializeBinary())
+  return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_ChatService_RoomCategoryList(buffer_arg) {
-  return chat$backend_chat_pb.RoomCategoryList.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_ChatService_RoomCategory(buffer_arg) {
+  return chat$backend_chat_pb.RoomCategory.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_SendMessageResponse(arg) {
@@ -139,16 +139,27 @@ var ChatService = exports.ChatService = {
     responseSerialize: serialize_ChatService_SendMessageResponse,
     responseDeserialize: deserialize_ChatService_SendMessageResponse,
   },
-  retrieveAvailableRooms: {
-    path: '/ChatService.Chat/RetrieveAvailableRooms',
+  retrieveAvailableCustomerRooms: {
+    path: '/ChatService.Chat/RetrieveAvailableCustomerRooms',
     requestStream: false,
-    responseStream: false,
+    responseStream: true,
     requestType: Model_user_pb.User,
-    responseType: chat$backend_chat_pb.RoomCategoryList,
+    responseType: chat$backend_chat_pb.Room,
     requestSerialize: serialize_Model_User,
     requestDeserialize: deserialize_Model_User,
-    responseSerialize: serialize_ChatService_RoomCategoryList,
-    responseDeserialize: deserialize_ChatService_RoomCategoryList,
+    responseSerialize: serialize_ChatService_Room,
+    responseDeserialize: deserialize_ChatService_Room,
+  },
+  retrieveAvailableAgentRooms: {
+    path: '/ChatService.Chat/RetrieveAvailableAgentRooms',
+    requestStream: false,
+    responseStream: true,
+    requestType: Model_user_pb.User,
+    responseType: chat$backend_chat_pb.RoomCategory,
+    requestSerialize: serialize_Model_User,
+    requestDeserialize: deserialize_Model_User,
+    responseSerialize: serialize_ChatService_RoomCategory,
+    responseDeserialize: deserialize_ChatService_RoomCategory,
   },
   markMessageAsSeen: {
     path: '/ChatService.Chat/MarkMessageAsSeen',
