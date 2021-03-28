@@ -9,7 +9,7 @@ function serialize_Agent_UserRelationsCustomer(arg) {
   if (!(arg instanceof agent$platform_userRelationships_pb.UserRelationsCustomer)) {
     throw new Error('Expected argument of type Agent.UserRelationsCustomer');
   }
-  return new Buffer(arg.serializeBinary())
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_Agent_UserRelationsCustomer(buffer_arg) {
@@ -20,7 +20,7 @@ function serialize_Model_User(arg) {
   if (!(arg instanceof Model_user_pb.User)) {
     throw new Error('Expected argument of type Model.User');
   }
-  return new Buffer(arg.serializeBinary())
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_Model_User(buffer_arg) {

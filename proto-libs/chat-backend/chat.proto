@@ -96,6 +96,10 @@ message RemoveMentionAndSeenResponse {
   string response = 1;
 }
 
+message Tenant {
+  string identifier = 1;
+}
+
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
@@ -103,6 +107,7 @@ service Chat {
   rpc RetrieveAvailableAgentRooms(Model.User) returns (stream RoomCategory) {}
   rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
+  rpc GetAllTenants(Empty) returns (stream Tenant) {}
 }
 
 service Authentication {
