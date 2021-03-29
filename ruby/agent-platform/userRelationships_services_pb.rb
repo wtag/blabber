@@ -14,9 +14,9 @@ module Agent
       self.unmarshal_class_method = :decode
       self.service_name = 'Agent.UserRelationships'
 
-      rpc :RetrieveCustomerRelations, Model::User, UserRelationsCustomer
-      rpc :RetrieveAgentCustomerRelations, Model::User, stream(Model::User)
-      rpc :RetrieveAgentColleagueRelations, Model::User, stream(Model::User)
+      rpc :RetrieveCustomerRelations, ::Model::User, ::Agent::UserRelationsCustomer
+      rpc :RetrieveAgentCustomerRelations, ::Model::User, stream(::Model::User)
+      rpc :RetrieveAgentColleagueRelations, ::Model::User, stream(::Model::User)
     end
 
     Stub = Service.rpc_stub_class

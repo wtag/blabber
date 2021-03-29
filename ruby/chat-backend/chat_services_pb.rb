@@ -14,12 +14,13 @@ module ChatService
       self.unmarshal_class_method = :decode
       self.service_name = 'ChatService.Chat'
 
-      rpc :RetrieveMessages, Room, MessageList
-      rpc :SendMessage, Message, SendMessageResponse
-      rpc :RetrieveAvailableCustomerRooms, Model::User, stream(Room)
-      rpc :RetrieveAvailableAgentRooms, Model::User, stream(RoomCategory)
-      rpc :MarkMessageAsSeen, RemoveMessageSeenRequest, RemoveMentionAndSeenResponse
-      rpc :MarkMentionAsSeen, RemoveMentionRequest, RemoveMentionAndSeenResponse
+      rpc :RetrieveMessages, ::ChatService::Room, ::ChatService::MessageList
+      rpc :SendMessage, ::ChatService::Message, ::ChatService::SendMessageResponse
+      rpc :RetrieveAvailableCustomerRooms, ::Model::User, stream(::ChatService::Room)
+      rpc :RetrieveAvailableAgentRooms, ::Model::User, stream(::ChatService::RoomCategory)
+      rpc :MarkMessageAsSeen, ::ChatService::RemoveMessageSeenRequest, ::ChatService::RemoveMentionAndSeenResponse
+      rpc :MarkMentionAsSeen, ::ChatService::RemoveMentionRequest, ::ChatService::RemoveMentionAndSeenResponse
+      rpc :GetAllTenants, ::ChatService::Empty, stream(::ChatService::Tenant)
     end
 
     Stub = Service.rpc_stub_class
@@ -33,7 +34,7 @@ module ChatService
       self.unmarshal_class_method = :decode
       self.service_name = 'ChatService.Authentication'
 
-      rpc :RetrieveAccessToken, Model::User, AccessToken
+      rpc :RetrieveAccessToken, ::Model::User, ::ChatService::AccessToken
     end
 
     Stub = Service.rpc_stub_class
