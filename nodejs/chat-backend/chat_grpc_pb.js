@@ -49,6 +49,28 @@ function deserialize_ChatService_MessageList(buffer_arg) {
   return chat$backend_chat_pb.MessageList.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ChatService_MessageSeenStatusRequest(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.MessageSeenStatusRequest)) {
+    throw new Error('Expected argument of type ChatService.MessageSeenStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_MessageSeenStatusRequest(buffer_arg) {
+  return chat$backend_chat_pb.MessageSeenStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ChatService_MessageSeenStatusResponse(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.MessageSeenStatusResponse)) {
+    throw new Error('Expected argument of type ChatService.MessageSeenStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_MessageSeenStatusResponse(buffer_arg) {
+  return chat$backend_chat_pb.MessageSeenStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ChatService_RemoveMentionAndSeenResponse(arg) {
   if (!(arg instanceof chat$backend_chat_pb.RemoveMentionAndSeenResponse)) {
     throw new Error('Expected argument of type ChatService.RemoveMentionAndSeenResponse');
@@ -215,6 +237,17 @@ var ChatService = exports.ChatService = {
     requestDeserialize: deserialize_ChatService_Empty,
     responseSerialize: serialize_ChatService_Tenant,
     responseDeserialize: deserialize_ChatService_Tenant,
+  },
+  messageSeenStatus: {
+    path: '/ChatService.Chat/MessageSeenStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: chat$backend_chat_pb.MessageSeenStatusRequest,
+    responseType: chat$backend_chat_pb.MessageSeenStatusResponse,
+    requestSerialize: serialize_ChatService_MessageSeenStatusRequest,
+    requestDeserialize: deserialize_ChatService_MessageSeenStatusRequest,
+    responseSerialize: serialize_ChatService_MessageSeenStatusResponse,
+    responseDeserialize: deserialize_ChatService_MessageSeenStatusResponse,
   },
 };
 
