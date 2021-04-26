@@ -17,7 +17,7 @@ module Agent
       rpc :RetrieveCustomerRelations, ::Model::User, ::Agent::UserRelationsCustomer
       rpc :RetrieveAgentCustomerRelations, ::Model::User, stream(::Model::User)
       rpc :RetrieveAgentColleagueRelations, ::Model::User, stream(::Model::User)
-      rpc :SendEmail, ::Model::User, ::Agent::Empty
+      rpc :SendEmail, ::Agent::SendEmailRequest, ::Agent::SendEmailResponse
     end
 
     Stub = Service.rpc_stub_class

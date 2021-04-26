@@ -5,26 +5,45 @@ var grpc = require('grpc');
 var agent$platform_userRelationships_pb = require('../agent-platform/userRelationships_pb.js');
 var Model_user_pb = require('../model/user_pb.js');
 
-function serialize_Agent_Empty(arg) {
-  if (!(arg instanceof agent$platform_userRelationships_pb.Empty)) {
-    throw new Error('Expected argument of type Agent.Empty');
+function serialize_Agent_SendEmailRequest(arg) {
+  if (!(arg instanceof agent$platform_userRelationships_pb.SendEmailRequest)) {
+    throw new Error('Expected argument of type Agent.SendEmailRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_Agent_Empty(buffer_arg) {
-  return agent$platform_userRelationships_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_Agent_SendEmailRequest(buffer_arg) {
+  return agent$platform_userRelationships_pb.SendEmailRequest.deserializeBinary(
+    new Uint8Array(buffer_arg)
+  );
+}
+
+function serialize_Agent_SendEmailResponse(arg) {
+  if (!(arg instanceof agent$platform_userRelationships_pb.SendEmailResponse)) {
+    throw new Error('Expected argument of type Agent.SendEmailResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_Agent_SendEmailResponse(buffer_arg) {
+  return agent$platform_userRelationships_pb.SendEmailResponse.deserializeBinary(
+    new Uint8Array(buffer_arg)
+  );
 }
 
 function serialize_Agent_UserRelationsCustomer(arg) {
-  if (!(arg instanceof agent$platform_userRelationships_pb.UserRelationsCustomer)) {
+  if (
+    !(arg instanceof agent$platform_userRelationships_pb.UserRelationsCustomer)
+  ) {
     throw new Error('Expected argument of type Agent.UserRelationsCustomer');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_Agent_UserRelationsCustomer(buffer_arg) {
-  return agent$platform_userRelationships_pb.UserRelationsCustomer.deserializeBinary(new Uint8Array(buffer_arg));
+  return agent$platform_userRelationships_pb.UserRelationsCustomer.deserializeBinary(
+    new Uint8Array(buffer_arg)
+  );
 }
 
 function serialize_Model_User(arg) {
@@ -38,8 +57,7 @@ function deserialize_Model_User(buffer_arg) {
   return Model_user_pb.User.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-
-var UserRelationshipsService = exports.UserRelationshipsService = {
+var UserRelationshipsService = (exports.UserRelationshipsService = {
   retrieveCustomerRelations: {
     path: '/Agent.UserRelationships/RetrieveCustomerRelations',
     requestStream: false,
@@ -77,13 +95,15 @@ var UserRelationshipsService = exports.UserRelationshipsService = {
     path: '/Agent.UserRelationships/SendEmail',
     requestStream: false,
     responseStream: false,
-    requestType: Model_user_pb.User,
-    responseType: agent$platform_userRelationships_pb.Empty,
-    requestSerialize: serialize_Model_User,
-    requestDeserialize: deserialize_Model_User,
-    responseSerialize: serialize_Agent_Empty,
-    responseDeserialize: deserialize_Agent_Empty,
+    requestType: agent$platform_userRelationships_pb.SendEmailRequest,
+    responseType: agent$platform_userRelationships_pb.SendEmailResponse,
+    requestSerialize: serialize_Agent_SendEmailRequest,
+    requestDeserialize: deserialize_Agent_SendEmailRequest,
+    responseSerialize: serialize_Agent_SendEmailResponse,
+    responseDeserialize: deserialize_Agent_SendEmailResponse,
   },
-};
+});
 
-exports.UserRelationshipsClient = grpc.makeGenericClientConstructor(UserRelationshipsService);
+exports.UserRelationshipsClient = grpc.makeGenericClientConstructor(
+  UserRelationshipsService
+);

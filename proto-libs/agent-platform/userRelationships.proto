@@ -15,9 +15,19 @@ message Empty {
 
 }
 
+message SendEmailRequest {
+  Model.User user = 1;
+  int64 unreadMessageCount = 2;
+  string tenant = 3;
+}
+
+message SendEmailResponse {
+  bool success = 1;
+}
+
 service UserRelationships {
   rpc RetrieveCustomerRelations(Model.User) returns (UserRelationsCustomer) {}
   rpc RetrieveAgentCustomerRelations(Model.User) returns (stream Model.User) {}
   rpc RetrieveAgentColleagueRelations(Model.User) returns (stream Model.User) {}
-  rpc SendEmail(Model.User) returns (Empty) {}
+  rpc SendEmail(SendEmailRequest) returns (SendEmailResponse) {}
 }

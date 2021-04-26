@@ -14,10 +14,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "Agent.Empty" do
     end
+    add_message "Agent.SendEmailRequest" do
+      optional :user, :message, 1, "Model.User"
+      optional :unreadMessageCount, :int64, 2
+      optional :tenant, :string, 3
+    end
+    add_message "Agent.SendEmailResponse" do
+      optional :success, :bool, 1
+    end
   end
 end
 
 module Agent
   UserRelationsCustomer = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.UserRelationsCustomer").msgclass
   Empty = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.Empty").msgclass
+  SendEmailRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.SendEmailRequest").msgclass
+  SendEmailResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.SendEmailResponse").msgclass
 end
