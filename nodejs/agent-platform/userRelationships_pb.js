@@ -826,7 +826,7 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
   proto.Agent.SendEmailResponse.toObject = function (includeInstance, msg) {
     var f,
       obj = {
-        success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+        success: jspb.Message.getFieldWithDefault(msg, 1, false),
       };
 
     if (includeInstance) {
@@ -909,7 +909,7 @@ proto.Agent.SendEmailResponse.serializeBinaryToWriter = function (
  * @return {boolean}
  */
 proto.Agent.SendEmailResponse.prototype.getSuccess = function () {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(
     this,
     1,
     false

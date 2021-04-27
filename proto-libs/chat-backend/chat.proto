@@ -106,7 +106,7 @@ message MessageSeenStatusRequest {
 }
 
 message MessageSeenStatusResponse {
-  string status = 1;
+  bool seen = 1;
 }
 
 service Chat {
