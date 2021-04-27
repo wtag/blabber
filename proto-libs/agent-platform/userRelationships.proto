@@ -11,10 +11,6 @@ message UserRelationsCustomer {
   repeated Model.User travelArrangementClients = 4;
 }
 
-message Empty {
-
-}
-
 message SendEmailRequest {
   Model.User user = 1;
   int64 unreadMessageCount = 2;
