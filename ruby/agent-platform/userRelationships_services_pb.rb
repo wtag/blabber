@@ -17,6 +17,19 @@ module Agent
       rpc :RetrieveCustomerRelations, ::Model::User, ::Agent::UserRelationsCustomer
       rpc :RetrieveAgentCustomerRelations, ::Model::User, stream(::Model::User)
       rpc :RetrieveAgentColleagueRelations, ::Model::User, stream(::Model::User)
+    end
+
+    Stub = Service.rpc_stub_class
+  end
+  module SendEmail
+    class Service
+
+      include GRPC::GenericService
+
+      self.marshal_class_method = :encode
+      self.unmarshal_class_method = :decode
+      self.service_name = 'Agent.SendEmail'
+
       rpc :SendEmail, ::Agent::SendEmailRequest, ::Agent::SendEmailResponse
     end
 

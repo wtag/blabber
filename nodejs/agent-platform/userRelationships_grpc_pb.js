@@ -91,8 +91,14 @@ var UserRelationshipsService = (exports.UserRelationshipsService = {
     responseSerialize: serialize_Model_User,
     responseDeserialize: deserialize_Model_User,
   },
+});
+
+exports.UserRelationshipsClient = grpc.makeGenericClientConstructor(
+  UserRelationshipsService
+);
+var SendEmailService = (exports.SendEmailService = {
   sendEmail: {
-    path: '/Agent.UserRelationships/SendEmail',
+    path: '/Agent.SendEmail/SendEmail',
     requestStream: false,
     responseStream: false,
     requestType: agent$platform_userRelationships_pb.SendEmailRequest,
@@ -104,6 +110,4 @@ var UserRelationshipsService = (exports.UserRelationshipsService = {
   },
 });
 
-exports.UserRelationshipsClient = grpc.makeGenericClientConstructor(
-  UserRelationshipsService
-);
+exports.SendEmailClient = grpc.makeGenericClientConstructor(SendEmailService);

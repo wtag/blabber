@@ -29,5 +29,8 @@ service UserRelationships {
   rpc RetrieveCustomerRelations(Model.User) returns (UserRelationsCustomer) {}
   rpc RetrieveAgentCustomerRelations(Model.User) returns (stream Model.User) {}
   rpc RetrieveAgentColleagueRelations(Model.User) returns (stream Model.User) {}
+}
+
+service SendEmail {
   rpc SendEmail(SendEmailRequest) returns (SendEmailResponse) {}
 }
