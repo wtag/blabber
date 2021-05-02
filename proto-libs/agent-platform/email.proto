@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "Model/user.proto";
+
+package Agent;
+
+message SendEmailRequest {
+    Model.User user = 1;
+    int64 unreadMessageCount = 2;
+    string tenant = 3;
+}
+  
+message SendEmailResponse {
+    bool success = 1;
+}
+
+service Email {
+    rpc SendEmail(SendEmailRequest) returns (SendEmailResponse) {}
+}
