@@ -102,7 +102,7 @@ message Tenant {
 
 message MessageSeenStatusRequest {
   int64 messageId = 1;
-  bool isCustomer = 2;
+  Model.User user = 2;
 }
 
 message MessageSeenStatusResponse {

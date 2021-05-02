@@ -3529,7 +3529,9 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
     var f,
       obj = {
         messageid: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        iscustomer: jspb.Message.getFieldWithDefault(msg, 2, false),
+        user:
+          (f = msg.getUser()) &&
+          Model_user_pb.User.toObject(includeInstance, f),
       };
 
     if (includeInstance) {
@@ -3577,8 +3579,12 @@ proto.ChatService.MessageSeenStatusRequest.deserializeBinaryFromReader = functio
         msg.setMessageid(value);
         break;
       case 2:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setIscustomer(value);
+        var value = new Model_user_pb.User();
+        reader.readMessage(
+          value,
+          Model_user_pb.User.deserializeBinaryFromReader
+        );
+        msg.setUser(value);
         break;
       default:
         reader.skipField();
@@ -3617,9 +3623,9 @@ proto.ChatService.MessageSeenStatusRequest.serializeBinaryToWriter = function (
   if (f !== 0) {
     writer.writeInt64(1, f);
   }
-  f = message.getIscustomer();
-  if (f) {
-    writer.writeBool(2, f);
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(2, f, Model_user_pb.User.serializeBinaryToWriter);
   }
 };
 
@@ -3642,25 +3648,41 @@ proto.ChatService.MessageSeenStatusRequest.prototype.setMessageid = function (
 };
 
 /**
- * optional bool isCustomer = 2;
- * @return {boolean}
+ * optional Model.User user = 2;
+ * @return {?proto.Model.User}
  */
-proto.ChatService.MessageSeenStatusRequest.prototype.getIscustomer = function () {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(
+proto.ChatService.MessageSeenStatusRequest.prototype.getUser = function () {
+  return /** @type{?proto.Model.User} */ (jspb.Message.getWrapperField(
     this,
-    2,
-    false
+    Model_user_pb.User,
+    2
   ));
 };
 
 /**
- * @param {boolean} value
+ * @param {?proto.Model.User|undefined} value
  * @return {!proto.ChatService.MessageSeenStatusRequest} returns this
  */
-proto.ChatService.MessageSeenStatusRequest.prototype.setIscustomer = function (
+proto.ChatService.MessageSeenStatusRequest.prototype.setUser = function (
   value
 ) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ChatService.MessageSeenStatusRequest} returns this
+ */
+proto.ChatService.MessageSeenStatusRequest.prototype.clearUser = function () {
+  return this.setUser(undefined);
+};
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ChatService.MessageSeenStatusRequest.prototype.hasUser = function () {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
