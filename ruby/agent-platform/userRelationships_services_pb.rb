@@ -21,18 +21,4 @@ module Agent
 
     Stub = Service.rpc_stub_class
   end
-  module SendEmail
-    class Service
-
-      include GRPC::GenericService
-
-      self.marshal_class_method = :encode
-      self.unmarshal_class_method = :decode
-      self.service_name = 'Agent.SendEmail'
-
-      rpc :SendEmail, ::Agent::SendEmailRequest, ::Agent::SendEmailResponse
-    end
-
-    Stub = Service.rpc_stub_class
-  end
 end
