@@ -1,6 +1,7 @@
 const chatLib = require('./nodejs/chat-backend/chat_pb');
 const user = require('./nodejs/model/user_pb');
 const agentUserRelationships = require('./nodejs/agent-platform/userRelationships_pb');
+const emailService = require('./nodejs/agent-platform/email_pb');
 
 /**GRPC Service Exposed By Chat Server
  ***Service: Authentication Token**/
@@ -29,10 +30,10 @@ exports.Blabber.MessageSeenStatusResponse = chatLib.MessageSeenStatusResponse;
 exports.Blabber.Agent = require('./nodejs/agent-platform/userRelationships_grpc_pb');
 exports.Blabber.Agent.UserRelationsCustomer =
   agentUserRelationships.UserRelationsCustomer;
-exports.Blabber.Agent.SendEmailRequest =
-  agentUserRelationships.SendEmailRequest;
-exports.Blabber.Agent.SendEmailResponse =
-  agentUserRelationships.SendEmailResponse;
 exports.Blabber.Agent.UserRelationsAgent =
   agentUserRelationships.UserRelationsAgent;
 exports.Blabber.Agent.User = user.User;
+
+exports.Blabber.Email = require('./nodejs/agent-platform/email_grpc_pb');
+exports.Blabber.Email.SendEmailRequest = emailService.SendEmailRequest;
+exports.Blabber.Email.SendEmailResponse = emailService.SendEmailResponse;
