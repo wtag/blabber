@@ -11,8 +11,14 @@ message UserRelationsCustomer {
   repeated Model.User travelArrangementClients = 4;
 }
 
+message ChatConfigurations {
+  int64 delayTime = 1;
+  bool sendNotification = 2;
+}
+
 service UserRelationships {
   rpc RetrieveCustomerRelations(Model.User) returns (UserRelationsCustomer) {}
   rpc RetrieveAgentCustomerRelations(Model.User) returns (stream Model.User) {}
   rpc RetrieveAgentColleagueRelations(Model.User) returns (stream Model.User) {}
+  rpc RetrieveChatConfigurations(Model.User) returns (ChatConfigurations) {}
 }

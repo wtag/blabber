@@ -32,6 +32,8 @@ exports.Blabber.Agent.UserRelationsCustomer =
   agentUserRelationships.UserRelationsCustomer;
 exports.Blabber.Agent.UserRelationsAgent =
   agentUserRelationships.UserRelationsAgent;
+exports.Blabber.Agent.ChatConfigurations =
+  agentUserRelationships.ChatConfigurations;
 exports.Blabber.Agent.User = user.User;
 
 exports.Blabber.Email = require('./nodejs/agent-platform/email_grpc_pb');
