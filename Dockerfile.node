@@ -1,0 +1,5 @@
+FROM node:14-slim
+
+WORKDIR /app
+
+RUN npm install --unsafe-perm -g grpc-tools

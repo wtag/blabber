@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn build-js & yarn build-ruby",
-    "build-js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/Model/user.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/chat-backend/chat.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/userRelationships.proto",
-    "build-ruby": "grpc_tools_ruby_protoc -I ./proto-libs --ruby_out=./ruby --grpc_out=./ruby ./proto-libs/Model/user.proto && grpc_tools_ruby_protoc -I ./proto-libs --ruby_out=./ruby --grpc_out=./ruby ./proto-libs/chat-backend/chat.proto && grpc_tools_ruby_protoc -I ./proto-libs --ruby_out=./ruby --grpc_out=./ruby ./proto-libs/agent-platform/userRelationships.proto"
+    "build-js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/Model/user.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/chat-backend/chat.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/userRelationships.proto"
   },
   "repository": {
     "type": "git",
