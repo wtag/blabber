@@ -12,14 +12,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :colleagues, :message, 3, "Model.User"
       repeated :travelArrangementClients, :message, 4, "Model.User"
     end
-    add_message "Agent.ChatConfigurations" do
-      optional :delayTime, :int64, 1
-      optional :sendNotification, :bool, 2
-    end
   end
 end
 
 module Agent
   UserRelationsCustomer = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.UserRelationsCustomer").msgclass
-  ChatConfigurations = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.ChatConfigurations").msgclass
 end
