@@ -14,7 +14,7 @@ module Agent
       self.unmarshal_class_method = :decode
       self.service_name = 'Agent.UserPreferences'
 
-      rpc :RetrieveChatConfigurations, ::Model::User, ::Agent::ChatConfigurations
+      rpc :RetrieveChatPreferences, ::Model::User, ::Agent::ChatPreferences
     end
 
     Stub = Service.rpc_stub_class

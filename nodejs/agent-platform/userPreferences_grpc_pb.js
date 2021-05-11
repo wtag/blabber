@@ -5,15 +5,15 @@ var grpc = require('grpc');
 var agent$platform_userPreferences_pb = require('../agent-platform/userPreferences_pb.js');
 var Model_user_pb = require('../model/user_pb.js');
 
-function serialize_Agent_ChatConfigurations(arg) {
-  if (!(arg instanceof agent$platform_userPreferences_pb.ChatConfigurations)) {
-    throw new Error('Expected argument of type Agent.ChatConfigurations');
+function serialize_Agent_ChatPreferences(arg) {
+  if (!(arg instanceof agent$platform_userPreferences_pb.ChatPreferences)) {
+    throw new Error('Expected argument of type Agent.ChatPreferences');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_Agent_ChatConfigurations(buffer_arg) {
-  return agent$platform_userPreferences_pb.ChatConfigurations.deserializeBinary(
+function deserialize_Agent_ChatPreferences(buffer_arg) {
+  return agent$platform_userPreferences_pb.ChatPreferences.deserializeBinary(
     new Uint8Array(buffer_arg)
   );
 }
@@ -30,16 +30,16 @@ function deserialize_Model_User(buffer_arg) {
 }
 
 var UserPreferencesService = (exports.UserPreferencesService = {
-  retrieveChatConfigurations: {
-    path: '/Agent.UserPreferences/RetrieveChatConfigurations',
+  retrieveChatPreferences: {
+    path: '/Agent.UserPreferences/RetrieveChatPreferences',
     requestStream: false,
     responseStream: false,
     requestType: Model_user_pb.User,
-    responseType: agent$platform_userPreferences_pb.ChatConfigurations,
+    responseType: agent$platform_userPreferences_pb.ChatPreferences,
     requestSerialize: serialize_Model_User,
     requestDeserialize: deserialize_Model_User,
-    responseSerialize: serialize_Agent_ChatConfigurations,
-    responseDeserialize: deserialize_Agent_ChatConfigurations,
+    responseSerialize: serialize_Agent_ChatPreferences,
+    responseDeserialize: deserialize_Agent_ChatPreferences,
   },
 });
 

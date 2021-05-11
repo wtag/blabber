@@ -6,7 +6,7 @@ require 'google/protobuf'
 require 'model/user_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("agent-platform/userPreferences.proto", :syntax => :proto3) do
-    add_message "Agent.ChatConfigurations" do
+    add_message "Agent.ChatPreferences" do
       optional :notificationEscalationDelayInSeconds, :int64, 1
       optional :notificationEscalationEnabled, :bool, 2
     end
@@ -14,5 +14,5 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Agent
-  ChatConfigurations = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.ChatConfigurations").msgclass
+  ChatPreferences = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.ChatPreferences").msgclass
 end
