@@ -40,5 +40,5 @@ exports.Blabber.Email.SendEmailRequest = emailService.SendEmailRequest;
 exports.Blabber.Email.SendEmailResponse = emailService.SendEmailResponse;
 
 exports.Blabber.UserPreferences = require('./nodejs/agent-platform/userPreferences_grpc_pb');
-exports.Blabber.UserPreferences.ChatConfigurations =
-  userPreferencesService.ChatConfigurations;
+exports.Blabber.UserPreferences.ChatPreferences =
+  userPreferencesService.ChatPreferences;
