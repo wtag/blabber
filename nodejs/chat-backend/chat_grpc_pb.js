@@ -3,7 +3,7 @@
 'use strict';
 var grpc = require('grpc');
 var chat$backend_chat_pb = require('../chat-backend/chat_pb.js');
-var Model_user_pb = require('../model/user_pb.js');
+var Model_user_pb = require('../Model/user_pb.js');
 
 function serialize_ChatService_AccessToken(arg) {
   if (!(arg instanceof chat$backend_chat_pb.AccessToken)) {
@@ -47,6 +47,17 @@ function serialize_ChatService_MessageList(arg) {
 
 function deserialize_ChatService_MessageList(buffer_arg) {
   return chat$backend_chat_pb.MessageList.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ChatService_MessageSeen(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.MessageSeen)) {
+    throw new Error('Expected argument of type ChatService.MessageSeen');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_MessageSeen(buffer_arg) {
+  return chat$backend_chat_pb.MessageSeen.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_RemoveMentionAndSeenResponse(arg) {
@@ -124,6 +135,17 @@ function serialize_ChatService_Tenant(arg) {
 
 function deserialize_ChatService_Tenant(buffer_arg) {
   return chat$backend_chat_pb.Tenant.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ChatService_onGetUnseenMessageRequest(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.onGetUnseenMessageRequest)) {
+    throw new Error('Expected argument of type ChatService.onGetUnseenMessageRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_onGetUnseenMessageRequest(buffer_arg) {
+  return chat$backend_chat_pb.onGetUnseenMessageRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_Model_User(arg) {
@@ -215,6 +237,17 @@ var ChatService = exports.ChatService = {
     requestDeserialize: deserialize_ChatService_Empty,
     responseSerialize: serialize_ChatService_Tenant,
     responseDeserialize: deserialize_ChatService_Tenant,
+  },
+  onGetUnseenMessage: {
+    path: '/ChatService.Chat/onGetUnseenMessage',
+    requestStream: false,
+    responseStream: false,
+    requestType: chat$backend_chat_pb.onGetUnseenMessageRequest,
+    responseType: chat$backend_chat_pb.MessageSeen,
+    requestSerialize: serialize_ChatService_onGetUnseenMessageRequest,
+    requestDeserialize: deserialize_ChatService_onGetUnseenMessageRequest,
+    responseSerialize: serialize_ChatService_MessageSeen,
+    responseDeserialize: deserialize_ChatService_MessageSeen,
   },
 };
 
