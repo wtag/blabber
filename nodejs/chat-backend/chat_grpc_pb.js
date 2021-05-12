@@ -3,7 +3,7 @@
 'use strict';
 var grpc = require('grpc');
 var chat$backend_chat_pb = require('../chat-backend/chat_pb.js');
-var Model_user_pb = require('../Model/user_pb.js');
+var Model_user_pb = require('../model/user_pb.js');
 
 function serialize_ChatService_AccessToken(arg) {
   if (!(arg instanceof chat$backend_chat_pb.AccessToken)) {
@@ -27,6 +27,17 @@ function deserialize_ChatService_Empty(buffer_arg) {
   return chat$backend_chat_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ChatService_MarkMessageSeenForUserRequest(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.MarkMessageSeenForUserRequest)) {
+    throw new Error('Expected argument of type ChatService.MarkMessageSeenForUserRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_MarkMessageSeenForUserRequest(buffer_arg) {
+  return chat$backend_chat_pb.MarkMessageSeenForUserRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ChatService_Message(arg) {
   if (!(arg instanceof chat$backend_chat_pb.Message)) {
     throw new Error('Expected argument of type ChatService.Message');
@@ -47,17 +58,6 @@ function serialize_ChatService_MessageList(arg) {
 
 function deserialize_ChatService_MessageList(buffer_arg) {
   return chat$backend_chat_pb.MessageList.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_ChatService_MessageSeen(arg) {
-  if (!(arg instanceof chat$backend_chat_pb.MessageSeen)) {
-    throw new Error('Expected argument of type ChatService.MessageSeen');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_ChatService_MessageSeen(buffer_arg) {
-  return chat$backend_chat_pb.MessageSeen.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_RemoveMentionAndSeenResponse(arg) {
@@ -135,17 +135,6 @@ function serialize_ChatService_Tenant(arg) {
 
 function deserialize_ChatService_Tenant(buffer_arg) {
   return chat$backend_chat_pb.Tenant.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_ChatService_onGetUnseenMessageRequest(arg) {
-  if (!(arg instanceof chat$backend_chat_pb.onGetUnseenMessageRequest)) {
-    throw new Error('Expected argument of type ChatService.onGetUnseenMessageRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_ChatService_onGetUnseenMessageRequest(buffer_arg) {
-  return chat$backend_chat_pb.onGetUnseenMessageRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_Model_User(arg) {
@@ -238,16 +227,16 @@ var ChatService = exports.ChatService = {
     responseSerialize: serialize_ChatService_Tenant,
     responseDeserialize: deserialize_ChatService_Tenant,
   },
-  onGetUnseenMessage: {
-    path: '/ChatService.Chat/onGetUnseenMessage',
+  markMessageSeenForUser: {
+    path: '/ChatService.Chat/MarkMessageSeenForUser',
     requestStream: false,
     responseStream: false,
-    requestType: chat$backend_chat_pb.onGetUnseenMessageRequest,
-    responseType: chat$backend_chat_pb.MessageSeen,
-    requestSerialize: serialize_ChatService_onGetUnseenMessageRequest,
-    requestDeserialize: deserialize_ChatService_onGetUnseenMessageRequest,
-    responseSerialize: serialize_ChatService_MessageSeen,
-    responseDeserialize: deserialize_ChatService_MessageSeen,
+    requestType: chat$backend_chat_pb.MarkMessageSeenForUserRequest,
+    responseType: chat$backend_chat_pb.RemoveMentionAndSeenResponse,
+    requestSerialize: serialize_ChatService_MarkMessageSeenForUserRequest,
+    requestDeserialize: deserialize_ChatService_MarkMessageSeenForUserRequest,
+    responseSerialize: serialize_ChatService_RemoveMentionAndSeenResponse,
+    responseDeserialize: deserialize_ChatService_RemoveMentionAndSeenResponse,
   },
 };
 
