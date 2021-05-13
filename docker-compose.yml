@@ -1,0 +1,19 @@
+version: '3'
+services:
+  nodejs:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    volumes:
+      - .:/app
+    command: yarn build-js
+
+  ruby:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile.ruby
+    volumes:
+      - .:/app
+    command: rake build-ruby
