@@ -21,6 +21,7 @@ module ChatService
       rpc :MarkMessageAsSeen, ::ChatService::RemoveMessageSeenRequest, ::ChatService::RemoveMentionAndSeenResponse
       rpc :MarkMentionAsSeen, ::ChatService::RemoveMentionRequest, ::ChatService::RemoveMentionAndSeenResponse
       rpc :GetAllTenants, ::ChatService::Empty, stream(::ChatService::Tenant)
+      rpc :sendAutomatedMessage, ::ChatService::Empty, ::ChatService::Empty
     end
 
     Stub = Service.rpc_stub_class

@@ -15,7 +15,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var Model_user_pb = require('../Model/user_pb.js');
+var Model_user_pb = require('../model/user_pb.js');
 goog.object.extend(proto, Model_user_pb);
 goog.exportSymbol('proto.ChatService.AccessToken', null, global);
 goog.exportSymbol('proto.ChatService.Empty', null, global);
@@ -349,7 +349,7 @@ proto.ChatService.Message.toObject = function(includeInstance, msg) {
     text: jspb.Message.getFieldWithDefault(msg, 5, ""),
     senderid: jspb.Message.getFieldWithDefault(msg, 6, 0),
     sendername: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    iscustomer: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    iscustomer: jspb.Message.getFieldWithDefault(msg, 8, false),
     usersList: jspb.Message.toObjectList(msg.getUsersList(),
     Model_user_pb.User.toObject, includeInstance),
     mentionedusersList: jspb.Message.toObjectList(msg.getMentionedusersList(),
@@ -679,7 +679,7 @@ proto.ChatService.Message.prototype.setSendername = function(value) {
  * @return {boolean}
  */
 proto.ChatService.Message.prototype.getIscustomer = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 8, false));
 };
 
 
@@ -978,7 +978,7 @@ proto.ChatService.SendMessageResponse.prototype.toObject = function(opt_includeI
  */
 proto.ChatService.SendMessageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sent: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    sent: jspb.Message.getFieldWithDefault(msg, 1, false),
     messageid: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
@@ -1075,7 +1075,7 @@ proto.ChatService.SendMessageResponse.serializeBinaryToWriter = function(message
  * @return {boolean}
  */
 proto.ChatService.SendMessageResponse.prototype.getSent = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
 };
 
 
