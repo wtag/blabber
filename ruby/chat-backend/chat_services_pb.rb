@@ -8,7 +8,7 @@ module ChatService
   module Chat
     class Service
 
-      include GRPC::GenericService
+      include ::GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
@@ -21,6 +21,7 @@ module ChatService
       rpc :MarkMessageAsSeen, ::ChatService::RemoveMessageSeenRequest, ::ChatService::RemoveMentionAndSeenResponse
       rpc :MarkMentionAsSeen, ::ChatService::RemoveMentionRequest, ::ChatService::RemoveMentionAndSeenResponse
       rpc :GetAllTenants, ::ChatService::Empty, stream(::ChatService::Tenant)
+      rpc :MarkMessageSeenForUser, ::ChatService::MarkMessageSeenForUserRequest, ::ChatService::RemoveMentionAndSeenResponse
     end
 
     Stub = Service.rpc_stub_class
@@ -28,7 +29,7 @@ module ChatService
   module Authentication
     class Service
 
-      include GRPC::GenericService
+      include ::GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode

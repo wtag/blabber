@@ -100,6 +100,12 @@ message Tenant {
   string identifier = 1;
 }
 
+message MarkMessageSeenForUserRequest {
+  int64 messageId = 1;
+  int64 userId = 2;
+  bool isCustomer = 3;
+}
+
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
@@ -108,6 +114,7 @@ service Chat {
   rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc GetAllTenants(Empty) returns (stream Tenant) {}
+  rpc MarkMessageSeenForUser(MarkMessageSeenForUserRequest) returns (RemoveMentionAndSeenResponse) {}
 }
 
 service Authentication {
