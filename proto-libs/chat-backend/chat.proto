@@ -100,6 +100,10 @@ message Tenant {
   string identifier = 1;
 }
 
+message SendAutomatedMessageResponse {
+  bool success = 1;
+}
+
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
@@ -108,7 +112,7 @@ service Chat {
   rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc GetAllTenants(Empty) returns (stream Tenant) {}
-  rpc sendAutomatedMessage(Empty) returns (Empty) {}
+  rpc SendAutomatedMessage(Message) returns (SendAutomatedMessageResponse) {}
 }
 
 service Authentication {

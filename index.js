@@ -21,6 +21,7 @@ exports.Blabber.RemoveMessageSeenRequest = chatLib.RemoveMessageSeenRequest;
 exports.Blabber.RemoveMentionAndSeenResponse =
   chatLib.RemoveMentionAndSeenResponse;
 exports.Blabber.Tenant = chatLib.Tenant;
+exports.Blabber.SendAutomatedMessageResponse = chatLib.SendAutomatedMessageResponse;
 
 /**GRPC Service Exposed By Agent
  ***Service: User RelationShip**/
