@@ -90,11 +90,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "ChatService.SendAutomatedMessageRequest" do
       optional :tenant, :string, 1
-      optional :roomUid, :string, 2
       optional :text, :string, 3
-      optional :senderId, :int64, 4
       optional :senderName, :string, 5
-      optional :isCustomer, :bool, 6
       optional :messageType, :string, 7
       optional :receiver, :message, 8, "Model.User"
     end

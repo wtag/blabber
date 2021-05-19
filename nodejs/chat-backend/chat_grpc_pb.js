@@ -238,8 +238,8 @@ var ChatService = exports.ChatService = {
     responseSerialize: serialize_ChatService_Tenant,
     responseDeserialize: deserialize_ChatService_Tenant,
   },
-  sendAutomatedMessage: {
-    path: '/ChatService.Chat/SendAutomatedMessage',
+  sendAutomatedMessageToTraveller: {
+    path: '/ChatService.Chat/SendAutomatedMessageToTraveller',
     requestStream: false,
     responseStream: false,
     requestType: chat$backend_chat_pb.SendAutomatedMessageRequest,

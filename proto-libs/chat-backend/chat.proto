@@ -102,11 +102,8 @@ message Tenant {
 
 message SendAutomatedMessageRequest {
   string tenant = 1;
-  string roomUid = 2;
   string text = 3;
-  int64 senderId = 4;
   string senderName = 5;
-  bool isCustomer = 6;
   string messageType = 7;
   Model.User receiver = 8;
 }
@@ -123,7 +120,7 @@ service Chat {
   rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc GetAllTenants(Empty) returns (stream Tenant) {}
-  rpc SendAutomatedMessage(SendAutomatedMessageRequest) returns (SendAutomatedMessageResponse) {}
+  rpc SendAutomatedMessageToTraveller(SendAutomatedMessageRequest) returns (SendAutomatedMessageResponse) {}
 }
 
 service Authentication {

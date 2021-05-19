@@ -3592,11 +3592,8 @@ proto.ChatService.SendAutomatedMessageRequest.prototype.toObject = function(opt_
 proto.ChatService.SendAutomatedMessageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    roomuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     text: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    senderid: jspb.Message.getFieldWithDefault(msg, 4, 0),
     sendername: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    iscustomer: jspb.Message.getFieldWithDefault(msg, 6, false),
     messagetype: jspb.Message.getFieldWithDefault(msg, 7, ""),
     receiver: (f = msg.getReceiver()) && Model_user_pb.User.toObject(includeInstance, f)
   };
@@ -3639,25 +3636,13 @@ proto.ChatService.SendAutomatedMessageRequest.deserializeBinaryFromReader = func
       var value = /** @type {string} */ (reader.readString());
       msg.setTenant(value);
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setRoomuid(value);
-      break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setText(value);
       break;
-    case 4:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setSenderid(value);
-      break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setSendername(value);
-      break;
-    case 6:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIscustomer(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
@@ -3704,13 +3689,6 @@ proto.ChatService.SendAutomatedMessageRequest.serializeBinaryToWriter = function
       f
     );
   }
-  f = message.getRoomuid();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
   f = message.getText();
   if (f.length > 0) {
     writer.writeString(
@@ -3718,24 +3696,10 @@ proto.ChatService.SendAutomatedMessageRequest.serializeBinaryToWriter = function
       f
     );
   }
-  f = message.getSenderid();
-  if (f !== 0) {
-    writer.writeInt64(
-      4,
-      f
-    );
-  }
   f = message.getSendername();
   if (f.length > 0) {
     writer.writeString(
       5,
-      f
-    );
-  }
-  f = message.getIscustomer();
-  if (f) {
-    writer.writeBool(
-      6,
       f
     );
   }
@@ -3776,24 +3740,6 @@ proto.ChatService.SendAutomatedMessageRequest.prototype.setTenant = function(val
 
 
 /**
- * optional string roomUid = 2;
- * @return {string}
- */
-proto.ChatService.SendAutomatedMessageRequest.prototype.getRoomuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.ChatService.SendAutomatedMessageRequest} returns this
- */
-proto.ChatService.SendAutomatedMessageRequest.prototype.setRoomuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
  * optional string text = 3;
  * @return {string}
  */
@@ -3812,24 +3758,6 @@ proto.ChatService.SendAutomatedMessageRequest.prototype.setText = function(value
 
 
 /**
- * optional int64 senderId = 4;
- * @return {number}
- */
-proto.ChatService.SendAutomatedMessageRequest.prototype.getSenderid = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.ChatService.SendAutomatedMessageRequest} returns this
- */
-proto.ChatService.SendAutomatedMessageRequest.prototype.setSenderid = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-/**
  * optional string senderName = 5;
  * @return {string}
  */
@@ -3844,24 +3772,6 @@ proto.ChatService.SendAutomatedMessageRequest.prototype.getSendername = function
  */
 proto.ChatService.SendAutomatedMessageRequest.prototype.setSendername = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
-};
-
-
-/**
- * optional bool isCustomer = 6;
- * @return {boolean}
- */
-proto.ChatService.SendAutomatedMessageRequest.prototype.getIscustomer = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 6, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.ChatService.SendAutomatedMessageRequest} returns this
- */
-proto.ChatService.SendAutomatedMessageRequest.prototype.setIscustomer = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
