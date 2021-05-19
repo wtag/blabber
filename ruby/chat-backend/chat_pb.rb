@@ -18,7 +18,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :users, :message, 9, "Model.User"
       repeated :mentionedUsers, :message, 10, "Model.User"
       optional :messageType, :string, 11
-      optional :receiver, :message, 12, "Model.User"
     end
     add_message "ChatService.MessageList" do
       repeated :messages, :message, 1, "ChatService.Message"
@@ -89,6 +88,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "ChatService.Tenant" do
       optional :identifier, :string, 1
     end
+    add_message "ChatService.SendAutomatedMessageRequest" do
+      optional :tenant, :string, 1
+      optional :roomUid, :string, 2
+      optional :text, :string, 3
+      optional :senderId, :int64, 4
+      optional :senderName, :string, 5
+      optional :isCustomer, :bool, 6
+      optional :messageType, :string, 7
+      optional :receiver, :message, 8, "Model.User"
+    end
     add_message "ChatService.SendAutomatedMessageResponse" do
       optional :success, :bool, 1
     end
@@ -109,5 +118,6 @@ module ChatService
   RemoveMessageSeenRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMessageSeenRequest").msgclass
   RemoveMentionAndSeenResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMentionAndSeenResponse").msgclass
   Tenant = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Tenant").msgclass
+  SendAutomatedMessageRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendAutomatedMessageRequest").msgclass
   SendAutomatedMessageResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendAutomatedMessageResponse").msgclass
 end

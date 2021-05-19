@@ -16,7 +16,6 @@ message Message {
   repeated Model.User users = 9;
   repeated Model.User mentionedUsers = 10;
   string messageType = 11;
-  Model.User receiver = 12;
 }
 
 message MessageList {
@@ -101,6 +100,17 @@ message Tenant {
   string identifier = 1;
 }
 
+message SendAutomatedMessageRequest {
+  string tenant = 1;
+  string roomUid = 2;
+  string text = 3;
+  int64 senderId = 4;
+  string senderName = 5;
+  bool isCustomer = 6;
+  string messageType = 7;
+  Model.User receiver = 8;
+}
+
 message SendAutomatedMessageResponse {
   bool success = 1;
 }
@@ -113,7 +123,7 @@ service Chat {
   rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc GetAllTenants(Empty) returns (stream Tenant) {}
-  rpc SendAutomatedMessage(Message) returns (SendAutomatedMessageResponse) {}
+  rpc SendAutomatedMessage(SendAutomatedMessageRequest) returns (SendAutomatedMessageResponse) {}
 }
 
 service Authentication {

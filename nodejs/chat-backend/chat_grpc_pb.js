@@ -104,6 +104,17 @@ function deserialize_ChatService_RoomCategory(buffer_arg) {
   return chat$backend_chat_pb.RoomCategory.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ChatService_SendAutomatedMessageRequest(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.SendAutomatedMessageRequest)) {
+    throw new Error('Expected argument of type ChatService.SendAutomatedMessageRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_SendAutomatedMessageRequest(buffer_arg) {
+  return chat$backend_chat_pb.SendAutomatedMessageRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ChatService_SendAutomatedMessageResponse(arg) {
   if (!(arg instanceof chat$backend_chat_pb.SendAutomatedMessageResponse)) {
     throw new Error('Expected argument of type ChatService.SendAutomatedMessageResponse');
@@ -231,10 +242,10 @@ var ChatService = exports.ChatService = {
     path: '/ChatService.Chat/SendAutomatedMessage',
     requestStream: false,
     responseStream: false,
-    requestType: chat$backend_chat_pb.Message,
+    requestType: chat$backend_chat_pb.SendAutomatedMessageRequest,
     responseType: chat$backend_chat_pb.SendAutomatedMessageResponse,
-    requestSerialize: serialize_ChatService_Message,
-    requestDeserialize: deserialize_ChatService_Message,
+    requestSerialize: serialize_ChatService_SendAutomatedMessageRequest,
+    requestDeserialize: deserialize_ChatService_SendAutomatedMessageRequest,
     responseSerialize: serialize_ChatService_SendAutomatedMessageResponse,
     responseDeserialize: deserialize_ChatService_SendAutomatedMessageResponse,
   },
