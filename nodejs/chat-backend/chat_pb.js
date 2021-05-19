@@ -376,7 +376,8 @@ proto.ChatService.Message.toObject = function(includeInstance, msg) {
     Model_user_pb.User.toObject, includeInstance),
     mentionedusersList: jspb.Message.toObjectList(msg.getMentionedusersList(),
     Model_user_pb.User.toObject, includeInstance),
-    messagetype: jspb.Message.getFieldWithDefault(msg, 11, "")
+    messagetype: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    receiver: (f = msg.getReceiver()) && Model_user_pb.User.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -458,6 +459,11 @@ proto.ChatService.Message.deserializeBinaryFromReader = function(msg, reader) {
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setMessagetype(value);
+      break;
+    case 12:
+      var value = new Model_user_pb.User;
+      reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
+      msg.setReceiver(value);
       break;
     default:
       reader.skipField();
@@ -565,6 +571,14 @@ proto.ChatService.Message.serializeBinaryToWriter = function(message, writer) {
     writer.writeString(
       11,
       f
+    );
+  }
+  f = message.getReceiver();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      Model_user_pb.User.serializeBinaryToWriter
     );
   }
 };
@@ -805,6 +819,43 @@ proto.ChatService.Message.prototype.getMessagetype = function() {
  */
 proto.ChatService.Message.prototype.setMessagetype = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional Model.User receiver = 12;
+ * @return {?proto.Model.User}
+ */
+proto.ChatService.Message.prototype.getReceiver = function() {
+  return /** @type{?proto.Model.User} */ (
+    jspb.Message.getWrapperField(this, Model_user_pb.User, 12));
+};
+
+
+/**
+ * @param {?proto.Model.User|undefined} value
+ * @return {!proto.ChatService.Message} returns this
+*/
+proto.ChatService.Message.prototype.setReceiver = function(value) {
+  return jspb.Message.setWrapperField(this, 12, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.ChatService.Message} returns this
+ */
+proto.ChatService.Message.prototype.clearReceiver = function() {
+  return this.setReceiver(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.ChatService.Message.prototype.hasReceiver = function() {
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
