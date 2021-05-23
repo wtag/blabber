@@ -12,9 +12,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :colleagues, :message, 3, "Model.User"
       repeated :travelArrangementClients, :message, 4, "Model.User"
     end
+    add_message "Agent.AvailableAgentsRequest" do
+      optional :tenant, :string, 1
+    end
   end
 end
 
 module Agent
   UserRelationsCustomer = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.UserRelationsCustomer").msgclass
+  AvailableAgentsRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.AvailableAgentsRequest").msgclass
 end
