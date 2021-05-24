@@ -23,13 +23,14 @@ exports.Blabber.RemoveMentionAndSeenResponse =
 exports.Blabber.Tenant = chatLib.Tenant;
 exports.Blabber.SendAutomatedMessageResponse = chatLib.SendAutomatedMessageResponse;
 exports.Blabber.SendAutomatedMessageRequest = chatLib.SendAutomatedMessageRequest;
-exports.Blabber.AvailableAgentsRequest = chatLib.AvailableAgentsRequest;
 
 /**GRPC Service Exposed By Agent
  ***Service: User RelationShip**/
 exports.Blabber.Agent = require("./nodejs/agent-platform/userRelationships_grpc_pb");
 exports.Blabber.Agent.UserRelationsCustomer =
   agentUserRelationships.UserRelationsCustomer;
+exports.Blabber.Agent.AvailableAgentsRequest =
+    agentUserRelationships.AvailableAgentsRequest;
 exports.Blabber.Agent.UserRelationsAgent =
   agentUserRelationships.UserRelationsAgent;
 exports.Blabber.Agent.User = user.User;
