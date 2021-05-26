@@ -88,6 +88,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "ChatService.Tenant" do
       optional :identifier, :string, 1
     end
+    add_message "ChatService.MarkMessageSeenForUserRequest" do
+      optional :messageId, :int64, 1
+      optional :userId, :int64, 2
+      optional :isCustomer, :bool, 3
+    end
     add_message "ChatService.SendAutomatedMessageRequest" do
       optional :tenant, :string, 1
       optional :text, :string, 3
@@ -115,6 +120,7 @@ module ChatService
   RemoveMessageSeenRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMessageSeenRequest").msgclass
   RemoveMentionAndSeenResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMentionAndSeenResponse").msgclass
   Tenant = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Tenant").msgclass
+  MarkMessageSeenForUserRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MarkMessageSeenForUserRequest").msgclass
   SendAutomatedMessageRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendAutomatedMessageRequest").msgclass
   SendAutomatedMessageResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendAutomatedMessageResponse").msgclass
 end
