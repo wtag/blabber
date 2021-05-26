@@ -108,10 +108,10 @@ message MarkMessageSeenForUserRequest {
 
 message SendAutomatedMessageRequest {
   string tenant = 1;
-  string text = 3;
-  string senderName = 5;
-  string messageType = 7;
-  Model.User receiver = 8;
+  string text = 2;
+  string senderName = 3;
+  string messageType = 4;
+  Model.User receiver = 5;
 }
 
 message SendAutomatedMessageResponse {

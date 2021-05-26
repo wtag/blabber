@@ -95,10 +95,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "ChatService.SendAutomatedMessageRequest" do
       optional :tenant, :string, 1
-      optional :text, :string, 3
-      optional :senderName, :string, 5
-      optional :messageType, :string, 7
-      optional :receiver, :message, 8, "Model.User"
+      optional :text, :string, 2
+      optional :senderName, :string, 3
+      optional :messageType, :string, 4
+      optional :receiver, :message, 5, "Model.User"
     end
     add_message "ChatService.SendAutomatedMessageResponse" do
       optional :success, :bool, 1
