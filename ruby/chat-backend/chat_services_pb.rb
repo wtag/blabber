@@ -8,7 +8,7 @@ module ChatService
   module Chat
     class Service
 
-      include ::GRPC::GenericService
+      include GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
@@ -30,7 +30,7 @@ module ChatService
   module Authentication
     class Service
 
-      include ::GRPC::GenericService
+      include GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode

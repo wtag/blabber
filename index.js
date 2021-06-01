@@ -1,10 +1,11 @@
-const chatLib = require("./nodejs/chat-backend/chat_pb");
-const user = require("./nodejs/model/user_pb");
-const agentUserRelationships = require("./nodejs/agent-platform/userRelationships_pb");
+const chatLib = require('./nodejs/chat-backend/chat_pb');
+const user = require('./nodejs/model/user_pb');
+const agentUserRelationships = require('./nodejs/agent-platform/userRelationships_pb');
+const emailService = require('./nodejs/agent-platform/email_pb');
 
 /**GRPC Service Exposed By Chat Server
  ***Service: Authentication Token**/
-exports.Blabber = require("./nodejs/chat-backend/chat_grpc_pb");
+exports.Blabber = require('./nodejs/chat-backend/chat_grpc_pb');
 exports.Blabber.MessageList = chatLib.MessageList;
 exports.Blabber.Room = chatLib.Room;
 exports.Blabber.SendMessageResponse = chatLib.SendMessageResponse;
@@ -21,15 +22,22 @@ exports.Blabber.RemoveMessageSeenRequest = chatLib.RemoveMessageSeenRequest;
 exports.Blabber.RemoveMentionAndSeenResponse =
   chatLib.RemoveMentionAndSeenResponse;
 exports.Blabber.Tenant = chatLib.Tenant;
-exports.Blabber.MarkMessageSeenForUserRequest = chatLib.MarkMessageSeenForUserRequest;
-exports.Blabber.SendAutomatedMessageResponse = chatLib.SendAutomatedMessageResponse;
-exports.Blabber.SendAutomatedMessageRequest = chatLib.SendAutomatedMessageRequest;
+exports.Blabber.MarkMessageSeenForUserRequest =
+  chatLib.MarkMessageSeenForUserRequest;
+exports.Blabber.SendAutomatedMessageResponse =
+  chatLib.SendAutomatedMessageResponse;
+exports.Blabber.SendAutomatedMessageRequest =
+  chatLib.SendAutomatedMessageRequest;
 
 /**GRPC Service Exposed By Agent
  ***Service: User RelationShip**/
-exports.Blabber.Agent = require("./nodejs/agent-platform/userRelationships_grpc_pb");
+exports.Blabber.Agent = require('./nodejs/agent-platform/userRelationships_grpc_pb');
 exports.Blabber.Agent.UserRelationsCustomer =
   agentUserRelationships.UserRelationsCustomer;
 exports.Blabber.Agent.UserRelationsAgent =
   agentUserRelationships.UserRelationsAgent;
 exports.Blabber.Agent.User = user.User;
+
+exports.Blabber.Email = require('./nodejs/agent-platform/email_grpc_pb');
+exports.Blabber.Email.SendEmailRequest = emailService.SendEmailRequest;
+exports.Blabber.Email.SendEmailResponse = emailService.SendEmailResponse;
