@@ -88,12 +88,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "ChatService.Tenant" do
       optional :identifier, :string, 1
     end
-    add_message "ChatService.MessageSeenStatusRequest" do
+    add_message "ChatService.MarkMessageSeenForUserRequest" do
       optional :messageId, :int64, 1
-      optional :user, :message, 2, "Model.User"
+      optional :userId, :int64, 2
+      optional :isCustomer, :bool, 3
     end
-    add_message "ChatService.MessageSeenStatusResponse" do
-      optional :seen, :bool, 1
+    add_message "ChatService.SendAutomatedMessageRequest" do
+      optional :tenant, :string, 1
+      optional :text, :string, 2
+      optional :senderName, :string, 3
+      optional :messageType, :string, 4
+      optional :receiver, :message, 5, "Model.User"
+    end
+    add_message "ChatService.SendAutomatedMessageResponse" do
+      optional :success, :bool, 1
     end
   end
 end
@@ -112,6 +120,7 @@ module ChatService
   RemoveMessageSeenRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMessageSeenRequest").msgclass
   RemoveMentionAndSeenResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RemoveMentionAndSeenResponse").msgclass
   Tenant = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Tenant").msgclass
-  MessageSeenStatusRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MessageSeenStatusRequest").msgclass
-  MessageSeenStatusResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MessageSeenStatusResponse").msgclass
+  MarkMessageSeenForUserRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MarkMessageSeenForUserRequest").msgclass
+  SendAutomatedMessageRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendAutomatedMessageRequest").msgclass
+  SendAutomatedMessageResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendAutomatedMessageResponse").msgclass
 end

@@ -31,6 +31,21 @@ function deserialize_ChatService_Empty(buffer_arg) {
   );
 }
 
+function serialize_ChatService_MarkMessageSeenForUserRequest(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.MarkMessageSeenForUserRequest)) {
+    throw new Error(
+      'Expected argument of type ChatService.MarkMessageSeenForUserRequest'
+    );
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_MarkMessageSeenForUserRequest(buffer_arg) {
+  return chat$backend_chat_pb.MarkMessageSeenForUserRequest.deserializeBinary(
+    new Uint8Array(buffer_arg)
+  );
+}
+
 function serialize_ChatService_Message(arg) {
   if (!(arg instanceof chat$backend_chat_pb.Message)) {
     throw new Error('Expected argument of type ChatService.Message');
@@ -53,36 +68,6 @@ function serialize_ChatService_MessageList(arg) {
 
 function deserialize_ChatService_MessageList(buffer_arg) {
   return chat$backend_chat_pb.MessageList.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
-}
-
-function serialize_ChatService_MessageSeenStatusRequest(arg) {
-  if (!(arg instanceof chat$backend_chat_pb.MessageSeenStatusRequest)) {
-    throw new Error(
-      'Expected argument of type ChatService.MessageSeenStatusRequest'
-    );
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_ChatService_MessageSeenStatusRequest(buffer_arg) {
-  return chat$backend_chat_pb.MessageSeenStatusRequest.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
-}
-
-function serialize_ChatService_MessageSeenStatusResponse(arg) {
-  if (!(arg instanceof chat$backend_chat_pb.MessageSeenStatusResponse)) {
-    throw new Error(
-      'Expected argument of type ChatService.MessageSeenStatusResponse'
-    );
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_ChatService_MessageSeenStatusResponse(buffer_arg) {
-  return chat$backend_chat_pb.MessageSeenStatusResponse.deserializeBinary(
     new Uint8Array(buffer_arg)
   );
 }
@@ -154,6 +139,36 @@ function serialize_ChatService_RoomCategory(arg) {
 
 function deserialize_ChatService_RoomCategory(buffer_arg) {
   return chat$backend_chat_pb.RoomCategory.deserializeBinary(
+    new Uint8Array(buffer_arg)
+  );
+}
+
+function serialize_ChatService_SendAutomatedMessageRequest(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.SendAutomatedMessageRequest)) {
+    throw new Error(
+      'Expected argument of type ChatService.SendAutomatedMessageRequest'
+    );
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_SendAutomatedMessageRequest(buffer_arg) {
+  return chat$backend_chat_pb.SendAutomatedMessageRequest.deserializeBinary(
+    new Uint8Array(buffer_arg)
+  );
+}
+
+function serialize_ChatService_SendAutomatedMessageResponse(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.SendAutomatedMessageResponse)) {
+    throw new Error(
+      'Expected argument of type ChatService.SendAutomatedMessageResponse'
+    );
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_SendAutomatedMessageResponse(buffer_arg) {
+  return chat$backend_chat_pb.SendAutomatedMessageResponse.deserializeBinary(
     new Uint8Array(buffer_arg)
   );
 }
@@ -275,16 +290,27 @@ var ChatService = (exports.ChatService = {
     responseSerialize: serialize_ChatService_Tenant,
     responseDeserialize: deserialize_ChatService_Tenant,
   },
-  messageSeenStatus: {
-    path: '/ChatService.Chat/MessageSeenStatus',
+  markMessageSeenForUser: {
+    path: '/ChatService.Chat/MarkMessageSeenForUser',
     requestStream: false,
     responseStream: false,
-    requestType: chat$backend_chat_pb.MessageSeenStatusRequest,
-    responseType: chat$backend_chat_pb.MessageSeenStatusResponse,
-    requestSerialize: serialize_ChatService_MessageSeenStatusRequest,
-    requestDeserialize: deserialize_ChatService_MessageSeenStatusRequest,
-    responseSerialize: serialize_ChatService_MessageSeenStatusResponse,
-    responseDeserialize: deserialize_ChatService_MessageSeenStatusResponse,
+    requestType: chat$backend_chat_pb.MarkMessageSeenForUserRequest,
+    responseType: chat$backend_chat_pb.RemoveMentionAndSeenResponse,
+    requestSerialize: serialize_ChatService_MarkMessageSeenForUserRequest,
+    requestDeserialize: deserialize_ChatService_MarkMessageSeenForUserRequest,
+    responseSerialize: serialize_ChatService_RemoveMentionAndSeenResponse,
+    responseDeserialize: deserialize_ChatService_RemoveMentionAndSeenResponse,
+  },
+  sendAutomatedMessageToTraveller: {
+    path: '/ChatService.Chat/SendAutomatedMessageToTraveller',
+    requestStream: false,
+    responseStream: false,
+    requestType: chat$backend_chat_pb.SendAutomatedMessageRequest,
+    responseType: chat$backend_chat_pb.SendAutomatedMessageResponse,
+    requestSerialize: serialize_ChatService_SendAutomatedMessageRequest,
+    requestDeserialize: deserialize_ChatService_SendAutomatedMessageRequest,
+    responseSerialize: serialize_ChatService_SendAutomatedMessageResponse,
+    responseDeserialize: deserialize_ChatService_SendAutomatedMessageResponse,
   },
 });
 
