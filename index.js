@@ -28,6 +28,8 @@ exports.Blabber.SendAutomatedMessageResponse =
   chatLib.SendAutomatedMessageResponse;
 exports.Blabber.SendAutomatedMessageRequest =
   chatLib.SendAutomatedMessageRequest;
+exports.Blabber.MessageSeenStatusRequest = chatLib.MessageSeenStatusRequest;
+exports.Blabber.MessageSeenStatusResponse = chatLib.MessageSeenStatusResponse;
 
 /**GRPC Service Exposed By Agent
  ***Service: User RelationShip**/
