@@ -100,6 +100,15 @@ message Tenant {
   string identifier = 1;
 }
 
+message MessageSeenStatusRequest {
+  int64 messageId = 1;
+  Model.User user = 2;
+}
+
+message MessageSeenStatusResponse {
+  bool seen = 1;
+}
+
 message MarkMessageSeenForUserRequest {
   int64 messageId = 1;
   int64 userId = 2;
@@ -126,6 +135,7 @@ service Chat {
   rpc MarkMessageAsSeen(RemoveMessageSeenRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc GetAllTenants(Empty) returns (stream Tenant) {}
+  rpc MessageSeenStatus(MessageSeenStatusRequest) returns (MessageSeenStatusResponse) {}
   rpc MarkMessageSeenForUser(MarkMessageSeenForUserRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc SendAutomatedMessageToTraveller(SendAutomatedMessageRequest) returns (SendAutomatedMessageResponse) {}
 }
