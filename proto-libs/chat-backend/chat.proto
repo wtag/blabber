@@ -109,6 +109,24 @@ message MessageSeenStatusResponse {
   bool seen = 1;
 }
 
+message MarkMessageSeenForUserRequest {
+  int64 messageId = 1;
+  int64 userId = 2;
+  bool isCustomer = 3;
+}
+
+message SendAutomatedMessageRequest {
+  string tenant = 1;
+  string text = 2;
+  string senderName = 3;
+  string messageType = 4;
+  Model.User receiver = 5;
+}
+
+message SendAutomatedMessageResponse {
+  bool success = 1;
+}
+
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
@@ -118,6 +136,8 @@ service Chat {
   rpc MarkMentionAsSeen(RemoveMentionRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc GetAllTenants(Empty) returns (stream Tenant) {}
   rpc MessageSeenStatus(MessageSeenStatusRequest) returns (MessageSeenStatusResponse) {}
+  rpc MarkMessageSeenForUser(MarkMessageSeenForUserRequest) returns (RemoveMentionAndSeenResponse) {}
+  rpc SendAutomatedMessageToTraveller(SendAutomatedMessageRequest) returns (SendAutomatedMessageResponse) {}
 }
 
 service Authentication {

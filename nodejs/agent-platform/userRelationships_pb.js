@@ -250,11 +250,9 @@ proto.Agent.UserRelationsCustomer.serializeBinaryToWriter = function (
  * @return {!Array<!proto.Model.User>}
  */
 proto.Agent.UserRelationsCustomer.prototype.getAgentsList = function () {
-  return /** @type{!Array<!proto.Model.User>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    Model_user_pb.User,
-    1
-  ));
+  return /** @type{!Array<!proto.Model.User>} */ (
+    jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 1)
+  );
 };
 
 /**
@@ -295,13 +293,12 @@ proto.Agent.UserRelationsCustomer.prototype.clearAgentsList = function () {
  * repeated Model.User travelArrangers = 2;
  * @return {!Array<!proto.Model.User>}
  */
-proto.Agent.UserRelationsCustomer.prototype.getTravelarrangersList = function () {
-  return /** @type{!Array<!proto.Model.User>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    Model_user_pb.User,
-    2
-  ));
-};
+proto.Agent.UserRelationsCustomer.prototype.getTravelarrangersList =
+  function () {
+    return /** @type{!Array<!proto.Model.User>} */ (
+      jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 2)
+    );
+  };
 
 /**
  * @param {!Array<!proto.Model.User>} value
@@ -335,20 +332,19 @@ proto.Agent.UserRelationsCustomer.prototype.addTravelarrangers = function (
  * Clears the list making it empty but non-null.
  * @return {!proto.Agent.UserRelationsCustomer} returns this
  */
-proto.Agent.UserRelationsCustomer.prototype.clearTravelarrangersList = function () {
-  return this.setTravelarrangersList([]);
-};
+proto.Agent.UserRelationsCustomer.prototype.clearTravelarrangersList =
+  function () {
+    return this.setTravelarrangersList([]);
+  };
 
 /**
  * repeated Model.User colleagues = 3;
  * @return {!Array<!proto.Model.User>}
  */
 proto.Agent.UserRelationsCustomer.prototype.getColleaguesList = function () {
-  return /** @type{!Array<!proto.Model.User>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    Model_user_pb.User,
-    3
-  ));
+  return /** @type{!Array<!proto.Model.User>} */ (
+    jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 3)
+  );
 };
 
 /**
@@ -391,48 +387,45 @@ proto.Agent.UserRelationsCustomer.prototype.clearColleaguesList = function () {
  * repeated Model.User travelArrangementClients = 4;
  * @return {!Array<!proto.Model.User>}
  */
-proto.Agent.UserRelationsCustomer.prototype.getTravelarrangementclientsList = function () {
-  return /** @type{!Array<!proto.Model.User>} */ (jspb.Message.getRepeatedWrapperField(
-    this,
-    Model_user_pb.User,
-    4
-  ));
-};
+proto.Agent.UserRelationsCustomer.prototype.getTravelarrangementclientsList =
+  function () {
+    return /** @type{!Array<!proto.Model.User>} */ (
+      jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 4)
+    );
+  };
 
 /**
  * @param {!Array<!proto.Model.User>} value
  * @return {!proto.Agent.UserRelationsCustomer} returns this
  */
-proto.Agent.UserRelationsCustomer.prototype.setTravelarrangementclientsList = function (
-  value
-) {
-  return jspb.Message.setRepeatedWrapperField(this, 4, value);
-};
+proto.Agent.UserRelationsCustomer.prototype.setTravelarrangementclientsList =
+  function (value) {
+    return jspb.Message.setRepeatedWrapperField(this, 4, value);
+  };
 
 /**
  * @param {!proto.Model.User=} opt_value
  * @param {number=} opt_index
  * @return {!proto.Model.User}
  */
-proto.Agent.UserRelationsCustomer.prototype.addTravelarrangementclients = function (
-  opt_value,
-  opt_index
-) {
-  return jspb.Message.addToRepeatedWrapperField(
-    this,
-    4,
-    opt_value,
-    proto.Model.User,
-    opt_index
-  );
-};
+proto.Agent.UserRelationsCustomer.prototype.addTravelarrangementclients =
+  function (opt_value, opt_index) {
+    return jspb.Message.addToRepeatedWrapperField(
+      this,
+      4,
+      opt_value,
+      proto.Model.User,
+      opt_index
+    );
+  };
 
 /**
  * Clears the list making it empty but non-null.
  * @return {!proto.Agent.UserRelationsCustomer} returns this
  */
-proto.Agent.UserRelationsCustomer.prototype.clearTravelarrangementclientsList = function () {
-  return this.setTravelarrangementclientsList([]);
-};
+proto.Agent.UserRelationsCustomer.prototype.clearTravelarrangementclientsList =
+  function () {
+    return this.setTravelarrangementclientsList([]);
+  };
 
 goog.object.extend(exports, proto.Agent);
