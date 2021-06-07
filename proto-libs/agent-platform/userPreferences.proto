@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "Model/user.proto";
+
+package Agent;
+
+message ChatPreferences {
+  int64 notificationEscalationDelayInSeconds = 1;
+  bool notificationEscalationEnabled = 2;
+}
+
+service UserPreferences {
+  rpc RetrieveChatPreferences(Model.User) returns (ChatPreferences);
+}
