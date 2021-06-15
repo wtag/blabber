@@ -524,6 +524,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
           includeInstance
         ),
         messagetype: jspb.Message.getFieldWithDefault(msg, 11, ''),
+        quotedmessageid: jspb.Message.getFieldWithDefault(msg, 12, 0),
+        quotedmessagetext: jspb.Message.getFieldWithDefault(msg, 13, ''),
       };
 
     if (includeInstance) {
@@ -610,6 +612,14 @@ proto.ChatService.Message.deserializeBinaryFromReader = function (msg, reader) {
         var value = /** @type {string} */ (reader.readString());
         msg.setMessagetype(value);
         break;
+      case 12:
+        var value = /** @type {number} */ (reader.readInt64());
+        msg.setQuotedmessageid(value);
+        break;
+      case 13:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setQuotedmessagetext(value);
+        break;
       default:
         reader.skipField();
         break;
@@ -688,6 +698,14 @@ proto.ChatService.Message.serializeBinaryToWriter = function (message, writer) {
   f = message.getMessagetype();
   if (f.length > 0) {
     writer.writeString(11, f);
+  }
+  f = message.getQuotedmessageid();
+  if (f !== 0) {
+    writer.writeInt64(12, f);
+  }
+  f = message.getQuotedmessagetext();
+  if (f.length > 0) {
+    writer.writeString(13, f);
   }
 };
 
@@ -920,6 +938,38 @@ proto.ChatService.Message.prototype.getMessagetype = function () {
  */
 proto.ChatService.Message.prototype.setMessagetype = function (value) {
   return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+/**
+ * optional int64 quotedMessageId = 12;
+ * @return {number}
+ */
+proto.ChatService.Message.prototype.getQuotedmessageid = function () {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+/**
+ * @param {number} value
+ * @return {!proto.ChatService.Message} returns this
+ */
+proto.ChatService.Message.prototype.setQuotedmessageid = function (value) {
+  return jspb.Message.setProto3IntField(this, 12, value);
+};
+
+/**
+ * optional string quotedMessageText = 13;
+ * @return {string}
+ */
+proto.ChatService.Message.prototype.getQuotedmessagetext = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ''));
+};
+
+/**
+ * @param {string} value
+ * @return {!proto.ChatService.Message} returns this
+ */
+proto.ChatService.Message.prototype.setQuotedmessagetext = function (value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 /**
