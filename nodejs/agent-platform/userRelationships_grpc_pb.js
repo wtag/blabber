@@ -17,14 +17,18 @@ function deserialize_Agent_AvailableAgentsRequest(buffer_arg) {
 }
 
 function serialize_Agent_UserRelationsCustomer(arg) {
-  if (!(arg instanceof agent$platform_userRelationships_pb.UserRelationsCustomer)) {
+  if (
+    !(arg instanceof agent$platform_userRelationships_pb.UserRelationsCustomer)
+  ) {
     throw new Error('Expected argument of type Agent.UserRelationsCustomer');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_Agent_UserRelationsCustomer(buffer_arg) {
-  return agent$platform_userRelationships_pb.UserRelationsCustomer.deserializeBinary(new Uint8Array(buffer_arg));
+  return agent$platform_userRelationships_pb.UserRelationsCustomer.deserializeBinary(
+    new Uint8Array(buffer_arg)
+  );
 }
 
 function serialize_Model_User(arg) {
@@ -38,8 +42,7 @@ function deserialize_Model_User(buffer_arg) {
   return Model_user_pb.User.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-
-var UserRelationshipsService = exports.UserRelationshipsService = {
+var UserRelationshipsService = (exports.UserRelationshipsService = {
   retrieveCustomerRelations: {
     path: '/Agent.UserRelationships/RetrieveCustomerRelations',
     requestStream: false,
@@ -84,6 +87,8 @@ var UserRelationshipsService = exports.UserRelationshipsService = {
     responseSerialize: serialize_Model_User,
     responseDeserialize: deserialize_Model_User,
   },
-};
+});
 
-exports.UserRelationshipsClient = grpc.makeGenericClientConstructor(UserRelationshipsService);
+exports.UserRelationshipsClient = grpc.makeGenericClientConstructor(
+  UserRelationshipsService
+);

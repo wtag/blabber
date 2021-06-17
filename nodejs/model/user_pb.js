@@ -26,8 +26,15 @@ goog.exportSymbol('proto.Model.User', null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.Model.User = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.Model.User.repeatedFields_, null);
+proto.Model.User = function (opt_data) {
+  jspb.Message.initialize(
+    this,
+    opt_data,
+    0,
+    -1,
+    proto.Model.User.repeatedFields_,
+    null
+  );
 };
 goog.inherits(proto.Model.User, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -45,66 +52,65 @@ if (goog.DEBUG && !COMPILED) {
  */
 proto.Model.User.repeatedFields_ = [7];
 
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.Model.User.prototype.toObject = function(opt_includeInstance) {
-  return proto.Model.User.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.Model.User} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.Model.User.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    tenant: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    iscustomer: jspb.Message.getFieldWithDefault(msg, 4, false),
-    avatarurl: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    isonline: jspb.Message.getFieldWithDefault(msg, 6, false),
-    agentsList: jspb.Message.toObjectList(msg.getAgentsList(),
-    proto.Model.User.toObject, includeInstance)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.Model.User.prototype.toObject = function (opt_includeInstance) {
+    return proto.Model.User.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.Model.User} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.Model.User.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+        name: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        tenant: jspb.Message.getFieldWithDefault(msg, 3, ''),
+        iscustomer: jspb.Message.getFieldWithDefault(msg, 4, false),
+        avatarurl: jspb.Message.getFieldWithDefault(msg, 5, ''),
+        isonline: jspb.Message.getFieldWithDefault(msg, 6, false),
+        agentsList: jspb.Message.toObjectList(
+          msg.getAgentsList(),
+          proto.Model.User.toObject,
+          includeInstance
+        ),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.Model.User}
  */
-proto.Model.User.deserializeBinary = function(bytes) {
+proto.Model.User.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.Model.User;
+  var msg = new proto.Model.User();
   return proto.Model.User.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -113,61 +119,59 @@ proto.Model.User.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.Model.User}
  */
-proto.Model.User.deserializeBinaryFromReader = function(msg, reader) {
+proto.Model.User.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setId(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTenant(value);
-      break;
-    case 4:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIscustomer(value);
-      break;
-    case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setAvatarurl(value);
-      break;
-    case 6:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsonline(value);
-      break;
-    case 7:
-      var value = new proto.Model.User;
-      reader.readMessage(value,proto.Model.User.deserializeBinaryFromReader);
-      msg.addAgents(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {number} */ (reader.readInt64());
+        msg.setId(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setName(value);
+        break;
+      case 3:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setTenant(value);
+        break;
+      case 4:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setIscustomer(value);
+        break;
+      case 5:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAvatarurl(value);
+        break;
+      case 6:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setIsonline(value);
+        break;
+      case 7:
+        var value = new proto.Model.User();
+        reader.readMessage(value, proto.Model.User.deserializeBinaryFromReader);
+        msg.addAgents(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.Model.User.prototype.serializeBinary = function() {
+proto.Model.User.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.Model.User.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -176,205 +180,177 @@ proto.Model.User.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.Model.User.serializeBinaryToWriter = function(message, writer) {
+proto.Model.User.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getId();
   if (f !== 0) {
-    writer.writeInt64(
-      1,
-      f
-    );
+    writer.writeInt64(1, f);
   }
   f = message.getName();
   if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
+    writer.writeString(2, f);
   }
   f = message.getTenant();
   if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
+    writer.writeString(3, f);
   }
   f = message.getIscustomer();
   if (f) {
-    writer.writeBool(
-      4,
-      f
-    );
+    writer.writeBool(4, f);
   }
   f = message.getAvatarurl();
   if (f.length > 0) {
-    writer.writeString(
-      5,
-      f
-    );
+    writer.writeString(5, f);
   }
   f = message.getIsonline();
   if (f) {
-    writer.writeBool(
-      6,
-      f
-    );
+    writer.writeBool(6, f);
   }
   f = message.getAgentsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      7,
-      f,
-      proto.Model.User.serializeBinaryToWriter
-    );
+    writer.writeRepeatedMessage(7, f, proto.Model.User.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * optional int64 id = 1;
  * @return {number}
  */
-proto.Model.User.prototype.getId = function() {
+proto.Model.User.prototype.getId = function () {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
-
 
 /**
  * @param {number} value
  * @return {!proto.Model.User} returns this
  */
-proto.Model.User.prototype.setId = function(value) {
+proto.Model.User.prototype.setId = function (value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
-
 
 /**
  * optional string name = 2;
  * @return {string}
  */
-proto.Model.User.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.Model.User.prototype.getName = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.Model.User} returns this
  */
-proto.Model.User.prototype.setName = function(value) {
+proto.Model.User.prototype.setName = function (value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
-
 
 /**
  * optional string tenant = 3;
  * @return {string}
  */
-proto.Model.User.prototype.getTenant = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+proto.Model.User.prototype.getTenant = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.Model.User} returns this
  */
-proto.Model.User.prototype.setTenant = function(value) {
+proto.Model.User.prototype.setTenant = function (value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
-
 
 /**
  * optional bool isCustomer = 4;
  * @return {boolean}
  */
-proto.Model.User.prototype.getIscustomer = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+proto.Model.User.prototype.getIscustomer = function () {
+  return /** @type {boolean} */ (
+    jspb.Message.getFieldWithDefault(this, 4, false)
+  );
 };
-
 
 /**
  * @param {boolean} value
  * @return {!proto.Model.User} returns this
  */
-proto.Model.User.prototype.setIscustomer = function(value) {
+proto.Model.User.prototype.setIscustomer = function (value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
 };
-
 
 /**
  * optional string avatarURL = 5;
  * @return {string}
  */
-proto.Model.User.prototype.getAvatarurl = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+proto.Model.User.prototype.getAvatarurl = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.Model.User} returns this
  */
-proto.Model.User.prototype.setAvatarurl = function(value) {
+proto.Model.User.prototype.setAvatarurl = function (value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
-
 
 /**
  * optional bool isOnline = 6;
  * @return {boolean}
  */
-proto.Model.User.prototype.getIsonline = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 6, false));
+proto.Model.User.prototype.getIsonline = function () {
+  return /** @type {boolean} */ (
+    jspb.Message.getFieldWithDefault(this, 6, false)
+  );
 };
-
 
 /**
  * @param {boolean} value
  * @return {!proto.Model.User} returns this
  */
-proto.Model.User.prototype.setIsonline = function(value) {
+proto.Model.User.prototype.setIsonline = function (value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
 };
-
 
 /**
  * repeated User agents = 7;
  * @return {!Array<!proto.Model.User>}
  */
-proto.Model.User.prototype.getAgentsList = function() {
+proto.Model.User.prototype.getAgentsList = function () {
   return /** @type{!Array<!proto.Model.User>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.Model.User, 7));
+    jspb.Message.getRepeatedWrapperField(this, proto.Model.User, 7)
+  );
 };
-
 
 /**
  * @param {!Array<!proto.Model.User>} value
  * @return {!proto.Model.User} returns this
-*/
-proto.Model.User.prototype.setAgentsList = function(value) {
+ */
+proto.Model.User.prototype.setAgentsList = function (value) {
   return jspb.Message.setRepeatedWrapperField(this, 7, value);
 };
-
 
 /**
  * @param {!proto.Model.User=} opt_value
  * @param {number=} opt_index
  * @return {!proto.Model.User}
  */
-proto.Model.User.prototype.addAgents = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.Model.User, opt_index);
+proto.Model.User.prototype.addAgents = function (opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(
+    this,
+    7,
+    opt_value,
+    proto.Model.User,
+    opt_index
+  );
 };
-
 
 /**
  * Clears the list making it empty but non-null.
  * @return {!proto.Model.User} returns this
  */
-proto.Model.User.prototype.clearAgentsList = function() {
+proto.Model.User.prototype.clearAgentsList = function () {
   return this.setAgentsList([]);
 };
-
 
 goog.object.extend(exports, proto.Model);
