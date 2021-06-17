@@ -37,6 +37,8 @@ exports.Blabber.MessageSeenStatusResponse = chatLib.MessageSeenStatusResponse;
 exports.Blabber.Agent = require('./nodejs/agent-platform/userRelationships_grpc_pb');
 exports.Blabber.Agent.UserRelationsCustomer =
   agentUserRelationships.UserRelationsCustomer;
+exports.Blabber.Agent.AvailableAgentsRequest =
+    agentUserRelationships.AvailableAgentsRequest;
 exports.Blabber.Agent.UserRelationsAgent =
   agentUserRelationships.UserRelationsAgent;
 exports.Blabber.Agent.User = user.User;
