@@ -16,6 +16,8 @@ message Message {
   repeated Model.User users = 9;
   repeated Model.User mentionedUsers = 10;
   string messageType = 11;
+  int64 quotedMessageId = 12;
+  string quotedMessageText = 13;
 }
 
 message MessageList {
