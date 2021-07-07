@@ -3,7 +3,7 @@
 'use strict';
 var grpc = require('grpc');
 var chat$backend_chat_pb = require('../chat-backend/chat_pb.js');
-var Model_user_pb = require('../model/user_pb.js');
+var Model_user_pb = require('../Model/user_pb.js');
 
 function serialize_ChatService_AccessToken(arg) {
   if (!(arg instanceof chat$backend_chat_pb.AccessToken)) {
@@ -13,9 +13,7 @@ function serialize_ChatService_AccessToken(arg) {
 }
 
 function deserialize_ChatService_AccessToken(buffer_arg) {
-  return chat$backend_chat_pb.AccessToken.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.AccessToken.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_Empty(arg) {
@@ -26,24 +24,18 @@ function serialize_ChatService_Empty(arg) {
 }
 
 function deserialize_ChatService_Empty(buffer_arg) {
-  return chat$backend_chat_pb.Empty.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_MarkMessageSeenForUserRequest(arg) {
   if (!(arg instanceof chat$backend_chat_pb.MarkMessageSeenForUserRequest)) {
-    throw new Error(
-      'Expected argument of type ChatService.MarkMessageSeenForUserRequest'
-    );
+    throw new Error('Expected argument of type ChatService.MarkMessageSeenForUserRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_ChatService_MarkMessageSeenForUserRequest(buffer_arg) {
-  return chat$backend_chat_pb.MarkMessageSeenForUserRequest.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.MarkMessageSeenForUserRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_Message(arg) {
@@ -54,9 +46,7 @@ function serialize_ChatService_Message(arg) {
 }
 
 function deserialize_ChatService_Message(buffer_arg) {
-  return chat$backend_chat_pb.Message.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.Message.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_MessageList(arg) {
@@ -67,84 +57,62 @@ function serialize_ChatService_MessageList(arg) {
 }
 
 function deserialize_ChatService_MessageList(buffer_arg) {
-  return chat$backend_chat_pb.MessageList.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.MessageList.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_MessageSeenStatusRequest(arg) {
   if (!(arg instanceof chat$backend_chat_pb.MessageSeenStatusRequest)) {
-    throw new Error(
-      'Expected argument of type ChatService.MessageSeenStatusRequest'
-    );
+    throw new Error('Expected argument of type ChatService.MessageSeenStatusRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_ChatService_MessageSeenStatusRequest(buffer_arg) {
-  return chat$backend_chat_pb.MessageSeenStatusRequest.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.MessageSeenStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_MessageSeenStatusResponse(arg) {
   if (!(arg instanceof chat$backend_chat_pb.MessageSeenStatusResponse)) {
-    throw new Error(
-      'Expected argument of type ChatService.MessageSeenStatusResponse'
-    );
+    throw new Error('Expected argument of type ChatService.MessageSeenStatusResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_ChatService_MessageSeenStatusResponse(buffer_arg) {
-  return chat$backend_chat_pb.MessageSeenStatusResponse.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.MessageSeenStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_RemoveMentionAndSeenResponse(arg) {
   if (!(arg instanceof chat$backend_chat_pb.RemoveMentionAndSeenResponse)) {
-    throw new Error(
-      'Expected argument of type ChatService.RemoveMentionAndSeenResponse'
-    );
+    throw new Error('Expected argument of type ChatService.RemoveMentionAndSeenResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_ChatService_RemoveMentionAndSeenResponse(buffer_arg) {
-  return chat$backend_chat_pb.RemoveMentionAndSeenResponse.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.RemoveMentionAndSeenResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_RemoveMentionRequest(arg) {
   if (!(arg instanceof chat$backend_chat_pb.RemoveMentionRequest)) {
-    throw new Error(
-      'Expected argument of type ChatService.RemoveMentionRequest'
-    );
+    throw new Error('Expected argument of type ChatService.RemoveMentionRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_ChatService_RemoveMentionRequest(buffer_arg) {
-  return chat$backend_chat_pb.RemoveMentionRequest.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.RemoveMentionRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_RemoveMessageSeenRequest(arg) {
   if (!(arg instanceof chat$backend_chat_pb.RemoveMessageSeenRequest)) {
-    throw new Error(
-      'Expected argument of type ChatService.RemoveMessageSeenRequest'
-    );
+    throw new Error('Expected argument of type ChatService.RemoveMessageSeenRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_ChatService_RemoveMessageSeenRequest(buffer_arg) {
-  return chat$backend_chat_pb.RemoveMessageSeenRequest.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.RemoveMessageSeenRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_Room(arg) {
@@ -155,9 +123,7 @@ function serialize_ChatService_Room(arg) {
 }
 
 function deserialize_ChatService_Room(buffer_arg) {
-  return chat$backend_chat_pb.Room.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.Room.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_RoomCategory(arg) {
@@ -168,54 +134,40 @@ function serialize_ChatService_RoomCategory(arg) {
 }
 
 function deserialize_ChatService_RoomCategory(buffer_arg) {
-  return chat$backend_chat_pb.RoomCategory.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.RoomCategory.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_SendAutomatedMessageRequest(arg) {
   if (!(arg instanceof chat$backend_chat_pb.SendAutomatedMessageRequest)) {
-    throw new Error(
-      'Expected argument of type ChatService.SendAutomatedMessageRequest'
-    );
+    throw new Error('Expected argument of type ChatService.SendAutomatedMessageRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_ChatService_SendAutomatedMessageRequest(buffer_arg) {
-  return chat$backend_chat_pb.SendAutomatedMessageRequest.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.SendAutomatedMessageRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_SendAutomatedMessageResponse(arg) {
   if (!(arg instanceof chat$backend_chat_pb.SendAutomatedMessageResponse)) {
-    throw new Error(
-      'Expected argument of type ChatService.SendAutomatedMessageResponse'
-    );
+    throw new Error('Expected argument of type ChatService.SendAutomatedMessageResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_ChatService_SendAutomatedMessageResponse(buffer_arg) {
-  return chat$backend_chat_pb.SendAutomatedMessageResponse.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.SendAutomatedMessageResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_SendMessageResponse(arg) {
   if (!(arg instanceof chat$backend_chat_pb.SendMessageResponse)) {
-    throw new Error(
-      'Expected argument of type ChatService.SendMessageResponse'
-    );
+    throw new Error('Expected argument of type ChatService.SendMessageResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_ChatService_SendMessageResponse(buffer_arg) {
-  return chat$backend_chat_pb.SendMessageResponse.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.SendMessageResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ChatService_Tenant(arg) {
@@ -226,9 +178,7 @@ function serialize_ChatService_Tenant(arg) {
 }
 
 function deserialize_ChatService_Tenant(buffer_arg) {
-  return chat$backend_chat_pb.Tenant.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return chat$backend_chat_pb.Tenant.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_Model_User(arg) {
@@ -242,7 +192,8 @@ function deserialize_Model_User(buffer_arg) {
   return Model_user_pb.User.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-var ChatService = (exports.ChatService = {
+
+var ChatService = exports.ChatService = {
   retrieveMessages: {
     path: '/ChatService.Chat/RetrieveMessages',
     requestStream: false,
@@ -353,10 +304,10 @@ var ChatService = (exports.ChatService = {
     responseSerialize: serialize_ChatService_SendAutomatedMessageResponse,
     responseDeserialize: deserialize_ChatService_SendAutomatedMessageResponse,
   },
-});
+};
 
 exports.ChatClient = grpc.makeGenericClientConstructor(ChatService);
-var AuthenticationService = (exports.AuthenticationService = {
+var AuthenticationService = exports.AuthenticationService = {
   retrieveAccessToken: {
     path: '/ChatService.Authentication/RetrieveAccessToken',
     requestStream: false,
@@ -368,8 +319,6 @@ var AuthenticationService = (exports.AuthenticationService = {
     responseSerialize: serialize_ChatService_AccessToken,
     responseDeserialize: deserialize_ChatService_AccessToken,
   },
-});
+};
 
-exports.AuthenticationClient = grpc.makeGenericClientConstructor(
-  AuthenticationService
-);
+exports.AuthenticationClient = grpc.makeGenericClientConstructor(AuthenticationService);

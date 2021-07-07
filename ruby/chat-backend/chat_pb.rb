@@ -3,7 +3,7 @@
 
 require 'google/protobuf'
 
-require 'model/user_pb'
+require 'Model/user_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("chat-backend/chat.proto", :syntax => :proto3) do
     add_message "ChatService.Message" do
