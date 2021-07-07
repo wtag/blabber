@@ -53,6 +53,6 @@ exports.Blabber.UserPreferences.ChatPreferences =
   userPreferencesService.ChatPreferences;
 exports.Blabber.TenantSettings = require('./nodejs/agent-platform/tenantSettings_grpc_pb');
 exports.Blabber.TenantSettings.RetrieveTenantSettingsRequest =
-    tenantSettingsService .RetrieveTenantSettingsRequest;
+    tenantSettingsService.RetrieveTenantSettingsRequest;
 exports.Blabber.TenantSettings.RetrieveTenantSettingsResponse =
-    tenantSettingsService .RetrieveTenantSettingsResponse;
+    tenantSettingsService.RetrieveTenantSettingsResponse;
