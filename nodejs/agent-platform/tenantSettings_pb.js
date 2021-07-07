@@ -221,8 +221,8 @@ proto.Agent.RetrieveTenantSettingsResponse.prototype.toObject = function(opt_inc
  */
 proto.Agent.RetrieveTenantSettingsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    chatenabled: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    isactive: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    chatenabled: jspb.Message.getFieldWithDefault(msg, 1, false),
+    isactive: jspb.Message.getFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -318,7 +318,7 @@ proto.Agent.RetrieveTenantSettingsResponse.serializeBinaryToWriter = function(me
  * @return {boolean}
  */
 proto.Agent.RetrieveTenantSettingsResponse.prototype.getChatenabled = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
 };
 
 
@@ -336,7 +336,7 @@ proto.Agent.RetrieveTenantSettingsResponse.prototype.setChatenabled = function(v
  * @return {boolean}
  */
 proto.Agent.RetrieveTenantSettingsResponse.prototype.getIsactive = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 2, false));
 };
 
 

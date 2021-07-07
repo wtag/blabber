@@ -3,7 +3,7 @@
 'use strict';
 var grpc = require('grpc');
 var agent$platform_userRelationships_pb = require('../agent-platform/userRelationships_pb.js');
-var Model_user_pb = require('../Model/user_pb.js');
+var Model_user_pb = require('../model/user_pb.js');
 
 function serialize_Agent_AvailableAgentsRequest(arg) {
   if (!(arg instanceof agent$platform_userRelationships_pb.AvailableAgentsRequest)) {
