@@ -13,9 +13,7 @@ function serialize_Agent_SendEmailRequest(arg) {
 }
 
 function deserialize_Agent_SendEmailRequest(buffer_arg) {
-  return agent$platform_email_pb.SendEmailRequest.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return agent$platform_email_pb.SendEmailRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_Agent_SendEmailResponse(arg) {
@@ -26,12 +24,11 @@ function serialize_Agent_SendEmailResponse(arg) {
 }
 
 function deserialize_Agent_SendEmailResponse(buffer_arg) {
-  return agent$platform_email_pb.SendEmailResponse.deserializeBinary(
-    new Uint8Array(buffer_arg)
-  );
+  return agent$platform_email_pb.SendEmailResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-var EmailService = (exports.EmailService = {
+
+var EmailService = exports.EmailService = {
   sendEmail: {
     path: '/Agent.Email/SendEmail',
     requestStream: false,
@@ -43,6 +40,6 @@ var EmailService = (exports.EmailService = {
     responseSerialize: serialize_Agent_SendEmailResponse,
     responseDeserialize: deserialize_Agent_SendEmailResponse,
   },
-});
+};
 
 exports.EmailClient = grpc.makeGenericClientConstructor(EmailService);

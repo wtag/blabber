@@ -3,6 +3,7 @@ const user = require('./nodejs/model/user_pb');
 const agentUserRelationships = require('./nodejs/agent-platform/userRelationships_pb');
 const emailService = require('./nodejs/agent-platform/email_pb');
 const userPreferencesService = require('./nodejs/agent-platform/userPreferences_pb');
+const tenantSettingsService = require('./nodejs/agent-platform/tenantSettings_pb');
 
 /**GRPC Service Exposed By Chat Server
  ***Service: Authentication Token**/
@@ -50,3 +51,8 @@ exports.Blabber.Email.SendEmailResponse = emailService.SendEmailResponse;
 exports.Blabber.UserPreferences = require('./nodejs/agent-platform/userPreferences_grpc_pb');
 exports.Blabber.UserPreferences.ChatPreferences =
   userPreferencesService.ChatPreferences;
+exports.Blabber.TenantSettings = require('./nodejs/agent-platform/tenantSettings_grpc_pb');
+exports.Blabber.TenantSettings.RetrieveTenantSettingsRequest =
+    tenantSettingsService.RetrieveTenantSettingsRequest;
+exports.Blabber.TenantSettings.RetrieveTenantSettingsResponse =
+    tenantSettingsService.RetrieveTenantSettingsResponse;

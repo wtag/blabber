@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package Agent;
+
+message RetrieveTenantSettingsRequest {
+    string tenant = 1;
+}
+
+message RetrieveTenantSettingsResponse {
+    bool chatEnabled = 1;
+    bool isActive = 2;
+}
+
+service TenantSettings {
+    rpc RetrieveTenantSettings(RetrieveTenantSettingsRequest) returns (RetrieveTenantSettingsResponse) {}
+}
