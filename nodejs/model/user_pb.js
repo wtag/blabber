@@ -79,9 +79,9 @@ proto.Model.User.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     tenant: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    iscustomer: jspb.Message.getFieldWithDefault(msg, 4, false),
+    iscustomer: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
     avatarurl: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    isonline: jspb.Message.getFieldWithDefault(msg, 6, false),
+    isonline: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     agentsList: jspb.Message.toObjectList(msg.getAgentsList(),
     proto.Model.User.toObject, includeInstance)
   };
@@ -290,7 +290,7 @@ proto.Model.User.prototype.setTenant = function(value) {
  * @return {boolean}
  */
 proto.Model.User.prototype.getIscustomer = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
 
 
@@ -326,7 +326,7 @@ proto.Model.User.prototype.setAvatarurl = function(value) {
  * @return {boolean}
  */
 proto.Model.User.prototype.getIsonline = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 6, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
 

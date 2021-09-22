@@ -17,7 +17,7 @@
     "url": "https://github.com/wtag/blabber/issues"
   },
   "dependencies": {
-    "grpc-tools": "1.7.2"
+    "grpc-tools": "^1.11.2"
   },
   "homepage": "https://github.com/wtag/blabber#readme"
 }
