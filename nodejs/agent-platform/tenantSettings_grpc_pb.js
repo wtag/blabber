@@ -1,7 +1,6 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
 var agent$platform_tenantSettings_pb = require('../agent-platform/tenantSettings_pb.js');
 
 function serialize_Agent_RetrieveTenantSettingsRequest(arg) {
@@ -27,7 +26,7 @@ function deserialize_Agent_RetrieveTenantSettingsResponse(buffer_arg) {
 }
 
 
-var TenantSettingsService = exports.TenantSettingsService = {
+var TenantSettingsService = exports['Agent.TenantSettings'] = {
   retrieveTenantSettings: {
     path: '/Agent.TenantSettings/RetrieveTenantSettings',
     requestStream: false,
@@ -41,4 +40,3 @@ var TenantSettingsService = exports.TenantSettingsService = {
   },
 };
 
-exports.TenantSettingsClient = grpc.makeGenericClientConstructor(TenantSettingsService);

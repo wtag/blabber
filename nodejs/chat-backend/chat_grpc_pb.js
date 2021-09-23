@@ -1,7 +1,6 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
 var chat$backend_chat_pb = require('../chat-backend/chat_pb.js');
 var Model_user_pb = require('../Model/user_pb.js');
 
@@ -193,7 +192,7 @@ function deserialize_Model_User(buffer_arg) {
 }
 
 
-var ChatService = exports.ChatService = {
+var ChatService = exports['ChatService.Chat'] = {
   retrieveMessages: {
     path: '/ChatService.Chat/RetrieveMessages',
     requestStream: false,
@@ -306,8 +305,7 @@ var ChatService = exports.ChatService = {
   },
 };
 
-exports.ChatClient = grpc.makeGenericClientConstructor(ChatService);
-var AuthenticationService = exports.AuthenticationService = {
+var AuthenticationService = exports['ChatService.Authentication'] = {
   retrieveAccessToken: {
     path: '/ChatService.Authentication/RetrieveAccessToken',
     requestStream: false,
@@ -321,4 +319,3 @@ var AuthenticationService = exports.AuthenticationService = {
   },
 };
 
-exports.AuthenticationClient = grpc.makeGenericClientConstructor(AuthenticationService);

@@ -1,7 +1,6 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
 var agent$platform_userRelationships_pb = require('../agent-platform/userRelationships_pb.js');
 var Model_user_pb = require('../Model/user_pb.js');
 
@@ -39,7 +38,7 @@ function deserialize_Model_User(buffer_arg) {
 }
 
 
-var UserRelationshipsService = exports.UserRelationshipsService = {
+var UserRelationshipsService = exports['Agent.UserRelationships'] = {
   retrieveCustomerRelations: {
     path: '/Agent.UserRelationships/RetrieveCustomerRelations',
     requestStream: false,
@@ -86,4 +85,3 @@ var UserRelationshipsService = exports.UserRelationshipsService = {
   },
 };
 
-exports.UserRelationshipsClient = grpc.makeGenericClientConstructor(UserRelationshipsService);
