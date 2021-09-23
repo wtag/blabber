@@ -1,6 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var agent$platform_userPreferences_pb = require('../agent-platform/userPreferences_pb.js');
 var Model_user_pb = require('../Model/user_pb.js');
 
@@ -27,7 +28,7 @@ function deserialize_Model_User(buffer_arg) {
 }
 
 
-var UserPreferencesService = exports['Agent.UserPreferences'] = {
+var UserPreferencesService = exports.UserPreferencesService = {
   retrieveChatPreferences: {
     path: '/Agent.UserPreferences/RetrieveChatPreferences',
     requestStream: false,
@@ -41,3 +42,4 @@ var UserPreferencesService = exports['Agent.UserPreferences'] = {
   },
 };
 
+exports.UserPreferencesClient = grpc.makeGenericClientConstructor(UserPreferencesService);

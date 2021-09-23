@@ -1,6 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
+var grpc = require('@grpc/grpc-js');
 var agent$platform_email_pb = require('../agent-platform/email_pb.js');
 var Model_user_pb = require('../Model/user_pb.js');
 
@@ -27,7 +28,7 @@ function deserialize_Agent_SendEmailResponse(buffer_arg) {
 }
 
 
-var EmailService = exports['Agent.Email'] = {
+var EmailService = exports.EmailService = {
   sendEmail: {
     path: '/Agent.Email/SendEmail',
     requestStream: false,
@@ -41,3 +42,4 @@ var EmailService = exports['Agent.Email'] = {
   },
 };
 
+exports.EmailClient = grpc.makeGenericClientConstructor(EmailService);
