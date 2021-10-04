@@ -3,7 +3,7 @@
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var agent$platform_userPreferences_pb = require('../agent-platform/userPreferences_pb.js');
-var Model_user_pb = require('../Model/user_pb.js');
+var Model_user_pb = require('../model/user_pb.js');
 
 function serialize_Agent_ChatPreferences(arg) {
   if (!(arg instanceof agent$platform_userPreferences_pb.ChatPreferences)) {
