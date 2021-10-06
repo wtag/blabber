@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var agent$platform_email_pb = require('../agent-platform/email_pb.js');
 var Model_user_pb = require('../model/user_pb.js');
 

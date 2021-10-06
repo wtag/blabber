@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var agent$platform_tenantSettings_pb = require('../agent-platform/tenantSettings_pb.js');
 
 function serialize_Agent_RetrieveTenantSettingsRequest(arg) {

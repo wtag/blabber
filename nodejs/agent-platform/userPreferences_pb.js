@@ -28,7 +28,7 @@ goog.exportSymbol('proto.Agent.ChatPreferences', null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.Agent.ChatPreferences = function (opt_data) {
+proto.Agent.ChatPreferences = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.Agent.ChatPreferences, jspb.Message);
@@ -40,66 +40,60 @@ if (goog.DEBUG && !COMPILED) {
   proto.Agent.ChatPreferences.displayName = 'proto.Agent.ChatPreferences';
 }
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.Agent.ChatPreferences.prototype.toObject = function (
-    opt_includeInstance
-  ) {
-    return proto.Agent.ChatPreferences.toObject(opt_includeInstance, this);
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.Agent.ChatPreferences.prototype.toObject = function(opt_includeInstance) {
+  return proto.Agent.ChatPreferences.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.Agent.ChatPreferences} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.Agent.ChatPreferences.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    notificationescalationdelayinseconds: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    notificationescalationenabled: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.Agent.ChatPreferences} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.Agent.ChatPreferences.toObject = function (includeInstance, msg) {
-    var f,
-      obj = {
-        notificationescalationdelayinseconds: jspb.Message.getFieldWithDefault(
-          msg,
-          1,
-          0
-        ),
-        notificationescalationenabled: jspb.Message.getFieldWithDefault(
-          msg,
-          2,
-          false
-        ),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.Agent.ChatPreferences}
  */
-proto.Agent.ChatPreferences.deserializeBinary = function (bytes) {
+proto.Agent.ChatPreferences.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.Agent.ChatPreferences();
+  var msg = new proto.Agent.ChatPreferences;
   return proto.Agent.ChatPreferences.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -108,41 +102,40 @@ proto.Agent.ChatPreferences.deserializeBinary = function (bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.Agent.ChatPreferences}
  */
-proto.Agent.ChatPreferences.deserializeBinaryFromReader = function (
-  msg,
-  reader
-) {
+proto.Agent.ChatPreferences.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {number} */ (reader.readInt64());
-        msg.setNotificationescalationdelayinseconds(value);
-        break;
-      case 2:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setNotificationescalationenabled(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setNotificationescalationdelayinseconds(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setNotificationescalationenabled(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
 
+
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.Agent.ChatPreferences.prototype.serializeBinary = function () {
+proto.Agent.ChatPreferences.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
   proto.Agent.ChatPreferences.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -151,57 +144,59 @@ proto.Agent.ChatPreferences.prototype.serializeBinary = function () {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.Agent.ChatPreferences.serializeBinaryToWriter = function (
-  message,
-  writer
-) {
+proto.Agent.ChatPreferences.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getNotificationescalationdelayinseconds();
   if (f !== 0) {
-    writer.writeInt64(1, f);
+    writer.writeInt64(
+      1,
+      f
+    );
   }
   f = message.getNotificationescalationenabled();
   if (f) {
-    writer.writeBool(2, f);
+    writer.writeBool(
+      2,
+      f
+    );
   }
 };
+
 
 /**
  * optional int64 notificationEscalationDelayInSeconds = 1;
  * @return {number}
  */
-proto.Agent.ChatPreferences.prototype.getNotificationescalationdelayinseconds =
-  function () {
-    return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-  };
+proto.Agent.ChatPreferences.prototype.getNotificationescalationdelayinseconds = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
 
 /**
  * @param {number} value
  * @return {!proto.Agent.ChatPreferences} returns this
  */
-proto.Agent.ChatPreferences.prototype.setNotificationescalationdelayinseconds =
-  function (value) {
-    return jspb.Message.setProto3IntField(this, 1, value);
-  };
+proto.Agent.ChatPreferences.prototype.setNotificationescalationdelayinseconds = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
 
 /**
  * optional bool notificationEscalationEnabled = 2;
  * @return {boolean}
  */
-proto.Agent.ChatPreferences.prototype.getNotificationescalationenabled =
-  function () {
-    return /** @type {boolean} */ (
-      jspb.Message.getFieldWithDefault(this, 2, false)
-    );
-  };
+proto.Agent.ChatPreferences.prototype.getNotificationescalationenabled = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
 
 /**
  * @param {boolean} value
  * @return {!proto.Agent.ChatPreferences} returns this
  */
-proto.Agent.ChatPreferences.prototype.setNotificationescalationenabled =
-  function (value) {
-    return jspb.Message.setProto3BooleanField(this, 2, value);
-  };
+proto.Agent.ChatPreferences.prototype.setNotificationescalationenabled = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
 
 goog.object.extend(exports, proto.Agent);

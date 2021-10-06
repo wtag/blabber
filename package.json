@@ -1,11 +1,11 @@
 {
   "name": "blabber",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "description": "PROTO FILE FOR GRPC BACKEND SERVER",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/Model/user.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/chat-backend/chat.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/userRelationships.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/email.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/tenantSettings.proto"
+    "build-js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=grpc_js:./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/Model/user.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=grpc_js:./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/chat-backend/chat.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=grpc_js:./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/userRelationships.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=grpc_js:./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/email.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=grpc_js:./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/tenantSettings.proto && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./nodejs --grpc_out=grpc_js:./nodejs --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` -I ./proto-libs ./proto-libs/agent-platform/userPreferences.proto"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
     "url": "https://github.com/wtag/blabber/issues"
   },
   "dependencies": {
-    "grpc-tools": "1.7.2"
+    "grpc-tools": "^1.11.2"
   },
   "homepage": "https://github.com/wtag/blabber#readme"
 }
