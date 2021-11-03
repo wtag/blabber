@@ -129,6 +129,13 @@ message SendAutomatedMessageResponse {
   bool success = 1;
 }
 
+    Model.User user = 3;
+ }
+
+message RetrieveRoomUsersResponse {
+    repeated Model.User users = 1;
+ }
+
 service Chat {
   rpc RetrieveMessages(Room) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
@@ -140,6 +147,8 @@ service Chat {
   rpc MessageSeenStatus(MessageSeenStatusRequest) returns (MessageSeenStatusResponse) {}
   rpc MarkMessageSeenForUser(MarkMessageSeenForUserRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc SendAutomatedMessageToTraveller(SendAutomatedMessageRequest) returns (SendAutomatedMessageResponse) {}
+  rpc RetrieveRoomUsers(RetrieveRoomUsersRequest) returns (RetrieveRoomUsersResponse) {}
+
 }
 
 service Authentication {
