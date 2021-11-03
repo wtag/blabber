@@ -29,6 +29,8 @@ goog.exportSymbol('proto.ChatService.MessageSeenStatusResponse', null, global);
 goog.exportSymbol('proto.ChatService.RemoveMentionAndSeenResponse', null, global);
 goog.exportSymbol('proto.ChatService.RemoveMentionRequest', null, global);
 goog.exportSymbol('proto.ChatService.RemoveMessageSeenRequest', null, global);
+goog.exportSymbol('proto.ChatService.RetrieveRoomUsersRequest', null, global);
+goog.exportSymbol('proto.ChatService.RetrieveRoomUsersResponse', null, global);
 goog.exportSymbol('proto.ChatService.Room', null, global);
 goog.exportSymbol('proto.ChatService.RoomCategory', null, global);
 goog.exportSymbol('proto.ChatService.SendAutomatedMessageRequest', null, global);

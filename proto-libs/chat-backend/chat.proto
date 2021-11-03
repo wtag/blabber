@@ -129,6 +129,9 @@ message SendAutomatedMessageResponse {
   bool success = 1;
 }
 
+message RetrieveRoomUsersRequest {
+    string roomId = 1;
+    string tenant = 2;
     Model.User user = 3;
  }
 
