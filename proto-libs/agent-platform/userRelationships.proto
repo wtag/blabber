@@ -30,5 +30,5 @@ service UserRelationships {
   rpc RetrieveAgentCustomerRelations(Model.User) returns (stream Model.User) {}
   rpc RetrieveAgentColleagueRelations(Model.User) returns (stream Model.User) {}
   rpc RetrieveAvailableAgents(AvailableAgentsRequest) returns (stream Model.User) {}
-  rpc RetrieveSpecificUsersInformation(AvailableAgentsRequest) returns (RetrieveSpecificUsersInformationResponse) {}
+  rpc RetrieveSpecificUsersInformation(RetrieveSpecificUsersInformationRequest) returns (RetrieveSpecificUsersInformationResponse) {}
 }

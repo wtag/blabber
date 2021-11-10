@@ -16,6 +16,17 @@ function deserialize_Agent_AvailableAgentsRequest(buffer_arg) {
   return agent$platform_userRelationships_pb.AvailableAgentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_Agent_RetrieveSpecificUsersInformationRequest(arg) {
+  if (!(arg instanceof agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationRequest)) {
+    throw new Error('Expected argument of type Agent.RetrieveSpecificUsersInformationRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_Agent_RetrieveSpecificUsersInformationRequest(buffer_arg) {
+  return agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_Agent_RetrieveSpecificUsersInformationResponse(arg) {
   if (!(arg instanceof agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationResponse)) {
     throw new Error('Expected argument of type Agent.RetrieveSpecificUsersInformationResponse');
@@ -99,10 +110,10 @@ var UserRelationshipsService = exports.UserRelationshipsService = {
     path: '/Agent.UserRelationships/RetrieveSpecificUsersInformation',
     requestStream: false,
     responseStream: false,
-    requestType: agent$platform_userRelationships_pb.AvailableAgentsRequest,
+    requestType: agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationRequest,
     responseType: agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationResponse,
-    requestSerialize: serialize_Agent_AvailableAgentsRequest,
-    requestDeserialize: deserialize_Agent_AvailableAgentsRequest,
+    requestSerialize: serialize_Agent_RetrieveSpecificUsersInformationRequest,
+    requestDeserialize: deserialize_Agent_RetrieveSpecificUsersInformationRequest,
     responseSerialize: serialize_Agent_RetrieveSpecificUsersInformationResponse,
     responseDeserialize: deserialize_Agent_RetrieveSpecificUsersInformationResponse,
   },
