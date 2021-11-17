@@ -130,13 +130,9 @@ message SendAutomatedMessageResponse {
 }
 
 message RetrieveRoomUsersRequest {
-    string roomId = 1;
-    string tenant = 2;
-    Model.User user = 3;
- }
-
-message RetrieveRoomUsersResponse {
-    repeated Model.User users = 1;
+  string roomId = 1;
+  string tenant = 2;
+  Model.User user = 3;
  }
 
 service Chat {
@@ -150,7 +146,7 @@ service Chat {
   rpc MessageSeenStatus(MessageSeenStatusRequest) returns (MessageSeenStatusResponse) {}
   rpc MarkMessageSeenForUser(MarkMessageSeenForUserRequest) returns (RemoveMentionAndSeenResponse) {}
   rpc SendAutomatedMessageToTraveller(SendAutomatedMessageRequest) returns (SendAutomatedMessageResponse) {}
-  rpc RetrieveRoomUsers(RetrieveRoomUsersRequest) returns (RetrieveRoomUsersResponse) {}
+  rpc RetrieveRoomUsers(RetrieveRoomUsersRequest) returns (stream Model.User) {}
 
 }
 

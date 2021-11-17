@@ -24,7 +24,7 @@ module ChatService
       rpc :MessageSeenStatus, ::ChatService::MessageSeenStatusRequest, ::ChatService::MessageSeenStatusResponse
       rpc :MarkMessageSeenForUser, ::ChatService::MarkMessageSeenForUserRequest, ::ChatService::RemoveMentionAndSeenResponse
       rpc :SendAutomatedMessageToTraveller, ::ChatService::SendAutomatedMessageRequest, ::ChatService::SendAutomatedMessageResponse
-      rpc :RetrieveRoomUsers, ::ChatService::RetrieveRoomUsersRequest, ::ChatService::RetrieveRoomUsersResponse
+      rpc :RetrieveRoomUsers, ::ChatService::RetrieveRoomUsersRequest, stream(::Model::User)
     end
 
     Stub = Service.rpc_stub_class

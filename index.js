@@ -33,7 +33,6 @@ exports.Blabber.SendAutomatedMessageRequest =
 exports.Blabber.MessageSeenStatusRequest = chatLib.MessageSeenStatusRequest;
 exports.Blabber.MessageSeenStatusResponse = chatLib.MessageSeenStatusResponse;
 exports.Blabber.RetrieveRoomUsersRequest = chatLib.RetrieveRoomUsersRequest;
-exports.Blabber.RetrieveRoomUsersResponse = chatLib.RetrieveRoomUsersResponse;
 
 /**GRPC Service Exposed By Agent
  ***Service: User RelationShip**/
