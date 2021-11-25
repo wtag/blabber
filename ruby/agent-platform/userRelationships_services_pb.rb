@@ -18,6 +18,7 @@ module Agent
       rpc :RetrieveAgentCustomerRelations, ::Model::User, stream(::Model::User)
       rpc :RetrieveAgentColleagueRelations, ::Model::User, stream(::Model::User)
       rpc :RetrieveAvailableAgents, ::Agent::AvailableAgentsRequest, stream(::Model::User)
+      rpc :RetrieveSpecificUsersInformation, ::Agent::RetrieveSpecificUsersInformationRequest, ::Agent::RetrieveSpecificUsersInformationResponse
     end
 
     Stub = Service.rpc_stub_class

@@ -15,9 +15,20 @@ message AvailableAgentsRequest {
   string tenant = 1;
 }
 
+message RetrieveSpecificUsersInformationRequest {
+  int64 id = 1;
+  bool isCustomer = 2;
+  string tenant = 3;
+}
+
+message RetrieveSpecificUsersInformationResponse {
+  Model.User user = 1;
+}
+
 service UserRelationships {
   rpc RetrieveCustomerRelations(Model.User) returns (UserRelationsCustomer) {}
   rpc RetrieveAgentCustomerRelations(Model.User) returns (stream Model.User) {}
   rpc RetrieveAgentColleagueRelations(Model.User) returns (stream Model.User) {}
   rpc RetrieveAvailableAgents(AvailableAgentsRequest) returns (stream Model.User) {}
+  rpc RetrieveSpecificUsersInformation(RetrieveSpecificUsersInformationRequest) returns (RetrieveSpecificUsersInformationResponse) {}
 }
