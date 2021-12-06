@@ -6,6 +6,12 @@ require 'google/protobuf'
 require 'model/user_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("chat-backend/chat.proto", :syntax => :proto3) do
+    add_message "ChatService.QuotedMessageAttributes" do
+      optional :id, :int64, 1
+      optional :text, :string, 2
+      optional :senderId, :int64, 3
+      optional :isCustomer, :bool, 4
+    end
     add_message "ChatService.Message" do
       optional :id, :int64, 1
       optional :timestamp, :string, 2
@@ -18,8 +24,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :users, :message, 9, "Model.User"
       repeated :mentionedUsers, :message, 10, "Model.User"
       optional :messageType, :string, 11
-      optional :quotedMessageId, :int64, 12
-      optional :quotedMessageText, :string, 13
+      optional :quotedMessage, :message, 12, "ChatService.QuotedMessageAttributes"
     end
     add_message "ChatService.MessageList" do
       repeated :messages, :message, 1, "ChatService.Message"
@@ -121,6 +126,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module ChatService
+  QuotedMessageAttributes = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.QuotedMessageAttributes").msgclass
   Message = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.Message").msgclass
   MessageList = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.MessageList").msgclass
   SendMessageResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendMessageResponse").msgclass
