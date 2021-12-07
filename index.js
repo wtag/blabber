@@ -19,7 +19,6 @@ exports.Blabber.RoomCategoryList = chatLib.RoomCategoryList;
 exports.Blabber.User = user.User;
 exports.Blabber.Mention = chatLib.Mention;
 exports.Blabber.MessageSeen = chatLib.MessageSeen;
-exports.Blabber.QuotedMessageAttributes = chatLib.QuotedMessageAttributes;
 exports.Blabber.RemoveMentionRequest = chatLib.RemoveMentionRequest;
 exports.Blabber.RemoveMessageSeenRequest = chatLib.RemoveMessageSeenRequest;
 exports.Blabber.RemoveMentionAndSeenResponse =

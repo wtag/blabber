@@ -4,13 +4,6 @@ import "Model/user.proto";
 
 package ChatService;
 
-message QuotedMessageAttributes {
-  int64 id = 1;
-  string text = 2;
-  int64 senderId = 3;
-  bool isCustomer = 4;
-}
-
 message Message {
   int64 id = 1;
   string timestamp = 2;
@@ -23,7 +16,7 @@ message Message {
   repeated Model.User users = 9;
   repeated Model.User mentionedUsers = 10;
   string messageType = 11;
-  QuotedMessageAttributes quotedMessage = 12;
+  Message quotedMessage = 12;
 }
 
 message MessageList {
