@@ -116,6 +116,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :tenant, :string, 2
       optional :user, :message, 3, "Model.User"
     end
+    add_message "ChatService.RetrieveMessagesRequest" do
+      optional :roomUid, :string, 1
+      optional :tenant, :string, 2
+      optional :lastMessageTimestamp, :string, 3
+      optional :quotedMessageTimestamp, :string, 4
+    end
   end
 end
 
@@ -139,4 +145,5 @@ module ChatService
   SendAutomatedMessageRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendAutomatedMessageRequest").msgclass
   SendAutomatedMessageResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.SendAutomatedMessageResponse").msgclass
   RetrieveRoomUsersRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RetrieveRoomUsersRequest").msgclass
+  RetrieveMessagesRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ChatService.RetrieveMessagesRequest").msgclass
 end
