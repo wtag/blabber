@@ -4867,8 +4867,8 @@ proto.ChatService.RetrieveMessagesRequest.toObject = function(includeInstance, m
   var f, obj = {
     roomuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     tenant: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    lastmessagetimestamp: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    quotedmessagetimestamp: jspb.Message.getFieldWithDefault(msg, 4, "")
+    timestampupperbound: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    timestamplowerbound: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -4915,11 +4915,11 @@ proto.ChatService.RetrieveMessagesRequest.deserializeBinaryFromReader = function
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLastmessagetimestamp(value);
+      msg.setTimestampupperbound(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setQuotedmessagetimestamp(value);
+      msg.setTimestamplowerbound(value);
       break;
     default:
       reader.skipField();
@@ -4964,14 +4964,14 @@ proto.ChatService.RetrieveMessagesRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = message.getLastmessagetimestamp();
+  f = message.getTimestampupperbound();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getQuotedmessagetimestamp();
+  f = message.getTimestamplowerbound();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -5018,10 +5018,10 @@ proto.ChatService.RetrieveMessagesRequest.prototype.setTenant = function(value) 
 
 
 /**
- * optional string lastMessageTimestamp = 3;
+ * optional string timestampUpperBound = 3;
  * @return {string}
  */
-proto.ChatService.RetrieveMessagesRequest.prototype.getLastmessagetimestamp = function() {
+proto.ChatService.RetrieveMessagesRequest.prototype.getTimestampupperbound = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -5030,16 +5030,16 @@ proto.ChatService.RetrieveMessagesRequest.prototype.getLastmessagetimestamp = fu
  * @param {string} value
  * @return {!proto.ChatService.RetrieveMessagesRequest} returns this
  */
-proto.ChatService.RetrieveMessagesRequest.prototype.setLastmessagetimestamp = function(value) {
+proto.ChatService.RetrieveMessagesRequest.prototype.setTimestampupperbound = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string quotedMessageTimestamp = 4;
+ * optional string timestampLowerBound = 4;
  * @return {string}
  */
-proto.ChatService.RetrieveMessagesRequest.prototype.getQuotedmessagetimestamp = function() {
+proto.ChatService.RetrieveMessagesRequest.prototype.getTimestamplowerbound = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -5048,7 +5048,7 @@ proto.ChatService.RetrieveMessagesRequest.prototype.getQuotedmessagetimestamp = 
  * @param {string} value
  * @return {!proto.ChatService.RetrieveMessagesRequest} returns this
  */
-proto.ChatService.RetrieveMessagesRequest.prototype.setQuotedmessagetimestamp = function(value) {
+proto.ChatService.RetrieveMessagesRequest.prototype.setTimestamplowerbound = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 

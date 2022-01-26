@@ -137,8 +137,8 @@ message RetrieveRoomUsersRequest {
  message RetrieveMessagesRequest {
   string roomUid = 1;
   string tenant = 2;
-  string lastMessageTimestamp = 3;
-  string quotedMessageTimestamp = 4;
+  string timestampUpperBound = 3;
+  string timestampLowerBound = 4;
 }
 
 service Chat {

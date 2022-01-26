@@ -119,8 +119,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "ChatService.RetrieveMessagesRequest" do
       optional :roomUid, :string, 1
       optional :tenant, :string, 2
-      optional :lastMessageTimestamp, :string, 3
-      optional :quotedMessageTimestamp, :string, 4
+      optional :timestampUpperBound, :string, 3
+      optional :timestampLowerBound, :string, 4
     end
   end
 end
