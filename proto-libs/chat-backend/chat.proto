@@ -134,8 +134,15 @@ message RetrieveRoomUsersRequest {
   Model.User user = 3;
  }
 
+ message RetrieveMessagesRequest {
+  string roomUid = 1;
+  string tenant = 2;
+  string timestampUpperBound = 3;
+  string timestampLowerBound = 4;
+}
+
 service Chat {
-  rpc RetrieveMessages(Room) returns (MessageList) {}
+  rpc RetrieveMessages(RetrieveMessagesRequest) returns (MessageList) {}
   rpc SendMessage(Message) returns (SendMessageResponse) {}
   rpc RetrieveAvailableCustomerRooms(Model.User) returns (stream Room) {}
   rpc RetrieveAvailableAgentRooms(Model.User) returns (stream RoomCategory) {}

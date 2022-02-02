@@ -14,7 +14,7 @@ module ChatService
       self.unmarshal_class_method = :decode
       self.service_name = 'ChatService.Chat'
 
-      rpc :RetrieveMessages, ::ChatService::Room, ::ChatService::MessageList
+      rpc :RetrieveMessages, ::ChatService::RetrieveMessagesRequest, ::ChatService::MessageList
       rpc :SendMessage, ::ChatService::Message, ::ChatService::SendMessageResponse
       rpc :RetrieveAvailableCustomerRooms, ::Model::User, stream(::ChatService::Room)
       rpc :RetrieveAvailableAgentRooms, ::Model::User, stream(::ChatService::RoomCategory)

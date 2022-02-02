@@ -115,6 +115,17 @@ function deserialize_ChatService_RemoveMessageSeenRequest(buffer_arg) {
   return chat$backend_chat_pb.RemoveMessageSeenRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ChatService_RetrieveMessagesRequest(arg) {
+  if (!(arg instanceof chat$backend_chat_pb.RetrieveMessagesRequest)) {
+    throw new Error('Expected argument of type ChatService.RetrieveMessagesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ChatService_RetrieveMessagesRequest(buffer_arg) {
+  return chat$backend_chat_pb.RetrieveMessagesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ChatService_RetrieveRoomUsersRequest(arg) {
   if (!(arg instanceof chat$backend_chat_pb.RetrieveRoomUsersRequest)) {
     throw new Error('Expected argument of type ChatService.RetrieveRoomUsersRequest');
@@ -209,10 +220,10 @@ var ChatService = exports.ChatService = {
     path: '/ChatService.Chat/RetrieveMessages',
     requestStream: false,
     responseStream: false,
-    requestType: chat$backend_chat_pb.Room,
+    requestType: chat$backend_chat_pb.RetrieveMessagesRequest,
     responseType: chat$backend_chat_pb.MessageList,
-    requestSerialize: serialize_ChatService_Room,
-    requestDeserialize: deserialize_ChatService_Room,
+    requestSerialize: serialize_ChatService_RetrieveMessagesRequest,
+    requestDeserialize: deserialize_ChatService_RetrieveMessagesRequest,
     responseSerialize: serialize_ChatService_MessageList,
     responseDeserialize: deserialize_ChatService_MessageList,
   },
