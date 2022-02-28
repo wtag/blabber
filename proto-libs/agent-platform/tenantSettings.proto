@@ -7,8 +7,10 @@ message RetrieveTenantSettingsRequest {
 }
 
 message RetrieveTenantSettingsResponse {
-    bool chatEnabled = 1;
-    bool isActive = 2;
+    int64 id = 1;
+    string identifier = 2;
+    bool chatEnabled = 3;
+    bool isActive = 4;
 }
 
 service TenantSettings {

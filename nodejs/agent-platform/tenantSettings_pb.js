@@ -221,8 +221,10 @@ proto.Agent.RetrieveTenantSettingsResponse.prototype.toObject = function(opt_inc
  */
 proto.Agent.RetrieveTenantSettingsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    chatenabled: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    isactive: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    identifier: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    chatenabled: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    isactive: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -260,10 +262,18 @@ proto.Agent.RetrieveTenantSettingsResponse.deserializeBinaryFromReader = functio
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIdentifier(value);
+      break;
+    case 3:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setChatenabled(value);
       break;
-    case 2:
+    case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsactive(value);
       break;
@@ -296,17 +306,31 @@ proto.Agent.RetrieveTenantSettingsResponse.prototype.serializeBinary = function(
  */
 proto.Agent.RetrieveTenantSettingsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+  f = message.getIdentifier();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getChatenabled();
   if (f) {
     writer.writeBool(
-      1,
+      3,
       f
     );
   }
   f = message.getIsactive();
   if (f) {
     writer.writeBool(
-      2,
+      4,
       f
     );
   }
@@ -314,11 +338,47 @@ proto.Agent.RetrieveTenantSettingsResponse.serializeBinaryToWriter = function(me
 
 
 /**
- * optional bool chatEnabled = 1;
+ * optional int64 id = 1;
+ * @return {number}
+ */
+proto.Agent.RetrieveTenantSettingsResponse.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.Agent.RetrieveTenantSettingsResponse} returns this
+ */
+proto.Agent.RetrieveTenantSettingsResponse.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional string identifier = 2;
+ * @return {string}
+ */
+proto.Agent.RetrieveTenantSettingsResponse.prototype.getIdentifier = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.Agent.RetrieveTenantSettingsResponse} returns this
+ */
+proto.Agent.RetrieveTenantSettingsResponse.prototype.setIdentifier = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool chatEnabled = 3;
  * @return {boolean}
  */
 proto.Agent.RetrieveTenantSettingsResponse.prototype.getChatenabled = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
 
@@ -327,16 +387,16 @@ proto.Agent.RetrieveTenantSettingsResponse.prototype.getChatenabled = function()
  * @return {!proto.Agent.RetrieveTenantSettingsResponse} returns this
  */
 proto.Agent.RetrieveTenantSettingsResponse.prototype.setChatenabled = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 1, value);
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
 /**
- * optional bool isActive = 2;
+ * optional bool isActive = 4;
  * @return {boolean}
  */
 proto.Agent.RetrieveTenantSettingsResponse.prototype.getIsactive = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
 
 
@@ -345,7 +405,7 @@ proto.Agent.RetrieveTenantSettingsResponse.prototype.getIsactive = function() {
  * @return {!proto.Agent.RetrieveTenantSettingsResponse} returns this
  */
 proto.Agent.RetrieveTenantSettingsResponse.prototype.setIsactive = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 

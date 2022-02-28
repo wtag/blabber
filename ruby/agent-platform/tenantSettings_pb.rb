@@ -9,8 +9,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :id, :int64, 1
     end
     add_message "Agent.RetrieveTenantSettingsResponse" do
-      optional :chatEnabled, :bool, 1
-      optional :isActive, :bool, 2
+      optional :id, :int64, 1
+      optional :identifier, :string, 2
+      optional :chatEnabled, :bool, 3
+      optional :isActive, :bool, 4
     end
   end
 end
