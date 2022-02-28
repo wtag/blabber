@@ -10,13 +10,11 @@ message Message {
   string tenant = 3;
   string roomUid = 4;
   string text = 5;
-  int64 senderId = 6;
-  string senderName = 7;
-  bool isCustomer = 8;
-  repeated Model.User users = 9;
-  repeated Model.User mentionedUsers = 10;
-  string messageType = 11;
-  Message quotedMessage = 12;
+  repeated Model.User users = 6;
+  repeated Model.User mentionedUsers = 7;
+  string messageType = 8;
+  Message quotedMessage = 9;
+  Model.User sender = 10;
 }
 
 message MessageList {

@@ -42,10 +42,6 @@ exports.Blabber.Agent.UserRelationsCustomer =
   agentUserRelationships.UserRelationsCustomer;
 exports.Blabber.Agent.AvailableAgentsRequest =
     agentUserRelationships.AvailableAgentsRequest;
-exports.Blabber.Agent.RetrieveSpecificUsersInformationResponse =
-    agentUserRelationships.RetrieveSpecificUsersInformationResponse;
-exports.Blabber.Agent.RetrieveSpecificUsersInformationRequest =
-    agentUserRelationships.RetrieveSpecificUsersInformationRequest;
 exports.Blabber.Agent.UserRelationsAgent =
   agentUserRelationships.UserRelationsAgent;
 exports.Blabber.Agent.User = user.User;

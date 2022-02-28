@@ -12,13 +12,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :tenant, :string, 3
       optional :roomUid, :string, 4
       optional :text, :string, 5
-      optional :senderId, :int64, 6
-      optional :senderName, :string, 7
-      optional :isCustomer, :bool, 8
-      repeated :users, :message, 9, "Model.User"
-      repeated :mentionedUsers, :message, 10, "Model.User"
-      optional :messageType, :string, 11
-      optional :quotedMessage, :message, 12, "ChatService.Message"
+      repeated :users, :message, 6, "Model.User"
+      repeated :mentionedUsers, :message, 7, "Model.User"
+      optional :messageType, :string, 8
+      optional :quotedMessage, :message, 9, "ChatService.Message"
+      optional :sender, :message, 10, "Model.User"
     end
     add_message "ChatService.MessageList" do
       repeated :messages, :message, 1, "ChatService.Message"
