@@ -15,10 +15,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "Agent.AvailableAgentsRequest" do
       optional :tenant, :string, 1
     end
+    add_message "Agent.RetrieveSpecificUsersInformationRequest" do
+      optional :id, :int64, 1
+      optional :isCustomer, :bool, 2
+      optional :tenant, :string, 3
+    end
+    add_message "Agent.RetrieveSpecificUsersInformationResponse" do
+      optional :user, :message, 1, "Model.User"
+    end
   end
 end
 
 module Agent
   UserRelationsCustomer = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.UserRelationsCustomer").msgclass
   AvailableAgentsRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.AvailableAgentsRequest").msgclass
+  RetrieveSpecificUsersInformationRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.RetrieveSpecificUsersInformationRequest").msgclass
+  RetrieveSpecificUsersInformationResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Agent.RetrieveSpecificUsersInformationResponse").msgclass
 end

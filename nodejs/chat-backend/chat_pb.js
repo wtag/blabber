@@ -463,7 +463,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.ChatService.Message.repeatedFields_ = [6,7];
+proto.ChatService.Message.repeatedFields_ = [9,10];
 
 
 
@@ -501,13 +501,15 @@ proto.ChatService.Message.toObject = function(includeInstance, msg) {
     tenant: jspb.Message.getFieldWithDefault(msg, 3, ""),
     roomuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     text: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    senderid: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    sendername: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    iscustomer: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     usersList: jspb.Message.toObjectList(msg.getUsersList(),
     Model_user_pb.User.toObject, includeInstance),
     mentionedusersList: jspb.Message.toObjectList(msg.getMentionedusersList(),
     Model_user_pb.User.toObject, includeInstance),
-    messagetype: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    quotedmessage: (f = msg.getQuotedmessage()) && proto.ChatService.Message.toObject(includeInstance, f),
-    sender: (f = msg.getSender()) && Model_user_pb.User.toObject(includeInstance, f)
+    messagetype: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    quotedmessage: (f = msg.getQuotedmessage()) && proto.ChatService.Message.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -565,28 +567,35 @@ proto.ChatService.Message.deserializeBinaryFromReader = function(msg, reader) {
       msg.setText(value);
       break;
     case 6:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSenderid(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSendername(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIscustomer(value);
+      break;
+    case 9:
       var value = new Model_user_pb.User;
       reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
       msg.addUsers(value);
       break;
-    case 7:
+    case 10:
       var value = new Model_user_pb.User;
       reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
       msg.addMentionedusers(value);
       break;
-    case 8:
+    case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setMessagetype(value);
       break;
-    case 9:
+    case 12:
       var value = new proto.ChatService.Message;
       reader.readMessage(value,proto.ChatService.Message.deserializeBinaryFromReader);
       msg.setQuotedmessage(value);
-      break;
-    case 10:
-      var value = new Model_user_pb.User;
-      reader.readMessage(value,Model_user_pb.User.deserializeBinaryFromReader);
-      msg.setSender(value);
       break;
     default:
       reader.skipField();
@@ -652,10 +661,31 @@ proto.ChatService.Message.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getSenderid();
+  if (f !== 0) {
+    writer.writeInt64(
+      6,
+      f
+    );
+  }
+  f = message.getSendername();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getIscustomer();
+  if (f) {
+    writer.writeBool(
+      8,
+      f
+    );
+  }
   f = message.getUsersList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      6,
+      9,
       f,
       Model_user_pb.User.serializeBinaryToWriter
     );
@@ -663,7 +693,7 @@ proto.ChatService.Message.serializeBinaryToWriter = function(message, writer) {
   f = message.getMentionedusersList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      7,
+      10,
       f,
       Model_user_pb.User.serializeBinaryToWriter
     );
@@ -671,24 +701,16 @@ proto.ChatService.Message.serializeBinaryToWriter = function(message, writer) {
   f = message.getMessagetype();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      11,
       f
     );
   }
   f = message.getQuotedmessage();
   if (f != null) {
     writer.writeMessage(
-      9,
+      12,
       f,
       proto.ChatService.Message.serializeBinaryToWriter
-    );
-  }
-  f = message.getSender();
-  if (f != null) {
-    writer.writeMessage(
-      10,
-      f,
-      Model_user_pb.User.serializeBinaryToWriter
     );
   }
 };
@@ -785,12 +807,66 @@ proto.ChatService.Message.prototype.setText = function(value) {
 
 
 /**
- * repeated Model.User users = 6;
+ * optional int64 senderId = 6;
+ * @return {number}
+ */
+proto.ChatService.Message.prototype.getSenderid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.ChatService.Message} returns this
+ */
+proto.ChatService.Message.prototype.setSenderid = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string senderName = 7;
+ * @return {string}
+ */
+proto.ChatService.Message.prototype.getSendername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.ChatService.Message} returns this
+ */
+proto.ChatService.Message.prototype.setSendername = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional bool isCustomer = 8;
+ * @return {boolean}
+ */
+proto.ChatService.Message.prototype.getIscustomer = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.ChatService.Message} returns this
+ */
+proto.ChatService.Message.prototype.setIscustomer = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 8, value);
+};
+
+
+/**
+ * repeated Model.User users = 9;
  * @return {!Array<!proto.Model.User>}
  */
 proto.ChatService.Message.prototype.getUsersList = function() {
   return /** @type{!Array<!proto.Model.User>} */ (
-    jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 6));
+    jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 9));
 };
 
 
@@ -799,7 +875,7 @@ proto.ChatService.Message.prototype.getUsersList = function() {
  * @return {!proto.ChatService.Message} returns this
 */
 proto.ChatService.Message.prototype.setUsersList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 6, value);
+  return jspb.Message.setRepeatedWrapperField(this, 9, value);
 };
 
 
@@ -809,7 +885,7 @@ proto.ChatService.Message.prototype.setUsersList = function(value) {
  * @return {!proto.Model.User}
  */
 proto.ChatService.Message.prototype.addUsers = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.Model.User, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 9, opt_value, proto.Model.User, opt_index);
 };
 
 
@@ -823,12 +899,12 @@ proto.ChatService.Message.prototype.clearUsersList = function() {
 
 
 /**
- * repeated Model.User mentionedUsers = 7;
+ * repeated Model.User mentionedUsers = 10;
  * @return {!Array<!proto.Model.User>}
  */
 proto.ChatService.Message.prototype.getMentionedusersList = function() {
   return /** @type{!Array<!proto.Model.User>} */ (
-    jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 7));
+    jspb.Message.getRepeatedWrapperField(this, Model_user_pb.User, 10));
 };
 
 
@@ -837,7 +913,7 @@ proto.ChatService.Message.prototype.getMentionedusersList = function() {
  * @return {!proto.ChatService.Message} returns this
 */
 proto.ChatService.Message.prototype.setMentionedusersList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 7, value);
+  return jspb.Message.setRepeatedWrapperField(this, 10, value);
 };
 
 
@@ -847,7 +923,7 @@ proto.ChatService.Message.prototype.setMentionedusersList = function(value) {
  * @return {!proto.Model.User}
  */
 proto.ChatService.Message.prototype.addMentionedusers = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.Model.User, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.Model.User, opt_index);
 };
 
 
@@ -861,11 +937,11 @@ proto.ChatService.Message.prototype.clearMentionedusersList = function() {
 
 
 /**
- * optional string messageType = 8;
+ * optional string messageType = 11;
  * @return {string}
  */
 proto.ChatService.Message.prototype.getMessagetype = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
 };
 
 
@@ -874,17 +950,17 @@ proto.ChatService.Message.prototype.getMessagetype = function() {
  * @return {!proto.ChatService.Message} returns this
  */
 proto.ChatService.Message.prototype.setMessagetype = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
+  return jspb.Message.setProto3StringField(this, 11, value);
 };
 
 
 /**
- * optional Message quotedMessage = 9;
+ * optional Message quotedMessage = 12;
  * @return {?proto.ChatService.Message}
  */
 proto.ChatService.Message.prototype.getQuotedmessage = function() {
   return /** @type{?proto.ChatService.Message} */ (
-    jspb.Message.getWrapperField(this, proto.ChatService.Message, 9));
+    jspb.Message.getWrapperField(this, proto.ChatService.Message, 12));
 };
 
 
@@ -893,7 +969,7 @@ proto.ChatService.Message.prototype.getQuotedmessage = function() {
  * @return {!proto.ChatService.Message} returns this
 */
 proto.ChatService.Message.prototype.setQuotedmessage = function(value) {
-  return jspb.Message.setWrapperField(this, 9, value);
+  return jspb.Message.setWrapperField(this, 12, value);
 };
 
 
@@ -911,44 +987,7 @@ proto.ChatService.Message.prototype.clearQuotedmessage = function() {
  * @return {boolean}
  */
 proto.ChatService.Message.prototype.hasQuotedmessage = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * optional Model.User sender = 10;
- * @return {?proto.Model.User}
- */
-proto.ChatService.Message.prototype.getSender = function() {
-  return /** @type{?proto.Model.User} */ (
-    jspb.Message.getWrapperField(this, Model_user_pb.User, 10));
-};
-
-
-/**
- * @param {?proto.Model.User|undefined} value
- * @return {!proto.ChatService.Message} returns this
-*/
-proto.ChatService.Message.prototype.setSender = function(value) {
-  return jspb.Message.setWrapperField(this, 10, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.ChatService.Message} returns this
- */
-proto.ChatService.Message.prototype.clearSender = function() {
-  return this.setSender(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.ChatService.Message.prototype.hasSender = function() {
-  return jspb.Message.getField(this, 10) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
