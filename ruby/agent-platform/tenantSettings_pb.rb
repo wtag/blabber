@@ -6,7 +6,7 @@ require 'google/protobuf'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("agent-platform/tenantSettings.proto", :syntax => :proto3) do
     add_message "Agent.RetrieveTenantSettingsRequest" do
-      optional :tenant, :string, 1
+      optional :id, :int64, 1
     end
     add_message "Agent.RetrieveTenantSettingsResponse" do
       optional :chatEnabled, :bool, 1

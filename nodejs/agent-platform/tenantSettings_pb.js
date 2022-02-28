@@ -91,7 +91,7 @@ proto.Agent.RetrieveTenantSettingsRequest.prototype.toObject = function(opt_incl
  */
 proto.Agent.RetrieveTenantSettingsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tenant: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -129,8 +129,8 @@ proto.Agent.RetrieveTenantSettingsRequest.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTenant(value);
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -161,9 +161,9 @@ proto.Agent.RetrieveTenantSettingsRequest.prototype.serializeBinary = function()
  */
 proto.Agent.RetrieveTenantSettingsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTenant();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt64(
       1,
       f
     );
@@ -172,20 +172,20 @@ proto.Agent.RetrieveTenantSettingsRequest.serializeBinaryToWriter = function(mes
 
 
 /**
- * optional string tenant = 1;
- * @return {string}
+ * optional int64 id = 1;
+ * @return {number}
  */
-proto.Agent.RetrieveTenantSettingsRequest.prototype.getTenant = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.Agent.RetrieveTenantSettingsRequest.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.Agent.RetrieveTenantSettingsRequest} returns this
  */
-proto.Agent.RetrieveTenantSettingsRequest.prototype.setTenant = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.Agent.RetrieveTenantSettingsRequest.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
