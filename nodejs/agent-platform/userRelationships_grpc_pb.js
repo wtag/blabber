@@ -16,28 +16,6 @@ function deserialize_Agent_AvailableAgentsRequest(buffer_arg) {
   return agent$platform_userRelationships_pb.AvailableAgentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_Agent_RetrieveSpecificUsersInformationRequest(arg) {
-  if (!(arg instanceof agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationRequest)) {
-    throw new Error('Expected argument of type Agent.RetrieveSpecificUsersInformationRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_Agent_RetrieveSpecificUsersInformationRequest(buffer_arg) {
-  return agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_Agent_RetrieveSpecificUsersInformationResponse(arg) {
-  if (!(arg instanceof agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationResponse)) {
-    throw new Error('Expected argument of type Agent.RetrieveSpecificUsersInformationResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_Agent_RetrieveSpecificUsersInformationResponse(buffer_arg) {
-  return agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_Agent_UserRelationsCustomer(arg) {
   if (!(arg instanceof agent$platform_userRelationships_pb.UserRelationsCustomer)) {
     throw new Error('Expected argument of type Agent.UserRelationsCustomer');
@@ -105,17 +83,6 @@ var UserRelationshipsService = exports.UserRelationshipsService = {
     requestDeserialize: deserialize_Agent_AvailableAgentsRequest,
     responseSerialize: serialize_Model_User,
     responseDeserialize: deserialize_Model_User,
-  },
-  retrieveSpecificUsersInformation: {
-    path: '/Agent.UserRelationships/RetrieveSpecificUsersInformation',
-    requestStream: false,
-    responseStream: false,
-    requestType: agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationRequest,
-    responseType: agent$platform_userRelationships_pb.RetrieveSpecificUsersInformationResponse,
-    requestSerialize: serialize_Agent_RetrieveSpecificUsersInformationRequest,
-    requestDeserialize: deserialize_Agent_RetrieveSpecificUsersInformationRequest,
-    responseSerialize: serialize_Agent_RetrieveSpecificUsersInformationResponse,
-    responseDeserialize: deserialize_Agent_RetrieveSpecificUsersInformationResponse,
   },
 };
 
